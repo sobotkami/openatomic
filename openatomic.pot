@@ -1,0 +1,249 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-07-05 02:24+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: alireader.cpp:76
+#, c-format
+msgid "%s: Adding file '%s' to animation list.\n"
+msgstr ""
+
+#: alireader.cpp:85 anireader.cpp:230 fonreader.cpp:53 pcxreader.cpp:46
+#: resreader.cpp:76
+#, c-format
+msgid "%s: Unable to open file '%s'!\n"
+msgstr ""
+
+#: animation.cpp:31
+#, c-format
+msgid "%s: Animation '%s' asociated with %d states. Number of pictures: %d.\n"
+msgstr ""
+
+#: anireader.cpp:87 filereader.cpp:118
+#, c-format
+msgid "%s: Couldn't allocate %d bytes of memory\n"
+msgstr ""
+
+#: anireader.cpp:96
+#, c-format
+msgid "%s: Found known keyword '%s' at %d.\n"
+msgstr ""
+
+#: anireader.cpp:102
+#, c-format
+msgid "%s: Found unknown keyword '%s' at %d.\n"
+msgstr ""
+
+#: anireader.cpp:227 fonreader.cpp:50 pcxreader.cpp:43
+#, c-format
+msgid "%s: Opening a file '%s'.\n"
+msgstr ""
+
+#: anireader.cpp:268
+#, c-format
+msgid "%s: Missing keyword '%s' at %d!\n"
+msgstr ""
+
+#: anireader.cpp:275 anireader.cpp:299 anireader.cpp:318 anireader.cpp:334
+#: anireader.cpp:350 anireader.cpp:430 anireader.cpp:444 anireader.cpp:488
+#: anireader.cpp:503
+#, c-format
+msgid "%s: Wrong section separator at %d!\n"
+msgstr ""
+
+#: anireader.cpp:281
+#, c-format
+msgid "%s: The file is shorter than it should be (%d bytes vs %d bytes)!\n"
+msgstr ""
+
+#: anireader.cpp:286
+#, c-format
+msgid "%s: File size is %d bytes, file size from main header is %d bytes.\n"
+msgstr ""
+
+#: anireader.cpp:292 anireader.cpp:312 anireader.cpp:328 anireader.cpp:344
+#: anireader.cpp:437 anireader.cpp:477 anireader.cpp:495
+#, c-format
+msgid "%s: Missing section '%s' at %d!\n"
+msgstr ""
+
+#: anireader.cpp:303 anireader.cpp:322 anireader.cpp:338 anireader.cpp:361
+#: anireader.cpp:433 anireader.cpp:447 anireader.cpp:491 anireader.cpp:506
+#, c-format
+msgid "%s: The size of the section '%s' is %d bytes.\n"
+msgstr ""
+
+#: anireader.cpp:356
+#, c-format
+msgid "%s: The size of the section '%s' is not %d bytes!\n"
+msgstr ""
+
+#: anireader.cpp:366
+#, c-format
+msgid "%s: CBOX w:h = %d:%d pixels.\n"
+msgstr ""
+
+#: anireader.cpp:368
+#, c-format
+msgid "%s: Loading dynamic section...\n"
+msgstr ""
+
+#: anireader.cpp:390
+#, c-format
+msgid "%s: Incorrect data!\n"
+msgstr ""
+
+#: anireader.cpp:397
+#, c-format
+msgid "%s: Next section is '%s'.\n"
+msgstr ""
+
+#: anireader.cpp:452
+#, c-format
+msgid "%s: Sequence name is '%s'.\n"
+msgstr ""
+
+#: anireader.cpp:458
+#, c-format
+msgid "%s: Global origin x:y = %d:%d\n"
+msgstr ""
+
+#: anireader.cpp:463
+#, c-format
+msgid "%s: Sequence variable %2d: %d\n"
+msgstr ""
+
+#: anireader.cpp:467
+#, c-format
+msgid "%s: Number of sequence states is %d.\n"
+msgstr ""
+
+#: anireader.cpp:469 anireader.cpp:522
+#, c-format
+msgid "%s: --> Unknown %d bytes at %d - skipping.\n"
+msgstr ""
+
+#: anireader.cpp:474
+#, c-format
+msgid "%s: Loading %d. state of sequence.\n"
+msgstr ""
+
+#: anireader.cpp:509
+#, c-format
+msgid "%s: Frame duration is %d ms\n"
+msgstr ""
+
+#: anireader.cpp:514
+#, c-format
+msgid "%s: Shift axis x:y = %d:%d\n"
+msgstr ""
+
+#: anireader.cpp:519
+#, c-format
+msgid "%s: State variable %2d: %d\n"
+msgstr ""
+
+#: cfgreader.cpp:98 cfgreader.cpp:111 cfgreader.cpp:117 cfgreader.cpp:127
+#, c-format
+msgid "%s: Couldn't enter directory %s: %s.\n"
+msgstr ""
+
+#: cfgreader.cpp:105
+#, c-format
+msgid "%s: Unable to create directory %s: %s.\n"
+msgstr ""
+
+#: cfgreader.cpp:165 resreader.cpp:67
+#, c-format
+msgid "%s: key '%s', value '%s'\n"
+msgstr ""
+
+#: cfgreader.cpp:189
+#, c-format
+msgid "%s: Save default settings.\n"
+msgstr ""
+
+#: cfgreader.cpp:195
+#, c-format
+msgid "%s: Problem with creating/reading directory.\n"
+msgstr ""
+
+#: cfgreader.cpp:208
+#, c-format
+msgid "%s: Saving defaults in the configuration file.\n"
+msgstr ""
+
+#: cfgreader.cpp:226
+#, c-format
+msgid "%s: Unable to write to the default configuration file.\n"
+msgstr ""
+
+#: filereader.cpp:56 filereader.cpp:74 filereader.cpp:92 filereader.cpp:124
+#, c-format
+msgid "%s: Couldn't read %d bytes from file.\n"
+msgstr ""
+
+#: filereader.cpp:112
+#, c-format
+msgid "%s: Reading 0 bytes from file.\n"
+msgstr ""
+
+#: fonreader.cpp:69
+#, c-format
+msgid "%s: render.getPixelFormat() fail.\n"
+msgstr ""
+
+#: fonreader.cpp:94
+#, c-format
+msgid "%s: Number of slices: %d, font height: %d, font spacing: %d\n"
+msgstr ""
+
+#: fonreader.cpp:136
+#, c-format
+msgid "%s: CreateRGBSurface(): %s.\n"
+msgstr ""
+
+#: fonreader.cpp:292
+#, c-format
+msgid "%s: Letter %c (0x%x) not defined in FON file.\n"
+msgstr ""
+
+#: pcxreader.cpp:267
+#, c-format
+msgid "%s: %s!\n"
+msgstr ""
+
+#: seqparser.cpp:142
+#, c-format
+msgid "%s: Processing animation '%s'.\n"
+msgstr ""
+
+#: seqparser.cpp:470
+#, c-format
+msgid "%s: Editing animation - ignored.\n"
+msgstr ""
+
+#: seqparser.cpp:549
+#, c-format
+msgid "%s: Unused animation '%s'.\n"
+msgstr ""
+
+#: seqparser.cpp:552
+#, c-format
+msgid ""
+"%s: Incorrect implementation (or no implementation) of animation '%s'!\n"
+msgstr ""

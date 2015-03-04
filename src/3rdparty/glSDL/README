@@ -1,0 +1,59 @@
+
+	How To Use glSDL/Wrapper
+	------------------------
+	1. Include glSDL.h instead of SDL.h.
+	2. Add SDL_GLSDL to the flags to SDL_SetVideoMode().
+	3. Do *NOT* use the glSDL_*() calls explicitly! (*)
+	4. #define HAVE_OPENGL if OpenGL is present.
+	5. Link with SDL, SDL_image, OpenGL and math.
+	6. Enjoy!
+
+	(*) Except for the glSDL specific extensions that
+	    are not available in the SDL API. However, note
+	    that these calls may be very slow, or not work
+	    at all SDL 2D mode!
+
+	Notes
+	-----
+	* MS Visual C++ users: check out VisualC.html.
+	  (Project files by Florian Hufsky. Thanks!)
+
+	* Step 4 is intended to be handled by autoconf
+	  scripts or similar, so projects can be compiled
+	  with or without OpenGL. If HAVE_OPENGL is not
+	  defined when compiling, the application will use
+	  SDL directly, as if glSDL was not there.
+
+	  If you're not using GNU autotools or similar
+	  configuration tool, you can uncomment the
+	  '#define HAVE_OPENGL' line in glSDL.h.
+
+	* There are some glSDL_*() calls that do not
+	  replace SDL API calls. These are the only calls
+	  meant to be used explicitly, but as most of them
+	  are probably broken, and because they make your
+	  code depend on glSDL, it's probably a better
+	  idea to just forget about them.
+
+	* Don't whine about the wrapper approach. A real
+	  SDL backend version will be released RSN. It
+	  lets you run most existing SDL applications
+	  with acceleration without recompiling them.
+
+	* Applications using this glSDL wrapper will
+	  compile with the wrapper enabled, even if the
+	  installed SDL version has the glSDL backend.
+	  The SDL_GLSDL flag will activate the wrapper,
+	  but the real glSDL backend can be activated
+	  by setting the "SDL_VIDEODRIVER" environment
+	  variable to "glSDL". That means both versions
+	  of glSDL are available to applications compiled
+	  with the glSDL wrapper.
+
+	  Unfortunately, this also means applications
+	  hardcoded to always use the the glSDL wrapper
+	  cannot use the glSDL backend. They must be
+	  recompiled with the SDL_GLSDL flag removed.
+
+
+		//David Olofson <david@olofson.net>
