@@ -1,6 +1,9 @@
 /**
  * Convert original RSS files to standard WAV files.
  *
+ * RSS file is in fact plain RIFF/WAVE file without headers. The format is
+ * RIFF little-endian data, WAVE audio, Microsoft PCM, 16 bit, stereo 22050 Hz
+ *
  * Compilation: $ gcc -o raw2wav raw2wav.c
  *
  * Copyright 2010 (C) OpenAtomic contributors. See COPYING for license.
