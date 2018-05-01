@@ -120,6 +120,7 @@ private:
         er.report(LOG_INFO, _("%s: CGameEngine()\n"), AT);
 
         gui = NULL;
+        guiNo = guiScreen::mainMenu;
         gcnInput = NULL;
 
         client = NULL;
