@@ -17,6 +17,7 @@
 
 #include <def/sdl.h>
 #include <def/colors.h>
+#include <def/gameparams.h>
 
 #include <SDL/SDL_image.h> // need if glSDL?
 
@@ -703,7 +704,7 @@ void CPlayState::Update ()
 		{
 			fi = ga->getBoardField(x, y);
 			// after 10 frames * (30 ms?) = 300
-			if (fi.fire.state != -1 && fi.fire.ticksFireup > 0 && SDL_GetTicks() - fi.fire.ticksFireup > 400)
+			if (fi.fire.state != -1 && fi.fire.ticksFireup > 0 && SDL_GetTicks() - fi.fire.ticksFireup > FLAME_LIFETIME)
 			{
 
 				ga->setFieldValFire(x, y, -1, cgreen);
