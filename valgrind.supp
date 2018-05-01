@@ -1,0 +1,6 @@
+{
+   gettext-0.19.8.1-12.fc27.x86_64 is buggy, this is not our fault
+   Memcheck:Cond
+   fun:getenv
+   fun:__dcigettext
+}
