@@ -29,19 +29,19 @@
 
 class CPlaySound {
 public:
-    void PlayMenuClick();
-    void PlayDie();
-    void PlayExplode();
-    
-    static CPlaySound *instance() {
-        if (!s_instance)
-            s_instance = new CPlaySound;
-        return s_instance;
-    }
+	void PlayMenuClick();
+	void PlayDie();
+	void PlayExplode();
+	
+	static CPlaySound *instance() {
+		if (!s_instance)
+			s_instance = new CPlaySound;
+		return s_instance;
+	}
 private:
-        CPlaySound();
-        CErrorReporter er;
-        static CPlaySound *s_instance;
+		CPlaySound();
+		CErrorReporter er;
+		static CPlaySound *s_instance;
 };
 
 #endif	/* PLAYSOUND_H */

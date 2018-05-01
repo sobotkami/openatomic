@@ -33,95 +33,95 @@
 using namespace std;
 
 typedef enum {
-    ea_menuMain,
-    ea_menuNewGame,
-    ea_menuOptions,
-    ea_gamePlayers,
-    ea_gameTime,
-    ea_gameBoard
+	ea_menuMain,
+	ea_menuNewGame,
+	ea_menuOptions,
+	ea_gamePlayers,
+	ea_gameTime,
+	ea_gameBoard
 } earea;
 
 /*
 typedef struct {
-    Uint8 delay;
-    Uint16 fanim;
-    CAnimation *ani;
+	Uint8 delay;
+	Uint16 fanim;
+	CAnimation *ani;
 } TimerParam;
  */
 class CGameObject {
 private:
-    Uint8 type;
-    imagecolors color;
-    earea tarea; /* area on screen */
-    SDL_Rect area;
-    Sint16 x, y; /* position of object */
+	Uint8 type;
+	imagecolors color;
+	earea tarea; /* area on screen */
+	SDL_Rect area;
+	Sint16 x, y; /* position of object */
 
-    Uint32 ticksStartAnim;
-    Uint32 ticksDoneAnim;
+	Uint32 ticksStartAnim;
+	Uint32 ticksDoneAnim;
 
 protected:
-    CAnimation * ani;
-    CGamingArea * ga;
-    bool animLoop;
-    bool animDone;
+	CAnimation * ani;
+	CGamingArea * ga;
+	bool animLoop;
+	bool animDone;
 public:
-    bool getAnimDone();
-    void setAnimLoop(bool loop);
-    Uint32 getTicksDoneAnim();
+	bool getAnimDone();
+	void setAnimLoop(bool loop);
+	Uint32 getTicksDoneAnim();
 
-    void setGamingArea(CGamingArea * ga);
+	void setGamingArea(CGamingArea * ga);
 
-    void setColor(imagecolors color);
-    imagecolors getColor();
+	void setColor(imagecolors color);
+	imagecolors getColor();
 
-    void setType(Uint8 type);
+	void setType(Uint8 type);
 
-    void setArea(earea area);
-    SDL_Rect getArea();
+	void setArea(earea area);
+	SDL_Rect getArea();
 
-    void setAni(CAnimation * ani);
+	void setAni(CAnimation * ani);
 
-    Sint8 moveRel(Sint8 x, Sint8 y);
-    void moveAbs(Sint16 x, Sint16 y);
+	Sint8 moveRel(Sint8 x, Sint8 y);
+	void moveAbs(Sint16 x, Sint16 y);
 
-    void setX(Sint16 x);
-    Sint16 getX();
+	void setX(Sint16 x);
+	Sint16 getX();
 
-    void setY(Sint16 y);
-    Sint16 getY();
+	void setY(Sint16 y);
+	Sint16 getY();
 
-    Sint16 getArrayMiddleX();
-    Sint16 getArrayMiddleY();
+	Sint16 getArrayMiddleX();
+	Sint16 getArrayMiddleY();
 
-    Sint8 setRelX(Sint16 x);
-    Sint16 getRelX();
-    Sint16 getRelX(Sint16 x);
+	Sint8 setRelX(Sint16 x);
+	Sint16 getRelX();
+	Sint16 getRelX(Sint16 x);
 
-    Sint8 setRelY(Sint16 y);
-    Sint16 getRelY();
-    Sint16 getRelY(Sint16 y);
+	Sint8 setRelY(Sint16 y);
+	Sint16 getRelY();
+	Sint16 getRelY(Sint16 y);
 
-    void setArrayX(Sint16 x);
-    Sint16 getArrayX(Sint16 x);
-    Sint16 getArrayX();
+	void setArrayX(Sint16 x);
+	Sint16 getArrayX(Sint16 x);
+	Sint16 getArrayX();
 
-    void setArrayY(Sint16 y);
-    Sint16 getArrayY(Sint16 y);
-    Sint16 getArrayY();
+	void setArrayY(Sint16 y);
+	Sint16 getArrayY(Sint16 y);
+	Sint16 getArrayY();
 
-    Uint32 getFrame();
-    Sint32 getNewFrame(Uint32 frame);
-    SDL_Surface *getFrameSurface(Uint32 frame, imagecolors color);
-    Sint16 getSurfaceX(Uint32 frame);
-    Sint16 getSurfaceY(Uint32 frame);
+	Uint32 getFrame();
+	Sint32 getNewFrame(Uint32 frame);
+	SDL_Surface *getFrameSurface(Uint32 frame, imagecolors color);
+	Sint16 getSurfaceX(Uint32 frame);
+	Sint16 getSurfaceY(Uint32 frame);
 
-    void startAnim();
-    void stopAnim();
+	void startAnim();
+	void stopAnim();
 
-    CGameObject();
-    ~CGameObject();
+	CGameObject();
+	~CGameObject();
 
-    CErrorReporter er;
+	CErrorReporter er;
 };
 
 #endif // GAMEOBJECT_H

@@ -46,100 +46,100 @@ using namespace std;
 class CGameState {
 
 public:
-    static CGameState *instance() {
-        if (!s_instance)
-            s_instance = new CGameState;
-        return s_instance;
-    }
+	static CGameState *instance() {
+		if (!s_instance)
+			s_instance = new CGameState;
+		return s_instance;
+	}
 
-    // Game + Players
-    void setSchemeFile(string file);
-    string getSchemeFile();
+	// Game + Players
+	void setSchemeFile(string file);
+	string getSchemeFile();
 
-    void setSchemeType(schemeType type);
-    schemeType getSchemeType();
+	void setSchemeType(schemeType type);
+	schemeType getSchemeType();
 
-    void setValueToWinMatch(Uint32 value);
-    Uint32 getValueToWinMatch();
+	void setValueToWinMatch(Uint32 value);
+	Uint32 getValueToWinMatch();
 
-    void setKillsToWin(bool kills);
-    bool getKillsToWin();
+	void setKillsToWin(bool kills);
+	bool getKillsToWin();
 
-    void setTeamPlay(bool team);
-    bool getTeamPlay();
+	void setTeamPlay(bool team);
+	bool getTeamPlay();
 
-    void setPlayerGuiState(plmantype_t control, Uint8 player);
-    playerStateGui getPlayerGuiState(Uint8 player);
+	void setPlayerGuiState(plmantype_t control, Uint8 player);
+	playerStateGui getPlayerGuiState(Uint8 player);
 
-    // Network
-    void setIPAddress( IPaddress ip );
-    IPaddress getIPAddress();
+	// Network
+	void setIPAddress( IPaddress ip );
+	IPaddress getIPAddress();
 
-    string getNodeName();
-    void setNodeName(string nodeName);
+	string getNodeName();
+	void setNodeName(string nodeName);
 
-    bool getNetworkGame();
-    void setNetworkGame(bool networkGame);
+	bool getNetworkGame();
+	void setNetworkGame(bool networkGame);
 
-    // Convert
-    playerStateGui str2playerStateGui(string type);
-    const char *color2str(imagecolors color);
+	// Convert
+	playerStateGui str2playerStateGui(string type);
+	const char *color2str(imagecolors color);
 
-    // Store players info
-    void registerPlayer(Uint8 player, const char *node, plmantype_t control);
-    void unregisterPlayer(Uint8 player);
-    ServerPlayer getPlayer(Uint8 player);
+	// Store players info
+	void registerPlayer(Uint8 player, const char *node, plmantype_t control);
+	void unregisterPlayer(Uint8 player);
+	ServerPlayer getPlayer(Uint8 player);
 
 private:
 
-    CGameState()
-    {
-        er.setLevel(LOG_INFO);
-        er.report(LOG_INFO, _("%s: CGameState()\n"), AT);
+	CGameState()
+	{
+		er.setLevel(LOG_INFO);
+		er.report(LOG_INFO, _("%s: CGameState()\n"), AT);
 
-        setNodeName("node");
+		setNodeName("node");
 
-        for (Uint8 i = 0; i < CPLAYERS; i++ )
-        {
-            unregisterPlayer(i);
-        }
+		for (Uint8 i = 0; i < CPLAYERS; i++ )
+		{
+			unregisterPlayer(i);
+		}
 
-        setNetworkGame(false);
-    }
+		setNetworkGame(false);
+	}
 
-    static CGameState *s_instance;
+	static CGameState *s_instance;
 
-    CErrorReporter er;
+	CErrorReporter er;
 
-    // Gui
-    //CGameEngine * m_game;
-    //Uint8 GuiNo;
+	// Gui
+	//CGameEngine * m_game;
+	//Uint8 GuiNo;
 
-    // Game + Players
+	// Game + Players
 
-    // scheme file
-    // scheme
-    // count to win
-    // activated players
-    // keys
-    // teams?
-    string schFile;
-    schemeType  schType;
-    Uint32 valueToWinMatch;
-    bool killsToWin; // true = kills, false = score
-    bool teamPlay;
+	// scheme file
+	// scheme
+	// count to win
+	// activated players
+	// keys
+	// teams?
+	string schFile;
+	schemeType  schType;
+	Uint32 valueToWinMatch;
+	bool killsToWin; // true = kills, false = score
+	bool teamPlay;
 
-    playerStateGui playerGuiStates[CPLAYERS];
+	playerStateGui playerGuiStates[CPLAYERS];
 
 
-    /* Store players info */
-    ServerPlayer serverPlayers[CPLAYERS];
+	/* Store players info */
+	ServerPlayer serverPlayers[CPLAYERS];
 
-    // Network
-    IPaddress ip;
-    string nodeName;
+	// Network
+	IPaddress ip;
+	string nodeName;
 
-    bool networkGame;
+	bool networkGame;
 
 };
 

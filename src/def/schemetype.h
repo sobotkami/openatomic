@@ -20,17 +20,17 @@
 
 typedef enum
 {
-    GreenAcres,
-    ClassicGreenAcres,
-    TheHockeyRink,
-    AncientEgypt,
-    TheCoalMine,
-    TheBeach,
-    Aliens,
-    HauntedHaus,
-    UndertheOcean,
-    DeepForestGreen,
-    InnerCityTrash
+	GreenAcres,
+	ClassicGreenAcres,
+	TheHockeyRink,
+	AncientEgypt,
+	TheCoalMine,
+	TheBeach,
+	Aliens,
+	HauntedHaus,
+	UndertheOcean,
+	DeepForestGreen,
+	InnerCityTrash
 } schemeType;
 
 #endif // SCHEMETYPE_H

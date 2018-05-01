@@ -25,37 +25,37 @@
 
 class CResultsState : public CProgramState {
 public:
-    void Init();
-    void Cleanup();
+	void Init();
+	void Cleanup();
 
-    void Pause();
-    void Resume();
+	void Pause();
+	void Resume();
 
-    void HandleEvents();
-    void Update();
-    void Draw();
+	void HandleEvents();
+	void Update();
+	void Draw();
 
-    static CResultsState* Instance() {
-        return &m_ResultsState;
-    }
+	static CResultsState* Instance() {
+		return &m_ResultsState;
+	}
 
 protected:
 
-    CResultsState() {
-    }
+	CResultsState() {
+	}
 
 private:
-    static CResultsState m_ResultsState;
-    CErrorReporter er;
+	static CResultsState m_ResultsState;
+	CErrorReporter er;
 
-    SDL_Surface* bg;
+	SDL_Surface* bg;
 
-    bool firstFlip;
-    bool showMatchWinner;
+	bool firstFlip;
+	bool showMatchWinner;
 
-    void drawPlayerResult(imagecolors id);
-    void drawGameWinner();
-    void drawMatchWinner();
+	void drawPlayerResult(imagecolors id);
+	void drawGameWinner();
+	void drawMatchWinner();
 };
 
 #endif

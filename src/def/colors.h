@@ -29,17 +29,17 @@
  * List of used colors in game
  */
 typedef enum {
-    cgreen,
-    cblue,
-    cred,
-    ccyan,
-    cmagenta,
-    cyellow,
-    corange,
-    cpurple,
-    cblack,
-    cwhite,
-    cbrown
+	cgreen,
+	cblue,
+	cred,
+	ccyan,
+	cmagenta,
+	cyellow,
+	corange,
+	cpurple,
+	cblack,
+	cwhite,
+	cbrown
 } imagecolors;
 
 #endif	/* COLORS_H */

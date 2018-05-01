@@ -15,25 +15,25 @@
 */
 
 /*
-    SDL_image:  An example image loading library for use with SDL
-    Copyright (C) 1997-2009 Sam Lantinga
+	SDL_image:  An example image loading library for use with SDL
+	Copyright (C) 1997-2009 Sam Lantinga
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2.1 of the License, or (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+	You should have received a copy of the GNU Lesser General Public
+	License along with this library; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-    Sam Lantinga
-    slouken@libsdl.org
+	Sam Lantinga
+	slouken@libsdl.org
 */
 
 /*
@@ -60,33 +60,33 @@ using namespace std;
 
 struct PCXheader
 {
-    Uint8 Manufacturer;
-    Uint8 Version;
-    Uint8 Encoding;
-    Uint8 BitsPerPixel;
-    Sint16 Xmin, Ymin, Xmax, Ymax;
-    Sint16 HDpi, VDpi;
-    Uint8 Colormap[48];
-    Uint8 Reserved;
-    Uint8 NPlanes;
-    Sint16 BytesPerLine;
-    Sint16 PaletteInfo;
-    Sint16 HscreenSize;
-    Sint16 VscreenSize;
-    Uint8 Filler[54];
+	Uint8 Manufacturer;
+	Uint8 Version;
+	Uint8 Encoding;
+	Uint8 BitsPerPixel;
+	Sint16 Xmin, Ymin, Xmax, Ymax;
+	Sint16 HDpi, VDpi;
+	Uint8 Colormap[48];
+	Uint8 Reserved;
+	Uint8 NPlanes;
+	Sint16 BytesPerLine;
+	Sint16 PaletteInfo;
+	Sint16 HscreenSize;
+	Sint16 VscreenSize;
+	Uint8 Filler[54];
 };
 
 class CPcxReader
 {
 private:
-    SDL_RWops * fp;
-    SDL_Surface * LoadPCX_RW ( SDL_RWops *src );
-    
-    CErrorReporter er;
+	SDL_RWops * fp;
+	SDL_Surface * LoadPCX_RW ( SDL_RWops *src );
+	
+	CErrorReporter er;
 public:
-    SDL_Surface * read ( string filename );
-    CPcxReader();
-    ~CPcxReader();
+	SDL_Surface * read ( string filename );
+	CPcxReader();
+	~CPcxReader();
 };
 
 #endif // PCXREADER_H

@@ -34,22 +34,22 @@
 class CAIModel
 {
 public:
-    CAIModel(CGamingArea * ga);
-    CAIModel();
+	CAIModel(CGamingArea * ga);
+	CAIModel();
 
-    void addPlayer(imagecolors color, Uint8 x, Uint8 y);
-    void addPlayer(imagecolors color);
-    void removePlayer(imagecolors color);
+	void addPlayer(imagecolors color, Uint8 x, Uint8 y);
+	void addPlayer(imagecolors color);
+	void removePlayer(imagecolors color);
 
-    void setGa(CGamingArea *ga);
+	void setGa(CGamingArea *ga);
 
-    void doMove(CPriorityConcurrentQueue<CMessage> *q );
+	void doMove(CPriorityConcurrentQueue<CMessage> *q );
 
 private:
-    CErrorReporter er;
-    CGamingArea *ga;
-    CAIPlayer aip[CPLAYERS];
-    AStarSearch<MapSearchNode, CGamingArea> astarsearch;
+	CErrorReporter er;
+	CGamingArea *ga;
+	CAIPlayer aip[CPLAYERS];
+	AStarSearch<MapSearchNode, CGamingArea> astarsearch;
 };
 
 #endif // AIMODEL_H

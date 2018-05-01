@@ -29,16 +29,16 @@
 using namespace std;
 
 typedef struct {
-    Uint32 width;
-    Uint32 offset;
+	Uint32 width;
+	Uint32 offset;
 } FontInfo;
 
 typedef struct {
-    Uint32 num;
-    Uint32 height;
-    Uint32 spacing;
-    vector<FontInfo> fi;
-    char * data;
+	Uint32 num;
+	Uint32 height;
+	Uint32 spacing;
+	vector<FontInfo> fi;
+	char * data;
 } FontData;
 
 using namespace std;
@@ -46,23 +46,23 @@ using namespace std;
 class CFonReader
 {
 private:
-    SDL_Surface * symbols[256][CCOLORS];
-    CFileReader f;
-    SDL_RWops * fp;
-    Uint32 filesize;
-    FontData font;
+	SDL_Surface * symbols[256][CCOLORS];
+	CFileReader f;
+	SDL_RWops * fp;
+	Uint32 filesize;
+	FontData font;
 
-    CErrorReporter er;
+	CErrorReporter er;
 public:
-    SDL_Surface * getSymbol ( Uint8 s );
-    SDL_Surface * getSymbol ( Uint8 s, imagecolors color );
-    Sint16 getSpacing();
-    Uint16 getSymbolWidth ( Uint8 s );
-    Uint16 getStringWidth ( string str );
-    Uint16 getSymbolHeight();
-    Uint8 read ( string filename );
-    CFonReader();
-    ~CFonReader();
+	SDL_Surface * getSymbol ( Uint8 s );
+	SDL_Surface * getSymbol ( Uint8 s, imagecolors color );
+	Sint16 getSpacing();
+	Uint16 getSymbolWidth ( Uint8 s );
+	Uint16 getStringWidth ( string str );
+	Uint16 getSymbolHeight();
+	Uint8 read ( string filename );
+	CFonReader();
+	~CFonReader();
 };
 
 #endif // FONREADER_H

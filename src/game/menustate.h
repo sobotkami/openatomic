@@ -24,30 +24,30 @@
 class CMenuState : public CProgramState
 {
 public:
-    void Init();
-    void Cleanup();
+	void Init();
+	void Cleanup();
 
-    void Pause();
-    void Resume();
+	void Pause();
+	void Resume();
 
-    void HandleEvents();
-    void Update();
-    void Draw();
+	void HandleEvents();
+	void Update();
+	void Draw();
 
-    static CMenuState* Instance() {
-        return &m_MenuState;
-    }
+	static CMenuState* Instance() {
+		return &m_MenuState;
+	}
 
 protected:
-    CMenuState() { }
+	CMenuState() { }
 
 private:
-    static CMenuState m_MenuState;
-    CErrorReporter er;
+	static CMenuState m_MenuState;
+	CErrorReporter er;
 
-    bool redraw;
+	bool redraw;
 
-    void loadSchemeFiles();
+	void loadSchemeFiles();
 };
 
 #endif

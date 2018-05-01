@@ -30,90 +30,90 @@
 
 class CPlayState : public CProgramState {
 public:
-    void Init();
-    void Cleanup();
+	void Init();
+	void Cleanup();
 
-    void Pause();
-    void Resume();
+	void Pause();
+	void Resume();
 
-    void HandleEvents();
-    void Update();
-    void Draw();
+	void HandleEvents();
+	void Update();
+	void Draw();
 
-    static CPlayState* Instance() {
-        return &m_PlayState;
-    }
+	static CPlayState* Instance() {
+		return &m_PlayState;
+	}
 
 private:
-    static CPlayState m_PlayState;
+	static CPlayState m_PlayState;
 
-    CPlayState() { }
-    CErrorReporter er;
+	CPlayState() { }
+	CErrorReporter er;
 
-    SDL_Surface* bg;
+	SDL_Surface* bg;
 
-    bool redraw;
-    Uint32 r, nr;
-    bool drawDebug;
-    bool sdlDelay;
+	bool redraw;
+	Uint32 r, nr;
+	bool drawDebug;
+	bool sdlDelay;
 
-    // count FPS
-    Uint32 cycleCount;
-    Uint32 frameCount;
-    double calculateCPS();
-    double calculateFPS();
+	// count FPS
+	Uint32 cycleCount;
+	Uint32 frameCount;
+	double calculateCPS();
+	double calculateFPS();
 
-    void DrawBackground();
-    void DrawSolidObjects();
-    void DrawNonSolidObjects();
-    void DrawBombsFlames();
-    void DrawPlayers();
-    void DrawDebug();
+	void DrawBackground();
+	void DrawSolidObjects();
+	void DrawNonSolidObjects();
+	void DrawBombsFlames();
+	void DrawPlayers();
+	void DrawDebug();
 
-    void printMessagePayload( CMessage &m );
+	void printMessagePayload( CMessage &m );
 
-    CGamingArea * ga;
+	CGamingArea * ga;
 
-    bool roundHasWinner; // someone wins
-    Uint32 ticksRoundHasWinner;
-    Uint32 ticksStartGame;
+	bool roundHasWinner; // someone wins
+	Uint32 ticksRoundHasWinner;
+	Uint32 ticksStartGame;
 
-    // save keystates
-    Uint8* keystates;
-    // PlayerX droped bomb
-    //bool dropBomb[CPLAYERS];
+	// save keystates
+	Uint8* keystates;
+	// PlayerX droped bomb
+	//bool dropBomb[CPLAYERS];
 
-    void playersDie(Sint16 x, Sint16 y, imagecolors color);
-    void playerDie (imagecolors victim, imagecolors killer);
-    //void explodeBomb(Uint16 i);
-    void explodeBomb(Uint8 x, Uint8 y);
-    //void dropBomb(Sint16 x, Sint16 y, imagecolors color);
-    bool explodeField(Uint8 x, Uint8 y);
+	void playersDie(Sint16 x, Sint16 y, imagecolors color);
+	void playerDie (imagecolors victim, imagecolors killer);
+	//void explodeBomb(Uint16 i);
+	void explodeBomb(Uint8 x, Uint8 y);
+	//void dropBomb(Sint16 x, Sint16 y, imagecolors color);
+	bool explodeField(Uint8 x, Uint8 y);
 
-    void activatePlayer(Uint8 x, Uint8 y, imagecolors id);
-    void movePlayer (imagecolors id, bool west, bool east, bool north, bool south);
+	void activatePlayer(Uint8 x, Uint8 y, imagecolors id);
+	void movePlayer (imagecolors id, bool west, bool east, bool north, bool south);
 
-    // AI
-    CAIModel * aim;
+	// AI
+	CAIModel * aim;
 
-    // players
-    imagecolors playerKey0;
-    bool playerKey0Enabled;
-    imagecolors playerKey1;
-    bool playerKey1Enabled;
+	// players
+	imagecolors playerKey0;
+	bool playerKey0Enabled;
+	imagecolors playerKey1;
+	bool playerKey1Enabled;
 
-    bool playerAIEnabled;
+	bool playerAIEnabled;
 
-    /* statistic */
-    Uint32 updatedField;
-    Uint32 updatedPlDefPos;
+	/* statistic */
+	Uint32 updatedField;
+	Uint32 updatedPlDefPos;
 
 public:
-    void dropBomb(Sint16 x, Sint16 y, imagecolors color);
-    void explodeBomb(Uint16 i);
+	void dropBomb(Sint16 x, Sint16 y, imagecolors color);
+	void explodeBomb(Uint16 i);
 
-    void updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup);
-    void setPlDefPos(Uint8 player, Uint8 x, Uint8 y);
+	void updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup);
+	void setPlDefPos(Uint8 player, Uint8 x, Uint8 y);
 
 };
 

@@ -28,49 +28,49 @@ extern CAnimation a_bomb[4];
 
 CGO_Bomb::CGO_Bomb ()
 {
-    ani = &(a_bomb[BREG]);
-    setArea(ea_gameBoard);
-    ticksTimeoutDefault = 2000;
-    ticksTimeout = ticksTimeoutDefault;
+	ani = &(a_bomb[BREG]);
+	setArea(ea_gameBoard);
+	ticksTimeoutDefault = 2000;
+	ticksTimeout = ticksTimeoutDefault;
 
-    moveAbs(0, 0);
+	moveAbs(0, 0);
 }
 
 bool CGO_Bomb::getActive ()
 {
-    return active;
+	return active;
 }
 
 void CGO_Bomb::setActive (bool active)
 {
-    if (active)
-    {
-        ticksActivated = SDL_GetTicks();
-    }
-    else
-    {
-        ticksActivated = 0;
-    }
-    this->active = active;
+	if (active)
+	{
+		ticksActivated = SDL_GetTicks();
+	}
+	else
+	{
+		ticksActivated = 0;
+	}
+	this->active = active;
 }
 
 void CGO_Bomb::setFlameLength (Uint8 len)
 {
-    this->flameLength = len;
+	this->flameLength = len;
 }
 
 Uint8 CGO_Bomb::getFlameLength ()
 {
-    return flameLength;
+	return flameLength;
 }
 
 Uint32 CGO_Bomb::ticksToExplode ()
 {
-    Sint32 delta = -(SDL_GetTicks() - (ticksActivated + ticksTimeout));
-    return delta < 0 ? 0 : delta;
+	Sint32 delta = -(SDL_GetTicks() - (ticksActivated + ticksTimeout));
+	return delta < 0 ? 0 : delta;
 }
 
 void CGO_Bomb::setTimeout (Uint32 timeout)
 {
-    ticksTimeout = timeout;
+	ticksTimeout = timeout;
 }

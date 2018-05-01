@@ -38,16 +38,16 @@ using namespace std;
  */
 void handler (int sig)
 {
-    void *array[10];
-    size_t size;
+	void *array[10];
+	size_t size;
 
-    // get void*'s for all entries on the stack
-    size = backtrace(array, 10);
+	// get void*'s for all entries on the stack
+	size = backtrace(array, 10);
 
-    // print out all the frames to stderr
-    fprintf(stderr, "Error: signal %d:\n======= Backtrace: =========\n", sig);
-    backtrace_symbols_fd(array, size, 2);
-    exit(1);
+	// print out all the frames to stderr
+	fprintf(stderr, "Error: signal %d:\n======= Backtrace: =========\n", sig);
+	backtrace_symbols_fd(array, size, 2);
+	exit(1);
 }
 
 #endif
@@ -60,102 +60,102 @@ void handler (int sig)
  */
 int main (int argc, char *argv[])
 {
-    // debug
-    CErrorReporter er;
-    er.setLevel(LOG_INFO);
+	// debug
+	CErrorReporter er;
+	er.setLevel(LOG_INFO);
 
 #ifdef CONF_PF_LINUX 
-    signal(SIGSEGV, handler); // install our handler
-    signal(SIGABRT, handler); // install our handler
+	signal(SIGSEGV, handler); // install our handler
+	signal(SIGABRT, handler); // install our handler
 #endif
-    // First welcome message
-    er.report(LOG_INFO, _("%s: %s version %s\n"), AT, WIN_TITLE, VER_STRING);
+	// First welcome message
+	er.report(LOG_INFO, _("%s: %s version %s\n"), AT, WIN_TITLE, VER_STRING);
 
 #ifdef HAVE_OPENGL
-    // Have opengl/glSDL?
-    er.report(LOG_INFO, _("%s: Compiled with glSDL wrapper.\n"), AT, WIN_TITLE, VER_STRING);
+	// Have opengl/glSDL?
+	er.report(LOG_INFO, _("%s: Compiled with glSDL wrapper.\n"), AT, WIN_TITLE, VER_STRING);
 #endif
 
 
-    // run flags and parameters
-    Uint32 videoflags = SDL_VIDEO_FLAGS;
-    while (argc > 1)
-    {
-        --argc;
-        if (strcmp(argv[argc], "-hw") == 0)
-        {
-            videoflags ^= SDL_HWSURFACE;
-        }
-        else
-            if (strcmp(argv[argc], "-flip") == 0)
-        {
-            videoflags ^= SDL_DOUBLEBUF;
-        }
-        else
-            if (strcmp(argv[argc], "-fullscreen") == 0)
-        {
-            videoflags ^= SDL_FULLSCREEN;
-        }
-        else
-            if (strcmp(argv[argc], "-gl") == 0)
-        {
-            videoflags ^= SDL_GLSDL;
-        }
-        else
-        {
-            er.report(LOG_ERROR, _("%s: Usage: %s [-hw] [-flip] [-fast] [-fullscreen]\n"), AT, argv[0]);
-            return 1;
-        }
-    }
+	// run flags and parameters
+	Uint32 videoflags = SDL_VIDEO_FLAGS;
+	while (argc > 1)
+	{
+		--argc;
+		if (strcmp(argv[argc], "-hw") == 0)
+		{
+			videoflags ^= SDL_HWSURFACE;
+		}
+		else
+			if (strcmp(argv[argc], "-flip") == 0)
+		{
+			videoflags ^= SDL_DOUBLEBUF;
+		}
+		else
+			if (strcmp(argv[argc], "-fullscreen") == 0)
+		{
+			videoflags ^= SDL_FULLSCREEN;
+		}
+		else
+			if (strcmp(argv[argc], "-gl") == 0)
+		{
+			videoflags ^= SDL_GLSDL;
+		}
+		else
+		{
+			er.report(LOG_ERROR, _("%s: Usage: %s [-hw] [-flip] [-fast] [-fullscreen]\n"), AT, argv[0]);
+			return 1;
+		}
+	}
 
-    // locales
-    setlocale(LC_ALL, "");
-    bindtextdomain("openatomic", "./locale");
-    textdomain("openatomic");
+	// locales
+	setlocale(LC_ALL, "");
+	bindtextdomain("openatomic", "./locale");
+	textdomain("openatomic");
 
-    // main
-    try
-    {
-        // engine
-        //CGameEngine game;
+	// main
+	try
+	{
+		// engine
+		//CGameEngine game;
 
-        // initialize the engine
-        CGameEngine::instance()->Init(WIN_TITLE, WIN_WIDTH, WIN_HEIGHT, WIN_BPP, videoflags);
+		// initialize the engine
+		CGameEngine::instance()->Init(WIN_TITLE, WIN_WIDTH, WIN_HEIGHT, WIN_BPP, videoflags);
 
-        // load the intro
-        CGameEngine::instance()->ChangeState(CIntroState::Instance());
+		// load the intro
+		CGameEngine::instance()->ChangeState(CIntroState::Instance());
 
-        // main loop
-        CGameEngine::instance()->Run();
+		// main loop
+		CGameEngine::instance()->Run();
 
-        // cleanup the engine
-        CGameEngine::instance()->Cleanup();
-    }
-    /*
-     * Catch all Guichan exceptions
-     */
-    catch (gcn::Exception e)
-    {
-        er.report(LOG_ERROR, _("%s: GCN exception: %s\n"), AT, e.getMessage().c_str());
-        return 2;
-    }
-    /*
-     * Catch all Std exceptions
-     */
-    catch (std::exception e)
-    {
-        er.report(LOG_ERROR, _("%s: STD exception: %s\n"), AT, e.what());
-        return 3;
-    }
-    /*
-     * Catch all Unknown exceptions
-     */
-    catch (...)
-    {
-        er.report(LOG_ERROR, _("%s: Unknown exception\n"), AT);
-        return 4;
+		// cleanup the engine
+		CGameEngine::instance()->Cleanup();
+	}
+	/*
+	 * Catch all Guichan exceptions
+	 */
+	catch (gcn::Exception e)
+	{
+		er.report(LOG_ERROR, _("%s: GCN exception: %s\n"), AT, e.getMessage().c_str());
+		return 2;
+	}
+	/*
+	 * Catch all Std exceptions
+	 */
+	catch (std::exception e)
+	{
+		er.report(LOG_ERROR, _("%s: STD exception: %s\n"), AT, e.what());
+		return 3;
+	}
+	/*
+	 * Catch all Unknown exceptions
+	 */
+	catch (...)
+	{
+		er.report(LOG_ERROR, _("%s: Unknown exception\n"), AT);
+		return 4;
 
-    }
+	}
 
-    return 0;
+	return 0;
 }

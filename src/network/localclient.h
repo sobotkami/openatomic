@@ -26,29 +26,29 @@
 class CLocalClient : public IClient
 {
 public:
-    CLocalClient();
-    ~CLocalClient();
+	CLocalClient();
+	~CLocalClient();
 
-    /**
-     * @brief Implementace vsech metod rozhrani IMessages.
-     */
-    virtual void player(Uint8 player, Sint16 x1, Sint16 y1, Sint16 x2, Sint16 y2, playerstate_t state, playerlife_t life);
-    virtual void bomb(Uint8 player, Uint8 x, Uint8 y, Uint16 index, bombstate_t state);
-    virtual void inventory(Uint8 player, powerup_t powerup, Sint8 value);
-    virtual void updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup);
-    virtual void setDefPlPos(Uint8 player, Uint8 x, Uint8 y);
-    virtual void changeMenu(enum guiScreen menu);
-    virtual void startGame();
-    virtual void showResults();
-    virtual void exitGame();
-    virtual void registerPlayer(Uint8 player, const char *node, plmantype_t control);
-    virtual void unregisterPlayer(Uint8 player);
+	/**
+	 * @brief Implementace vsech metod rozhrani IMessages.
+	 */
+	virtual void player(Uint8 player, Sint16 x1, Sint16 y1, Sint16 x2, Sint16 y2, playerstate_t state, playerlife_t life);
+	virtual void bomb(Uint8 player, Uint8 x, Uint8 y, Uint16 index, bombstate_t state);
+	virtual void inventory(Uint8 player, powerup_t powerup, Sint8 value);
+	virtual void updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup);
+	virtual void setDefPlPos(Uint8 player, Uint8 x, Uint8 y);
+	virtual void changeMenu(enum guiScreen menu);
+	virtual void startGame();
+	virtual void showResults();
+	virtual void exitGame();
+	virtual void registerPlayer(Uint8 player, const char *node, plmantype_t control);
+	virtual void unregisterPlayer(Uint8 player);
 
-    /**
-     * @brief Implementace vsech metod rozhrani IClient.
-     */
-    virtual void think();
-    virtual bool isConnected();
+	/**
+	 * @brief Implementace vsech metod rozhrani IClient.
+	 */
+	virtual void think();
+	virtual bool isConnected();
 };
 
 #endif // LOCALCLIENT_H

@@ -39,20 +39,20 @@ using namespace std;
 
 typedef enum logL
 {
-    LOG_NOTHING,
-    LOG_ERROR,
-    LOG_WARNING,
-    LOG_INFO
+	LOG_NOTHING,
+	LOG_ERROR,
+	LOG_WARNING,
+	LOG_INFO
 } logLevel;
 
 class CErrorReporter
 {
 private:
-    logLevel level;
+	logLevel level;
 public:
-    int report ( logLevel level, const char *fmt, ... );
-    void setLevel ( logLevel level );
-    CErrorReporter();
+	int report ( logLevel level, const char *fmt, ... );
+	void setLevel ( logLevel level );
+	CErrorReporter();
 };
 
 #endif

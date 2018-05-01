@@ -33,26 +33,26 @@
 class CFontSingleton {
 public:
 
-    static CFontSingleton *instance() {
-        if (!s_instance)
-            s_instance = new CFontSingleton;
-        return s_instance;
-    }
+	static CFontSingleton *instance() {
+		if (!s_instance)
+			s_instance = new CFontSingleton;
+		return s_instance;
+	}
 
-    CFonReader font;
+	CFonReader font;
 private:
 
-    CFontSingleton() {
-        er.setLevel(LOG_INFO);
-        er.report(LOG_INFO, _("%s: CFontSingleton()\n"), AT);
+	CFontSingleton() {
+		er.setLevel(LOG_INFO);
+		er.report(LOG_INFO, _("%s: CFontSingleton()\n"), AT);
 
-        if (font.read(DATA_DIR "FONT6.FON"))
-            throw;
-    }
+		if (font.read(DATA_DIR "FONT6.FON"))
+			throw;
+	}
 
-    static CFontSingleton *s_instance;
+	static CFontSingleton *s_instance;
 
-    CErrorReporter er;
+	CErrorReporter er;
 
 
 };

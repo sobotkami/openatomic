@@ -29,21 +29,21 @@ CPlaySound *CPlaySound::s_instance;
 
 CPlaySound::CPlaySound()
 {
-    er.setLevel(LOG_INFO);
+	er.setLevel(LOG_INFO);
 }
 
 void CPlaySound::PlayMenuClick()
 {
-    Mix_PlayChannel(-1, CResources::instance()->getChooseSound(), 0);
+	Mix_PlayChannel(-1, CResources::instance()->getChooseSound(), 0);
 }
 
 void CPlaySound::PlayDie()
 {
-    Mix_PlayChannel(-1, CResources::instance()->getDieSound(rand() % C_DIE_SOUNDS), 0);
+	Mix_PlayChannel(-1, CResources::instance()->getDieSound(rand() % C_DIE_SOUNDS), 0);
 }
 
 void CPlaySound::PlayExplode()
 {
-    Mix_PlayChannel(-1, CResources::instance()->getExplodeSound(rand() % C_EXPLODE_SOUNDS), 0);
+	Mix_PlayChannel(-1, CResources::instance()->getExplodeSound(rand() % C_EXPLODE_SOUNDS), 0);
 
 }

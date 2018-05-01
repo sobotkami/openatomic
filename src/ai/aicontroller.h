@@ -25,14 +25,14 @@
 class CAIController
 {
 private:
-    //CAIModel model(NULL);
+	//CAIModel model(NULL);
 
 public:
-    CAIController(CGamingArea * ga, CGO_Player * players[]);
+	CAIController(CGamingArea * ga, CGO_Player * players[]);
 
-    void input();
-    void update();
-    vector<CMessage> getChanges();
+	void input();
+	void update();
+	vector<CMessage> getChanges();
 };
 
 #endif // AICONTROLLER_H

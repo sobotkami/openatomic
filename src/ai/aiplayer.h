@@ -28,13 +28,13 @@ using namespace std;
 class CAIPlayer : public CGO_Player
 {
 private:
-    imagecolors oponent;
+	imagecolors oponent;
 
 public:
-    CAIPlayer();
-    void setOponent(imagecolors color);
-    imagecolors getOponent();
-    void removeOponent();
+	CAIPlayer();
+	void setOponent(imagecolors color);
+	imagecolors getOponent();
+	void removeOponent();
 };
 
 #endif // AIPLAYER_H

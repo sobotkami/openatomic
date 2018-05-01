@@ -25,7 +25,7 @@
 class CIntroState : public CProgramState
 {
 public:
-    void Init();
+	void Init();
 	void Cleanup();
 
 	void Pause();
@@ -44,7 +44,7 @@ protected:
 
 private:
 	static CIntroState m_IntroState;
-        CErrorReporter er;
+		CErrorReporter er;
 
 	SDL_Surface* bg;
 	bool firstFlip;

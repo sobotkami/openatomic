@@ -38,205 +38,205 @@ template<typename P>
 class CNetwork
 {
 public:
-    /**
-     * @brief Konstruktor.
-     * @param server Pokud je promenna TRUE, pak bude instance tridy pracovat jako server. Pokud je FALSE, instance se bude chovat jako klient.
-     * @param strIP IP nebo hostname, kde bude server naslouchat, nebo kam se bude klient pripojovat.
-     * @param port Cislo portu, na kterem bude server naslouchat, nebo kam se bude klient pripojovat.
-     */
-    CNetwork(bool server = true, const char * strIP = "localhost", Uint16 port = NET_DEFAULT_PORT )
-    {
-        er.setLevel(LOG_INFO);
+	/**
+	 * @brief Konstruktor.
+	 * @param server Pokud je promenna TRUE, pak bude instance tridy pracovat jako server. Pokud je FALSE, instance se bude chovat jako klient.
+	 * @param strIP IP nebo hostname, kde bude server naslouchat, nebo kam se bude klient pripojovat.
+	 * @param port Cislo portu, na kterem bude server naslouchat, nebo kam se bude klient pripojovat.
+	 */
+	CNetwork(bool server = true, const char * strIP = "localhost", Uint16 port = NET_DEFAULT_PORT )
+	{
+		er.setLevel(LOG_INFO);
 
-        this->m_pMonitor = new CNetworkMonitor<P>();
+		this->m_pMonitor = new CNetworkMonitor<P>();
 
-        char * ipString = (char *)strIP;
-        IPaddress ip;
-        this->server = server;
+		char * ipString = (char *)strIP;
+		IPaddress ip;
+		this->server = server;
 
-        running = false;
-        tcp_sd = NULL;
+		running = false;
+		tcp_sd = NULL;
 
-        if(SDLNet_Init()==-1)
-        {
-            er.report(LOG_ERROR, _("%s: SDLNet_Init: %s\n"), AT, SDLNet_GetError());
-            exit(2);
-        }
+		if(SDLNet_Init()==-1)
+		{
+			er.report(LOG_ERROR, _("%s: SDLNet_Init: %s\n"), AT, SDLNet_GetError());
+			exit(2);
+		}
 
-        if(server)
-        {
-            ipString = NULL;
-        }
+		if(server)
+		{
+			ipString = NULL;
+		}
 
-        int sockNbr = 0;
-        m_pAcceptThread = NULL;
-        m_pSendThread = NULL;
-        m_pReceiveThread = NULL;
+		int sockNbr = 0;
+		m_pAcceptThread = NULL;
+		m_pSendThread = NULL;
+		m_pReceiveThread = NULL;
 
 
-        if (SDLNet_ResolveHost(&ip, ipString, port) < 0)
-        {
-            er.report(LOG_ERROR, _("%s: SDLNet_ResolveHost: %s\n"), AT, SDLNet_GetError());
-        }
-        else
-        {
+		if (SDLNet_ResolveHost(&ip, ipString, port) < 0)
+		{
+			er.report(LOG_ERROR, _("%s: SDLNet_ResolveHost: %s\n"), AT, SDLNet_GetError());
+		}
+		else
+		{
 
-            m_pConnection = new CNetworkConnection();
+			m_pConnection = new CNetworkConnection();
 
-            if (!(tcp_sd = SDLNet_TCP_Open(&ip))) // TCP
-            {
-                er.report(LOG_ERROR, _("%s: SDLNet_TCP_Open: %s\n"), AT, SDLNet_GetError());
-            }
-            else
-            {
+			if (!(tcp_sd = SDLNet_TCP_Open(&ip))) // TCP
+			{
+				er.report(LOG_ERROR, _("%s: SDLNet_TCP_Open: %s\n"), AT, SDLNet_GetError());
+			}
+			else
+			{
 
-                sockNbr = m_pConnection->addSocket(tcp_sd);
+				sockNbr = m_pConnection->addSocket(tcp_sd);
 
-                if (server)
-                {
-                    er.report(LOG_INFO, _("%s: Server started\n"), AT );
+				if (server)
+				{
+					er.report(LOG_INFO, _("%s: Server started\n"), AT );
 
-                    m_pAcceptThread = new CAcceptThread<P>(m_pMonitor, m_pConnection, 1, tcp_sd);
-                    m_pAcceptThread->start();
+					m_pAcceptThread = new CAcceptThread<P>(m_pMonitor, m_pConnection, 1, tcp_sd);
+					m_pAcceptThread->start();
 
-                    m_pSendThread = new CSendThread<P>(m_pMonitor, m_pConnection);
-                    m_pSendThread->start();
-                }
-                else
-                {
-                    er.report(LOG_INFO, _("%s: Client started\n"), AT );
+					m_pSendThread = new CSendThread<P>(m_pMonitor, m_pConnection);
+					m_pSendThread->start();
+				}
+				else
+				{
+					er.report(LOG_INFO, _("%s: Client started\n"), AT );
 
-                    m_pReceiveThread = new CReceiveThread<P>(m_pMonitor, m_pConnection, sockNbr);
-                    m_pReceiveThread->start();
+					m_pReceiveThread = new CReceiveThread<P>(m_pMonitor, m_pConnection, sockNbr);
+					m_pReceiveThread->start();
 
-                    m_pSendThread = new CSendThread<P>(m_pMonitor, m_pConnection);
-                    m_pSendThread->start();
-                }
+					m_pSendThread = new CSendThread<P>(m_pMonitor, m_pConnection);
+					m_pSendThread->start();
+				}
 
-                running = true;
-            }
-        }
-    }
+				running = true;
+			}
+		}
+	}
 
-    /**
-     * @brief Metoda na zjisteni, zda na dane kombinaci hostname:port bezi server.
-     * @param hostname Hostname ciloveho pocitace.
-     * @param port Port ciloveho pocitace.
-     * @return Vraci TRUE, pokud na zadane kombinaci hostname:port bezi server, FALSE v opacnem pripade.
-     */
-    static bool serverExists(const char * hostname, Uint16 port = NET_DEFAULT_PORT)
-    {
-        IPaddress ip;
-        TCPsocket sock;
-        bool exists = false;
+	/**
+	 * @brief Metoda na zjisteni, zda na dane kombinaci hostname:port bezi server.
+	 * @param hostname Hostname ciloveho pocitace.
+	 * @param port Port ciloveho pocitace.
+	 * @return Vraci TRUE, pokud na zadane kombinaci hostname:port bezi server, FALSE v opacnem pripade.
+	 */
+	static bool serverExists(const char * hostname, Uint16 port = NET_DEFAULT_PORT)
+	{
+		IPaddress ip;
+		TCPsocket sock;
+		bool exists = false;
 
-        if (SDLNet_ResolveHost(&ip, hostname, port) < 0)
-        {
-            // could not resolve host
-            throw _("Hostname can not be resolved!");
-        }
-        else
-        {
-            if (!(sock = SDLNet_TCP_Open(&ip))) // TCP
-            {
-                // server dont running
-                throw SDLNet_GetError();
-            }
-            else
-            {
-                // all OK
-                SDLNet_TCP_Close(sock);
-                exists = true;
-            }
-        }
+		if (SDLNet_ResolveHost(&ip, hostname, port) < 0)
+		{
+			// could not resolve host
+			throw _("Hostname can not be resolved!");
+		}
+		else
+		{
+			if (!(sock = SDLNet_TCP_Open(&ip))) // TCP
+			{
+				// server dont running
+				throw SDLNet_GetError();
+			}
+			else
+			{
+				// all OK
+				SDLNet_TCP_Close(sock);
+				exists = true;
+			}
+		}
 
-        return exists;
-    }
+		return exists;
+	}
 
-    /**
-     * @brief Destruktor.
-     */
-    ~CNetwork()
-    {
-        er.report(LOG_INFO, _("%s: Closing network\n"), AT );
+	/**
+	 * @brief Destruktor.
+	 */
+	~CNetwork()
+	{
+		er.report(LOG_INFO, _("%s: Closing network\n"), AT );
 
-        if (server)
-        {
-            m_pAcceptThread->stop();
-            delete m_pAcceptThread;
-        }
-        else
-        {
-            m_pReceiveThread->stop();
-            delete m_pReceiveThread;
-        }
+		if (server)
+		{
+			m_pAcceptThread->stop();
+			delete m_pAcceptThread;
+		}
+		else
+		{
+			m_pReceiveThread->stop();
+			delete m_pReceiveThread;
+		}
 
-        if (m_pSendThread != NULL)
-        {
-            m_pSendThread->stop();
-            delete m_pSendThread;
-            m_pSendThread = NULL;
-        }
+		if (m_pSendThread != NULL)
+		{
+			m_pSendThread->stop();
+			delete m_pSendThread;
+			m_pSendThread = NULL;
+		}
 
-        delete m_pConnection;
+		delete m_pConnection;
 
-        SDLNet_Quit();
+		SDLNet_Quit();
 
-        delete m_pMonitor;
-    }
+		delete m_pMonitor;
+	}
 
-    /**
-     * @brief Odesle zpravu.
-     * @param i Zprava.
-     */
-    void send(P i)
-    {
-        m_pMonitor->insertOutcoming(i);
-    }
+	/**
+	 * @brief Odesle zpravu.
+	 * @param i Zprava.
+	 */
+	void send(P i)
+	{
+		m_pMonitor->insertOutcoming(i);
+	}
 
-    /**
-     * @brief Prijme zpravu.
-     * @param i Zprava.
-     * @return Vraci TRUE, pokud nejakou zpravu vyzvedl z fronty, FALSE pokud byla fronta prazdna.
-     */
-    bool get(P &i)
-    {
-        return m_pMonitor->getIncoming(&i);
-    }
+	/**
+	 * @brief Prijme zpravu.
+	 * @param i Zprava.
+	 * @return Vraci TRUE, pokud nejakou zpravu vyzvedl z fronty, FALSE pokud byla fronta prazdna.
+	 */
+	bool get(P &i)
+	{
+		return m_pMonitor->getIncoming(&i);
+	}
 
-    /**
-     * @brief Funkce na kontrolu stavu site.
-     * @return Vraci TRUE, pokud je spojeni v poradku, FALSE v opacnem pripade.
-     */
-    bool isRunning()
-    {
-        if(server)
-        {
-            return (running && m_pAcceptThread->isRunning() && m_pSendThread->isRunning());
-        }
-        else
-        {
-            return (running && m_pReceiveThread->isRunning() && m_pSendThread->isRunning());
-        }
-    }
+	/**
+	 * @brief Funkce na kontrolu stavu site.
+	 * @return Vraci TRUE, pokud je spojeni v poradku, FALSE v opacnem pripade.
+	 */
+	bool isRunning()
+	{
+		if(server)
+		{
+			return (running && m_pAcceptThread->isRunning() && m_pSendThread->isRunning());
+		}
+		else
+		{
+			return (running && m_pReceiveThread->isRunning() && m_pSendThread->isRunning());
+		}
+	}
 
 protected:
 
-    CReceiveThread<P>  * m_pReceiveThread;
-    CSendThread<P>     * m_pSendThread;
-    CAcceptThread<P>   * m_pAcceptThread;
+	CReceiveThread<P>  * m_pReceiveThread;
+	CSendThread<P>	 * m_pSendThread;
+	CAcceptThread<P>   * m_pAcceptThread;
 
 
-    CNetworkMonitor<P> * m_pMonitor;
-    CNetworkConnection * m_pConnection;
+	CNetworkMonitor<P> * m_pMonitor;
+	CNetworkConnection * m_pConnection;
 
-    TCPsocket tcp_sd;
+	TCPsocket tcp_sd;
 
-    CErrorReporter er;
+	CErrorReporter er;
 private:
 
-    bool server;
-    bool running;
+	bool server;
+	bool running;
 
 };
 

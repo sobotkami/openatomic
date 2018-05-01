@@ -29,11 +29,11 @@
 #define DATA_DIR ""
 #endif
 
-#define PATH_DIR_GUI        DATA_DIR "gui/"
-#define PATH_DIR_SOUNDS     DATA_DIR "sounds/"
-#define PATH_DIR_SCHEMES    DATA_DIR "DATA/SCHEMES/"
-#define PATH_DIR_ANI        DATA_DIR "DATA/ANI/"
-#define PATH_DIR_RES        DATA_DIR "DATA/RES/"
+#define PATH_DIR_GUI		DATA_DIR "gui/"
+#define PATH_DIR_SOUNDS	 DATA_DIR "sounds/"
+#define PATH_DIR_SCHEMES	DATA_DIR "DATA/SCHEMES/"
+#define PATH_DIR_ANI		DATA_DIR "DATA/ANI/"
+#define PATH_DIR_RES		DATA_DIR "DATA/RES/"
 
 #define PATH_FILE_MASTERALI PATH_DIR_ANI "MASTER.ALI"
 #define PATH_FILE_GUI_XML   PATH_DIR_GUI "open-atomic.xml"

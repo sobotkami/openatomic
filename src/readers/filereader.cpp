@@ -22,26 +22,26 @@
 
 CFileReader::CFileReader()
 {
-    this->fp = NULL;
-    er.setLevel( LOG_ERROR );
+	this->fp = NULL;
+	er.setLevel( LOG_ERROR );
 }
 
 CFileReader::CFileReader(SDL_RWops* fp)
 {
-    assert ( fp != NULL );
-    CFileReader();
+	assert ( fp != NULL );
+	CFileReader();
 
-    this->fp = fp;
+	this->fp = fp;
 }
 
 Uint32 CFileReader::getPos()
 {
-    return SDL_RWtell ( fp );
+	return SDL_RWtell ( fp );
 }
 
 Uint32 CFileReader::setRelPos(Sint32 offset)
 {
-    return SDL_RWseek ( fp, offset, SEEK_CUR );
+	return SDL_RWseek ( fp, offset, SEEK_CUR );
 }
 
 /**
@@ -50,16 +50,16 @@ Uint32 CFileReader::setRelPos(Sint32 offset)
  */
 Sint32 CFileReader::read32()
 {
-    Sint32 buf = 0;
-    assert ( fp != NULL );
+	Sint32 buf = 0;
+	assert ( fp != NULL );
 
-    if ( SDL_RWread ( fp, &buf, sizeof ( buf ), 1 ) < 0 )
-    {
-        er.report( LOG_ERROR, _("%s: Couldn't read %d bytes from file.\n"), AT, 4 );
-        exit ( 1 );
-    }
+	if ( SDL_RWread ( fp, &buf, sizeof ( buf ), 1 ) < 0 )
+	{
+		er.report( LOG_ERROR, _("%s: Couldn't read %d bytes from file.\n"), AT, 4 );
+		exit ( 1 );
+	}
 
-    return SWAP32 ( buf );
+	return SWAP32 ( buf );
 }
 
 /**
@@ -68,16 +68,16 @@ Sint32 CFileReader::read32()
  */
 Sint16 CFileReader::read16()
 {
-    Sint16 buf = -1;
-    assert ( fp != NULL );
+	Sint16 buf = -1;
+	assert ( fp != NULL );
 
-    if ( SDL_RWread ( fp, &buf, sizeof ( buf ), 1 ) < 0 )
-    {
-        er.report( LOG_ERROR, _("%s: Couldn't read %d bytes from file.\n"), AT, 2 );
-        exit ( 1 );
-    }
+	if ( SDL_RWread ( fp, &buf, sizeof ( buf ), 1 ) < 0 )
+	{
+		er.report( LOG_ERROR, _("%s: Couldn't read %d bytes from file.\n"), AT, 2 );
+		exit ( 1 );
+	}
 
-    return SWAP16 ( buf );
+	return SWAP16 ( buf );
 }
 
 /**
@@ -86,16 +86,16 @@ Sint16 CFileReader::read16()
  */
 Sint8 CFileReader::read8()
 {
-    Sint8 buf = -1;
-    assert ( fp != NULL );
+	Sint8 buf = -1;
+	assert ( fp != NULL );
 
-    if ( SDL_RWread ( fp, &buf, sizeof ( buf ), 1 ) < 0 )
-    {
-        er.report( LOG_ERROR, _("%s: Couldn't read %d bytes from file.\n"), AT, 1 );
-        exit ( 1 );
-    }
+	if ( SDL_RWread ( fp, &buf, sizeof ( buf ), 1 ) < 0 )
+	{
+		er.report( LOG_ERROR, _("%s: Couldn't read %d bytes from file.\n"), AT, 1 );
+		exit ( 1 );
+	}
 
-    return buf;
+	return buf;
 }
 
 /**
@@ -105,29 +105,29 @@ Sint8 CFileReader::read8()
  */
 char * CFileReader::readBytes ( Uint32 count )
 {
-    char * result = NULL;
+	char * result = NULL;
 
-    assert ( fp != NULL );
+	assert ( fp != NULL );
 
-    if ( count == 0 )
-    {
-        er.report( LOG_WARNING, _("%s: Reading 0 bytes from file.\n"), AT );
-        return NULL;
-    }
+	if ( count == 0 )
+	{
+		er.report( LOG_WARNING, _("%s: Reading 0 bytes from file.\n"), AT );
+		return NULL;
+	}
 
-    if ( ( result = ( char * ) malloc ( count * sizeof ( char ) ) ) == NULL )
-    {
-        er.report( LOG_ERROR, _("%s: Couldn't allocate %d bytes of memory\n"), AT, count );
-        exit ( 1 );
-    }
+	if ( ( result = ( char * ) malloc ( count * sizeof ( char ) ) ) == NULL )
+	{
+		er.report( LOG_ERROR, _("%s: Couldn't allocate %d bytes of memory\n"), AT, count );
+		exit ( 1 );
+	}
 
-    if ( SDL_RWread ( fp, result, sizeof ( char ), count ) < 0 )
-    {
-        er.report( LOG_ERROR, _("%s: Couldn't read %d bytes from file.\n"), AT, count );
-        exit ( 1 );
-    }
+	if ( SDL_RWread ( fp, result, sizeof ( char ), count ) < 0 )
+	{
+		er.report( LOG_ERROR, _("%s: Couldn't read %d bytes from file.\n"), AT, count );
+		exit ( 1 );
+	}
 
-    return result;
+	return result;
 }
 
 /**
@@ -137,5 +137,5 @@ char * CFileReader::readBytes ( Uint32 count )
  */
 bool CFileReader::testByte ( Uint8 byte )
 {
-    return ( Uint8 ) CFileReader::read8() == byte;
+	return ( Uint8 ) CFileReader::read8() == byte;
 }

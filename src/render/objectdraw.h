@@ -31,21 +31,21 @@
 class CObjectDraw {
 public:
 
-    SDL_Rect* drawObject(SDL_Surface * img, Sint16 x, Sint16 y, bool flip);
-    void clearRect(SDL_Rect* rect);
-    void clearRect(Sint16 x, Sint16 y, Sint16 w, Sint16 h);
+	SDL_Rect* drawObject(SDL_Surface * img, Sint16 x, Sint16 y, bool flip);
+	void clearRect(SDL_Rect* rect);
+	void clearRect(Sint16 x, Sint16 y, Sint16 w, Sint16 h);
 
-    CObjectDraw() {
-        er.setLevel(LOG_INFO);
-        er.report(LOG_INFO, _("%s: CObjectDraw()\n"), AT);
+	CObjectDraw() {
+		er.setLevel(LOG_INFO);
+		er.report(LOG_INFO, _("%s: CObjectDraw()\n"), AT);
 
-        if (SDL_GetVideoSurface() == NULL) {
-            er.report(LOG_INFO, _("%s: Called SDL_Init()?\n"), AT);
-            throw;
-        }
-    };
+		if (SDL_GetVideoSurface() == NULL) {
+			er.report(LOG_INFO, _("%s: Called SDL_Init()?\n"), AT);
+			throw;
+		}
+	};
 protected:
-    CErrorReporter er;
+	CErrorReporter er;
 
 };
 

@@ -25,27 +25,27 @@ using namespace std;
 
 void CAliReader::trimRight ( string& str, string& trimChars )
 {
-    string::size_type pos = str.find_last_not_of ( trimChars );
-    str.erase ( pos + 1 );
+	string::size_type pos = str.find_last_not_of ( trimChars );
+	str.erase ( pos + 1 );
 }
 
 void CAliReader::trimLeft ( string& str, string& trimChars )
 {
-    string::size_type pos = str.find_first_not_of ( trimChars );
-    str.erase ( 0, pos );
+	string::size_type pos = str.find_first_not_of ( trimChars );
+	str.erase ( 0, pos );
 }
 
 void CAliReader::trim ( string& str, string& trimChars )
 {
-    trimRight ( str, trimChars );
-    trimLeft ( str, trimChars );
+	trimRight ( str, trimChars );
+	trimLeft ( str, trimChars );
 }
 
 
 CAliReader::CAliReader()
 {
-    whiteSpaces.assign ( " \f\n\r\t" );
-    er.setLevel( LOG_ERROR );
+	whiteSpaces.assign ( " \f\n\r\t" );
+	er.setLevel( LOG_ERROR );
 }
 
 
@@ -56,36 +56,36 @@ CAliReader::CAliReader()
  */
 Uint8 CAliReader::read ( string filename )
 {
-    ifstream is;
-    string line;
+	ifstream is;
+	string line;
 
-    is.open ( filename.c_str(), ios::binary );
+	is.open ( filename.c_str(), ios::binary );
 
-    if ( is.is_open() )
-    {
-        while ( is.good() )
-        {
-            while ( getline ( is, line ) )
-            {
-                if ( line[0] == '-' )
-                {
-                    line.erase ( 0, 1 ); // delete "-" from filename
-                    trimRight ( line,  whiteSpaces );
-                    transform ( line.begin(), line.end(), line.begin(), ::toupper ); // transform to upper case
-                    anilist.push_back ( line ); // add to list
-                    
-                    er.report( LOG_INFO, _("%s: Adding file '%s' to animation list.\n"), AT, line.c_str() );
-                }
-            }
-        }
-        is.close();
-        return 0;
-    }
-    else
-    {
-        er.report( LOG_ERROR, _("%s: Unable to open file '%s'!\n"), AT, filename.c_str() );
-        return 1;
-    }
+	if ( is.is_open() )
+	{
+		while ( is.good() )
+		{
+			while ( getline ( is, line ) )
+			{
+				if ( line[0] == '-' )
+				{
+					line.erase ( 0, 1 ); // delete "-" from filename
+					trimRight ( line,  whiteSpaces );
+					transform ( line.begin(), line.end(), line.begin(), ::toupper ); // transform to upper case
+					anilist.push_back ( line ); // add to list
+					
+					er.report( LOG_INFO, _("%s: Adding file '%s' to animation list.\n"), AT, line.c_str() );
+				}
+			}
+		}
+		is.close();
+		return 0;
+	}
+	else
+	{
+		er.report( LOG_ERROR, _("%s: Unable to open file '%s'!\n"), AT, filename.c_str() );
+		return 1;
+	}
 
 }
 
@@ -95,7 +95,7 @@ Uint8 CAliReader::read ( string filename )
  */
 Uint16 CAliReader::getCount()
 {
-    return anilist.size();
+	return anilist.size();
 }
 
 /**
@@ -105,6 +105,6 @@ Uint16 CAliReader::getCount()
  */
 string CAliReader::getItem ( Uint16 index )
 {
-    return anilist[index];
+	return anilist[index];
 }
 

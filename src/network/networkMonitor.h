@@ -31,95 +31,95 @@ template<typename T>
 class CNetworkMonitor
 {
 public:
-    /**
-     * @brief Konstruktor. Inicializuje promenne a fronty zprav.
-     */
-    CNetworkMonitor()
-    {
-        m_pInputMutex = SDL_CreateMutex();
-        m_pOutputMutex = SDL_CreateMutex();
-        m_pOutputCondition = SDL_CreateCond();
+	/**
+	 * @brief Konstruktor. Inicializuje promenne a fronty zprav.
+	 */
+	CNetworkMonitor()
+	{
+		m_pInputMutex = SDL_CreateMutex();
+		m_pOutputMutex = SDL_CreateMutex();
+		m_pOutputCondition = SDL_CreateCond();
 
-        input = std::list<T>();
-        output = std::list<T>();
-    }
+		input = std::list<T>();
+		output = std::list<T>();
+	}
 
-    /**
-     * @brief Destruktor.
-     */
-    ~CNetworkMonitor()
-    {
-        SDL_DestroyMutex(m_pInputMutex);
-        SDL_DestroyMutex(m_pOutputMutex);
-        SDL_DestroyCond(m_pOutputCondition);
-    }
+	/**
+	 * @brief Destruktor.
+	 */
+	~CNetworkMonitor()
+	{
+		SDL_DestroyMutex(m_pInputMutex);
+		SDL_DestroyMutex(m_pOutputMutex);
+		SDL_DestroyCond(m_pOutputCondition);
+	}
 
-    /**
-     * @brief Vloz zpravu do fronty prichozich zprav.
-     * @param b Zprava, ktera bude vlozena.
-     */
-    void insertIncoming(T b)
-    {
-        SDL_LockMutex(m_pInputMutex);
-        input.push_back(b);
-        SDL_UnlockMutex(m_pInputMutex);
-    }
+	/**
+	 * @brief Vloz zpravu do fronty prichozich zprav.
+	 * @param b Zprava, ktera bude vlozena.
+	 */
+	void insertIncoming(T b)
+	{
+		SDL_LockMutex(m_pInputMutex);
+		input.push_back(b);
+		SDL_UnlockMutex(m_pInputMutex);
+	}
 
-    /**
-     * @brief Vloz zpravu do fronty odchozich zprav.
-     * @param b Zprava, ktera bude vlozena.
-     */
-    void insertOutcoming(T b)
-    {
-        SDL_LockMutex(m_pOutputMutex);
-        output.push_back(b);
-        SDL_CondBroadcast(m_pOutputCondition);
-        SDL_UnlockMutex(m_pOutputMutex);
-    }
+	/**
+	 * @brief Vloz zpravu do fronty odchozich zprav.
+	 * @param b Zprava, ktera bude vlozena.
+	 */
+	void insertOutcoming(T b)
+	{
+		SDL_LockMutex(m_pOutputMutex);
+		output.push_back(b);
+		SDL_CondBroadcast(m_pOutputCondition);
+		SDL_UnlockMutex(m_pOutputMutex);
+	}
 
-    /**
-     * @brief Vyzvedni zpravu z prichozi fronty
-     * @param b Zprava, ktera bude naplnena vyzvednutou zpravou z fronty.
-     */
-    void getOutcoming(T* b)
-    {
-        SDL_LockMutex(m_pOutputMutex);
-        while(output.empty())
-        {
-            SDL_CondWait(m_pOutputCondition,m_pOutputMutex);
-        }
+	/**
+	 * @brief Vyzvedni zpravu z prichozi fronty
+	 * @param b Zprava, ktera bude naplnena vyzvednutou zpravou z fronty.
+	 */
+	void getOutcoming(T* b)
+	{
+		SDL_LockMutex(m_pOutputMutex);
+		while(output.empty())
+		{
+			SDL_CondWait(m_pOutputCondition,m_pOutputMutex);
+		}
 
-        *b = output.front();
-        output.pop_front();
-        SDL_UnlockMutex(m_pOutputMutex);
-    }
+		*b = output.front();
+		output.pop_front();
+		SDL_UnlockMutex(m_pOutputMutex);
+	}
 
-    /**
-     * @brief Vyzvedni zpravu z prichozi fronty.
-     * @param b Zprava, ktera bude naplnena vyzvednutou zpravou z fronty.
-     * @return Vraci TRUE, pokud byla nejaka zprava nactena.
-     */
-    bool getIncoming(T *b)
-    {
-        bool retVal = false;
-        SDL_LockMutex(m_pInputMutex);
-        if (!input.empty())
-        {
-            retVal = true;
-            *b = input.front();
-            input.pop_front();
-        }
-        SDL_UnlockMutex(m_pInputMutex);
-        return retVal;
-    }
+	/**
+	 * @brief Vyzvedni zpravu z prichozi fronty.
+	 * @param b Zprava, ktera bude naplnena vyzvednutou zpravou z fronty.
+	 * @return Vraci TRUE, pokud byla nejaka zprava nactena.
+	 */
+	bool getIncoming(T *b)
+	{
+		bool retVal = false;
+		SDL_LockMutex(m_pInputMutex);
+		if (!input.empty())
+		{
+			retVal = true;
+			*b = input.front();
+			input.pop_front();
+		}
+		SDL_UnlockMutex(m_pInputMutex);
+		return retVal;
+	}
 
 protected:
-    SDL_mutex* m_pInputMutex;
-    SDL_mutex* m_pOutputMutex;
-    SDL_cond* m_pOutputCondition;
+	SDL_mutex* m_pInputMutex;
+	SDL_mutex* m_pOutputMutex;
+	SDL_cond* m_pOutputCondition;
 
-    std::list<T> input;
-    std::list<T> output;
+	std::list<T> input;
+	std::list<T> output;
 private:
 };
 

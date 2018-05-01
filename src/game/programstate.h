@@ -25,7 +25,7 @@
 class CProgramState
 {
 public:
-    virtual void Init() = 0;
+	virtual void Init() = 0;
 	virtual void Cleanup() = 0;
 
 	virtual void Pause() = 0;
@@ -36,13 +36,13 @@ public:
 	virtual void Draw() = 0;
 
 	void ChangeState(CProgramState* state) {
-        CGameEngine::instance()->ChangeState(state);
+		CGameEngine::instance()->ChangeState(state);
 	}
 
 protected:
-    CProgramState() { }
+	CProgramState() { }
 
-    CPriorityConcurrentQueue<CMessage> eventsQueue;
+	CPriorityConcurrentQueue<CMessage> eventsQueue;
 	
 };
 

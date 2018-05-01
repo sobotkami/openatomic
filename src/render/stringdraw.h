@@ -34,33 +34,33 @@ using namespace std;
 class CStringDraw : public CObjectDraw {
 public:
 
-    void drawString(Sint16 x, Sint16 y, string str);
-    void drawString(Sint16 x, Sint16 y, const char * str);
-    void drawString(Sint16 x, Sint16 y, string str, imagecolors color);
-    void drawString(Sint16 x, Sint16 y, const char * str, imagecolors color);
+	void drawString(Sint16 x, Sint16 y, string str);
+	void drawString(Sint16 x, Sint16 y, const char * str);
+	void drawString(Sint16 x, Sint16 y, string str, imagecolors color);
+	void drawString(Sint16 x, Sint16 y, const char * str, imagecolors color);
 
-    Uint16 getWidth(string str);
-    Uint16 getWidth(const char * str);
+	Uint16 getWidth(string str);
+	Uint16 getWidth(const char * str);
 
-    static CStringDraw *instance() {
-        if (!s_instance)
-            s_instance = new CStringDraw;
-        return s_instance;
-    }
+	static CStringDraw *instance() {
+		if (!s_instance)
+			s_instance = new CStringDraw;
+		return s_instance;
+	}
 
 private:
-    static CStringDraw *s_instance;
-    CFonReader * font;
+	static CStringDraw *s_instance;
+	CFonReader * font;
 
-    CStringDraw() {
-        er.setLevel(LOG_INFO);
-        er.report(LOG_INFO, _("%s: CStringDraw()\n"), AT);
+	CStringDraw() {
+		er.setLevel(LOG_INFO);
+		er.report(LOG_INFO, _("%s: CStringDraw()\n"), AT);
 
-        if (SDL_GetVideoSurface() == NULL) {
-            er.report(LOG_INFO, _("%s: Called SDL_Init()?\n"), AT);
-            throw;
-        }
-    }
+		if (SDL_GetVideoSurface() == NULL) {
+			er.report(LOG_INFO, _("%s: Called SDL_Init()?\n"), AT);
+			throw;
+		}
+	}
 
 };
 

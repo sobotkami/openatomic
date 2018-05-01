@@ -23,36 +23,36 @@ CAIGameArea::CAIGameArea()
 
 CAIGameAreaField CAIGameArea::get(Uint8 x, Uint8 y)
 {
-    assert(x < GA_W);
-    assert(y < GA_H);
-    return (aiga[y][x]);
+	assert(x < GA_W);
+	assert(y < GA_H);
+	return (aiga[y][x]);
 }
 
 void CAIGameArea::sync(CGamingArea *ga)
 {
-    assert(ga != NULL);
+	assert(ga != NULL);
 
-    t_field fi;
+	t_field fi;
 
-    for (Uint8 y = 0; y < GA_H; ++y)
-    {
-        for (Uint8 x = 0; x < GA_W; ++x)
-        {
-            fi = ga->getBoardField(x, y);
-            if (fi.bomb == true ||
-                    fi.fire.state != -1 ||
-                    fi.occupancy != TBLANK
-                    //fi.powerup != -1 || // fix?
-                    //fi.conveyor != NULL ||
-                    )
-            {
-                aiga[y][x].setRating(-1);
-            }
-            else
-            {
-                aiga[y][x].setRating(0);
-            }
-        }
-    }
+	for (Uint8 y = 0; y < GA_H; ++y)
+	{
+		for (Uint8 x = 0; x < GA_W; ++x)
+		{
+			fi = ga->getBoardField(x, y);
+			if (fi.bomb == true ||
+					fi.fire.state != -1 ||
+					fi.occupancy != TBLANK
+					//fi.powerup != -1 || // fix?
+					//fi.conveyor != NULL ||
+					)
+			{
+				aiga[y][x].setRating(-1);
+			}
+			else
+			{
+				aiga[y][x].setRating(0);
+			}
+		}
+	}
 }
 

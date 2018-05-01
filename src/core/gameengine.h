@@ -44,145 +44,145 @@ class CButtonListener;
 class CGameEngine {
 public:
 
-    static CGameEngine *instance() {
-        if (!s_instance)
-            s_instance = new CGameEngine;
-        return s_instance;
-    }
+	static CGameEngine *instance() {
+		if (!s_instance)
+			s_instance = new CGameEngine;
+		return s_instance;
+	}
 
-    void Init(const char* title, int width = 640, int height = 480,
-              int bpp = 16, Uint32 sdlFlags = 0);
-    void Cleanup();
+	void Init(const char* title, int width = 640, int height = 480,
+			  int bpp = 16, Uint32 sdlFlags = 0);
+	void Cleanup();
 
-    void ChangeState(CProgramState* state);
-    void PushState(CProgramState* state);
-    void PopState();
+	void ChangeState(CProgramState* state);
+	void PushState(CProgramState* state);
+	void PopState();
 
-    void HandleEvents();
-    void HandleNetwork();
-    void Update();
-    void Draw();
-    void Run();
+	void HandleEvents();
+	void HandleNetwork();
+	void Update();
+	void Draw();
+	void Run();
 
-    bool Running() {
-        return mRunning;
-    }
+	bool Running() {
+		return mRunning;
+	}
 
-    void Quit() {
-        mRunning = false;
-    }
+	void Quit() {
+		mRunning = false;
+	}
 
-    void ChangeTopGUI(enum guiScreen top);
-    enum guiScreen getTopGUINo();
-
-
-    gcn::Widget * getGuiWidget(const char * id);
-    gcn::Gui * getGui();
-    gcn::SDLInput * getGuiSDLInput();
-    
-    void InvalidateArea(SDL_Rect r);
-    void InvalidateArea(Uint16 x, Uint16 y, Uint16 w, Uint16 h);
-    vector<SDL_Rect> & getUglyRects()
-    {
-        return mUglyRects;
-    }
-
-    /* stop network client */
-    void StopClient();
-    /* start network client */
-    void StartNetworkClient(const char * hostname);
-    /* start local client */
-    void StartLocalClient();
-
-    /* stop network server */
-    void StopServer();
-    /* start network server */
-    void StartNetworkServer();
-    /* stop network server*/
-    void StopNetworkServer();
-    /* start local server */
-    void StartLocalServer();
+	void ChangeTopGUI(enum guiScreen top);
+	enum guiScreen getTopGUINo();
 
 
-    //CNetworkClient * getNetClient();
-    IClient * getClient();
-    IServer * getServer();
+	gcn::Widget * getGuiWidget(const char * id);
+	gcn::Gui * getGui();
+	gcn::SDLInput * getGuiSDLInput();
+	
+	void InvalidateArea(SDL_Rect r);
+	void InvalidateArea(Uint16 x, Uint16 y, Uint16 w, Uint16 h);
+	vector<SDL_Rect> & getUglyRects()
+	{
+		return mUglyRects;
+	}
+
+	/* stop network client */
+	void StopClient();
+	/* start network client */
+	void StartNetworkClient(const char * hostname);
+	/* start local client */
+	void StartLocalClient();
+
+	/* stop network server */
+	void StopServer();
+	/* start network server */
+	void StartNetworkServer();
+	/* stop network server*/
+	void StopNetworkServer();
+	/* start local server */
+	void StartLocalServer();
 
 
-    // Events
-    void onChangeTopGui();
+	//CNetworkClient * getNetClient();
+	IClient * getClient();
+	IServer * getServer();
+
+
+	// Events
+	void onChangeTopGui();
 
 private:
-    CGameEngine()
-    {
-        // log everything
-        er.setLevel(LOG_INFO);
-        er.report(LOG_INFO, _("%s: CGameEngine()\n"), AT);
+	CGameEngine()
+	{
+		// log everything
+		er.setLevel(LOG_INFO);
+		er.report(LOG_INFO, _("%s: CGameEngine()\n"), AT);
 
-        gui = NULL;
-        guiNo = guiScreen::mainMenu;
-        gcnInput = NULL;
+		gui = NULL;
+		guiNo = guiScreen::mainMenu;
+		gcnInput = NULL;
 
-        client = NULL;
-        server = NULL;
-    }
+		client = NULL;
+		server = NULL;
+	}
 
-    static CGameEngine *s_instance;
+	static CGameEngine *s_instance;
 
-    // the stack of states
-    vector<CProgramState*> mStates;
-    
-    // the stack of invalidate areas
-    vector<SDL_Rect> mUglyRects;
+	// the stack of states
+	vector<CProgramState*> mStates;
+	
+	// the stack of invalidate areas
+	vector<SDL_Rect> mUglyRects;
 
-    // main game state
-    bool mRunning;
+	// main game state
+	bool mRunning;
 
-    CErrorReporter er;
+	CErrorReporter er;
 
-    /*
-     * SDL Screen
-     */
-    SDL_Surface* mScreen; // Main screen
-    Uint32 FastestFlags(Uint32 flags, unsigned width, unsigned height, unsigned bpp);
-    bool mFullscreen;
+	/*
+	 * SDL Screen
+	 */
+	SDL_Surface* mScreen; // Main screen
+	Uint32 FastestFlags(Uint32 flags, unsigned width, unsigned height, unsigned bpp);
+	bool mFullscreen;
 
-    /*
-     * Guichan
-     */
+	/*
+	 * Guichan
+	 */
 
-    enum guiScreen guiNo;
-    gcn::Gui * guis[CGUISTATES];
-    gcn::Gui * gui; // A Gui object - binds it all together
+	enum guiScreen guiNo;
+	gcn::Gui * guis[CGUISTATES];
+	gcn::Gui * gui; // A Gui object - binds it all together
 
-    /*
-     * Guichan SDL stuff we need
-     */
-    gcn::SDLGraphics* mGraphics; // Graphics driver
-    gcn::SDLImageLoader* mImageLoader; // For loading images
-    gcn::SDLInput* gcnInput; // Input driver
+	/*
+	 * Guichan SDL stuff we need
+	 */
+	gcn::SDLGraphics* mGraphics; // Graphics driver
+	gcn::SDLImageLoader* mImageLoader; // For loading images
+	gcn::SDLInput* gcnInput; // Input driver
 
-    /*
-     * Guichan stuff we need
-     */
-    gcn::ImageFont* mFont; // A font
-    CButtonListener* mButtonActionListener;
+	/*
+	 * Guichan stuff we need
+	 */
+	gcn::ImageFont* mFont; // A font
+	CButtonListener* mButtonActionListener;
 
 
-    /*
-     * XML GUI
-     */
-    XmlGui *mXmlGui; // XmlGui stuff
+	/*
+	 * XML GUI
+	 */
+	XmlGui *mXmlGui; // XmlGui stuff
 
-    void InitButtons();
-    void InitButton(const char * id);
-    void LoadTopGUI(Uint8 top);
+	void InitButtons();
+	void InitButton(const char * id);
+	void LoadTopGUI(Uint8 top);
 
-    /*
-     * Network
-     */
-    IClient * client;
-    IServer * server;
+	/*
+	 * Network
+	 */
+	IClient * client;
+	IServer * server;
 
 };
 

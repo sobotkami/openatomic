@@ -38,183 +38,183 @@
 
 void CGameObject::setGamingArea (CGamingArea * ga)
 {
-    assert(ga != NULL);
-    this->ga = ga;
+	assert(ga != NULL);
+	this->ga = ga;
 }
 
 CGameObject::CGameObject ()
 {
-    area.w = 640; // width
-    area.h = 480; // height
-    area.x = 0; // offset x
-    area.y = 0; // offset y
+	area.w = 640; // width
+	area.h = 480; // height
+	area.x = 0; // offset x
+	area.y = 0; // offset y
 
-    x = 0;
-    y = 0;
+	x = 0;
+	y = 0;
 
-    ticksStartAnim = 0;
-    ticksDoneAnim = 0;
+	ticksStartAnim = 0;
+	ticksDoneAnim = 0;
 
-    this->ani = NULL;
-    this->ga = NULL;
+	this->ani = NULL;
+	this->ga = NULL;
 
-    animLoop = true;
-    animDone = false;
+	animLoop = true;
+	animDone = false;
 
-    er.setLevel(LOG_INFO);
+	er.setLevel(LOG_INFO);
 }
 
 void CGameObject::setAni (CAnimation* ani)
 {
-    assert(ani != NULL);
-    this->ani = ani;
+	assert(ani != NULL);
+	this->ani = ani;
 }
 
 CGameObject::~CGameObject ()
 {
-    stopAnim();
+	stopAnim();
 }
 
 void CGameObject::startAnim ()
 {
-    assert(ani != NULL);
-    stopAnim();
-    ticksStartAnim = SDL_GetTicks();
+	assert(ani != NULL);
+	stopAnim();
+	ticksStartAnim = SDL_GetTicks();
 }
 
 void CGameObject::stopAnim ()
 {
-    ticksStartAnim = 0;
+	ticksStartAnim = 0;
 }
 
 void CGameObject::setArea (earea area)
 {
-    tarea = area;
-    switch (area)
-    {
-    default:
-    case ea_menuMain:
-        this->area.x = 313; // offset x
-        this->area.y = 102; // offset y
-        this->area.w = 640 - this->area.x; // width
-        this->area.h = 480 - this->area.y; // height
-        break;
-    case ea_gameBoard:
-        /* field is 40x36px, board is 15x11 */
-        this->area.x = 20; // offset x
-        this->area.y = 68; // offset y
-        this->area.w = (GA_W - 1) * BOX_W; // width
-        this->area.h = (GA_H - 1) * BOX_H; // height
-        break;
-    }
+	tarea = area;
+	switch (area)
+	{
+	default:
+	case ea_menuMain:
+		this->area.x = 313; // offset x
+		this->area.y = 102; // offset y
+		this->area.w = 640 - this->area.x; // width
+		this->area.h = 480 - this->area.y; // height
+		break;
+	case ea_gameBoard:
+		/* field is 40x36px, board is 15x11 */
+		this->area.x = 20; // offset x
+		this->area.y = 68; // offset y
+		this->area.w = (GA_W - 1) * BOX_W; // width
+		this->area.h = (GA_H - 1) * BOX_H; // height
+		break;
+	}
 }
 
 void CGameObject::setType (Uint8 type)
 {
-    this->type = type;
+	this->type = type;
 }
 
 SDL_Rect CGameObject::getArea ()
 {
-    return area;
+	return area;
 }
 
 bool CGameObject::getAnimDone ()
 {
-    return animDone;
+	return animDone;
 }
 
 void CGameObject::setAnimLoop (bool loop)
 {
-    animDone = false;
-    ticksDoneAnim = 0;
-    animLoop = loop;
+	animDone = false;
+	ticksDoneAnim = 0;
+	animLoop = loop;
 }
 
 Uint32 CGameObject::getTicksDoneAnim ()
 {
-    return ticksDoneAnim;
+	return ticksDoneAnim;
 }
 
 Uint32 CGameObject::getFrame ()
 {
-    assert(ani != NULL);
+	assert(ani != NULL);
 
-    // delete!
-//    if (ani->seq.stats.size() == 0)
-//    {
-//        er.report(LOG_WARNING, "%s: Count of Animation.Sequence[%s].States = %d\n", AT, ani->seq.head.name.c_str(), ani->seq.stats.size());
-//        return 0;
-//    }
+	// delete!
+//	if (ani->seq.stats.size() == 0)
+//	{
+//		er.report(LOG_WARNING, "%s: Count of Animation.Sequence[%s].States = %d\n", AT, ani->seq.head.name.c_str(), ani->seq.stats.size());
+//		return 0;
+//	}
 
-    assert(ani->seq.stats.size() > 0);
-    assert(ani->seq.head.states > 0);
-
-
-    /* TODO: FIX constant 0 in state delay */
-
-    if (ticksStartAnim > 0)
-    {
-        Sint32 deltaTick = SDL_GetTicks() - ticksStartAnim;
-
-        if (animLoop)
-        {
-            return (deltaTick / (ani->seq.stats[0]).head.delay) % ((ani->seq.head.states));
-        }
-        else
-        {
-            if (animDone)
-            {
-                // freeze animation on last frame
-                return (ani->seq.head.states) - 1;
-            }
-            else
-            {
-                if ((ani->seq.stats[0]).head.delay * (ani->seq.head.states - 1) < deltaTick)
-                {
-                    animDone = true;
-                    ticksDoneAnim = SDL_GetTicks();
-                    // freeze animation on last frame
-                    return (ani->seq.head.states) - 1;
-                }
-
-                return (deltaTick / (ani->seq.stats[0]).head.delay) % ((ani->seq.head.states));
-            }
-        }
+	assert(ani->seq.stats.size() > 0);
+	assert(ani->seq.head.states > 0);
 
 
+	/* TODO: FIX constant 0 in state delay */
+
+	if (ticksStartAnim > 0)
+	{
+		Sint32 deltaTick = SDL_GetTicks() - ticksStartAnim;
+
+		if (animLoop)
+		{
+			return (deltaTick / (ani->seq.stats[0]).head.delay) % ((ani->seq.head.states));
+		}
+		else
+		{
+			if (animDone)
+			{
+				// freeze animation on last frame
+				return (ani->seq.head.states) - 1;
+			}
+			else
+			{
+				if ((ani->seq.stats[0]).head.delay * (ani->seq.head.states - 1) < deltaTick)
+				{
+					animDone = true;
+					ticksDoneAnim = SDL_GetTicks();
+					// freeze animation on last frame
+					return (ani->seq.head.states) - 1;
+				}
+
+				return (deltaTick / (ani->seq.stats[0]).head.delay) % ((ani->seq.head.states));
+			}
+		}
 
 
-        /*
-        er.report(LOG_INFO, _("%s: %d,%d,%d - [%d/%d] - %d,%d\n"),
-                  AT,
-                  SDL_GetTicks(), tickStartAnim, deltaTick,
-                  (deltaTick / (ani->seq.stats[frame]).head.delay) % (ani->seq.head.states - 1), (ani->seq.head.states - 1),
-                  (ani->seq.stats[frame]).head.delay, ((ani->seq.stats[frame]).head.delay / 10) * 10
-                  );
-         */
-    }
-    else
-    {
-        return 0;
-    }
+
+
+		/*
+		er.report(LOG_INFO, _("%s: %d,%d,%d - [%d/%d] - %d,%d\n"),
+				  AT,
+				  SDL_GetTicks(), tickStartAnim, deltaTick,
+				  (deltaTick / (ani->seq.stats[frame]).head.delay) % (ani->seq.head.states - 1), (ani->seq.head.states - 1),
+				  (ani->seq.stats[frame]).head.delay, ((ani->seq.stats[frame]).head.delay / 10) * 10
+				  );
+		 */
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 Sint32 CGameObject::getNewFrame (Uint32 frame)
 {
-    static Sint32 oldFrame = -1;
+	static Sint32 oldFrame = -1;
 
-    if ((Sint32) frame != oldFrame)
-    {
-        // new frame to render
-        oldFrame = frame;
-        return frame;
-    }
-    else
-    {
-        // no new
-        return -1;
-    }
+	if ((Sint32) frame != oldFrame)
+	{
+		// new frame to render
+		oldFrame = frame;
+		return frame;
+	}
+	else
+	{
+		// no new
+		return -1;
+	}
 }
 
 /**
@@ -225,235 +225,235 @@ Sint32 CGameObject::getNewFrame (Uint32 frame)
  */
 SDL_Surface* CGameObject::getFrameSurface (Uint32 frame, imagecolors color)
 {
-    assert(ani != NULL);
-    assert(ani->seq.stats.size() > 0);
-    assert(ani->seq.stats[0].frams.size() > 0);
-    assert(ani->seq.stats[0].frams[0].frames.size() > 0);
-    assert(frame < ani->seq.stats.size());
+	assert(ani != NULL);
+	assert(ani->seq.stats.size() > 0);
+	assert(ani->seq.stats[0].frams.size() > 0);
+	assert(ani->seq.stats[0].frams[0].frames.size() > 0);
+	assert(frame < ani->seq.stats.size());
 
-    return (*(ani->frm))[ ani->seq.stats[frame].frams[0].frames[0].imgno ].img.im[ color ];
+	return (*(ani->frm))[ ani->seq.stats[frame].frams[0].frames[0].imgno ].img.im[ color ];
 
 }
 
 Sint16 CGameObject::getX ()
 {
-    return x;
+	return x;
 }
 
 Sint16 CGameObject::getY ()
 {
-    return y;
+	return y;
 }
 
 void CGameObject::setX (Sint16 x)
 {
-    //cout << "x: " << x << "(" << this->x << ")" << endl;
+	//cout << "x: " << x << "(" << this->x << ")" << endl;
 
-    this->x = x;
-    //     cout << "[" << getArrayX() << ", " << getArrayY() << "]" << endl;
+	this->x = x;
+	//	 cout << "[" << getArrayX() << ", " << getArrayY() << "]" << endl;
 }
 
 void CGameObject::setY (Sint16 y)
 {
-    //cout << "y: " << y << "(" << this->y << ")" << endl;
+	//cout << "y: " << y << "(" << this->y << ")" << endl;
 
-    this->y = y;
-    //     cout << "[" << getArrayX() << ", " << getArrayY() << "]" << endl;
+	this->y = y;
+	//	 cout << "[" << getArrayX() << ", " << getArrayY() << "]" << endl;
 }
 
 Sint16 CGameObject::getArrayMiddleX ()
 {
-    return getX() + BOX_W2;
+	return getX() + BOX_W2;
 }
 
 Sint16 CGameObject::getArrayMiddleY ()
 {
-    return getY() + BOX_H2;
+	return getY() + BOX_H2;
 }
 
 Sint16 CGameObject::getArrayX ()
 {
-    return getArrayX(getX());
+	return getArrayX(getX());
 }
 
 Sint16 CGameObject::getArrayX (Sint16 x)
 {
-    Sint16 res = x / BOX_W;
+	Sint16 res = x / BOX_W;
 
-    if (res < 0)
-        return 0;
+	if (res < 0)
+		return 0;
 
-    if (res >= GA_W)
-        return GA_W - 1;
+	if (res >= GA_W)
+		return GA_W - 1;
 
-    return res;
+	return res;
 }
 
 Sint16 CGameObject::getArrayY ()
 {
-    return getArrayY(getY());
+	return getArrayY(getY());
 }
 
 Sint16 CGameObject::getArrayY (Sint16 y)
 {
-    Sint16 res = y / BOX_H;
+	Sint16 res = y / BOX_H;
 
-    if (res < 0)
-        return 0;
+	if (res < 0)
+		return 0;
 
-    if (res >= GA_H)
-        return GA_H - 1;
+	if (res >= GA_H)
+		return GA_H - 1;
 
-    return res;
+	return res;
 }
 
 void CGameObject::setArrayX (Sint16 x)
 {
-    setX(getArrayX(x * BOX_W) * BOX_W);
+	setX(getArrayX(x * BOX_W) * BOX_W);
 }
 
 void CGameObject::setArrayY (Sint16 y)
 {
-    setY(getArrayY(y * BOX_H) * BOX_H);
+	setY(getArrayY(y * BOX_H) * BOX_H);
 }
 
 Sint16 CGameObject::getRelX ()
 {
-    return getX() + area.x;
+	return getX() + area.x;
 }
 
 Sint16 CGameObject::getRelX (Sint16 x)
 {
-    return x + area.x;
+	return x + area.x;
 }
 
 Sint16 CGameObject::getRelY ()
 {
-    return getY() + area.y;
+	return getY() + area.y;
 }
 
 Sint16 CGameObject::getRelY (Sint16 y)
 {
-    return y + area.y;
+	return y + area.y;
 }
 
 Sint8 CGameObject::setRelX (Sint16 x)
 {
 
 
-    if (getX() + x < 0)
-    {
-        setX(0);
-        return -1;
-    }
+	if (getX() + x < 0)
+	{
+		setX(0);
+		return -1;
+	}
 
-    if (getX() + x > area.w)
-    {
-        setX(area.w);
-        return -1;
-    }
+	if (getX() + x > area.w)
+	{
+		setX(area.w);
+		return -1;
+	}
 
-    setX(getX() + x);
+	setX(getX() + x);
 
-    return 0;
+	return 0;
 }
 
 Sint8 CGameObject::setRelY (Sint16 y)
 {
 
 
-    if (getY() + y < 0)
-    {
-        setY(0);
-        return -1;
-    }
+	if (getY() + y < 0)
+	{
+		setY(0);
+		return -1;
+	}
 
-    if (getY() + y > area.h)
-    {
-        setY(area.h);
-        return -1;
-    }
+	if (getY() + y > area.h)
+	{
+		setY(area.h);
+		return -1;
+	}
 
-    setY(getY() + y);
+	setY(getY() + y);
 
-    return 0;
+	return 0;
 }
 
 Sint8 CGameObject::moveRel (Sint8 x, Sint8 y)
 {
-    //cout << "moveRel(" << (int)x << ", " << (int)y << "), " << this->x << ":" << this->y << endl;
+	//cout << "moveRel(" << (int)x << ", " << (int)y << "), " << this->x << ":" << this->y << endl;
 
-    Sint8 resX, resY = 0;
-    resX = setRelX(x);
-    resY = setRelY(y);
+	Sint8 resX, resY = 0;
+	resX = setRelX(x);
+	resY = setRelY(y);
 
-    if (resX == -1 || resY == -1)
-        return -1;
-    else
-        return 0;
+	if (resX == -1 || resY == -1)
+		return -1;
+	else
+		return 0;
 }
 
 void CGameObject::moveAbs (Sint16 x, Sint16 y)
 {
-    cout << "moveAbs(" << (int)x << ", " << (int)y << "), " << this->x << ":" << this->y << endl;
+	cout << "moveAbs(" << (int)x << ", " << (int)y << "), " << this->x << ":" << this->y << endl;
 
-    setX(x);
-    setY(y);
+	setX(x);
+	setY(y);
 }
 
 Sint16 CGameObject::getSurfaceX (Uint32 frame)
 {
-    Uint16 imageno;
-    Sint16 myX;
+	Uint16 imageno;
+	Sint16 myX;
 
-    if (frame >= ani->seq.stats.size())
-    {
-        er.report(LOG_WARNING, "%s: getSurfaceX(%d), frame = %d\n", AT, frame, ani->seq.stats.size() - 1);
-        frame = ani->seq.stats.size() - 1;
-    }
+	if (frame >= ani->seq.stats.size())
+	{
+		er.report(LOG_WARNING, "%s: getSurfaceX(%d), frame = %d\n", AT, frame, ani->seq.stats.size() - 1);
+		frame = ani->seq.stats.size() - 1;
+	}
 
-    imageno = ani->seq.stats[frame].frams[0].frames[0].imgno;
-    myX = 19 - (*(ani->frm))[ imageno ].img.x;
+	imageno = ani->seq.stats[frame].frams[0].frames[0].imgno;
+	myX = 19 - (*(ani->frm))[ imageno ].img.x;
 
-    if (ani->seq.stats[frame].frams[0].frames[0].useRelPos)
-        myX += ani->seq.stats[frame].frams[0].frames[0].relx;
+	if (ani->seq.stats[frame].frams[0].frames[0].useRelPos)
+		myX += ani->seq.stats[frame].frams[0].frames[0].relx;
 
-    return myX;
+	return myX;
 }
 
 Sint16 CGameObject::getSurfaceY (Uint32 frame)
 {
-    Uint16 imageno;
-    Sint16 myY;
+	Uint16 imageno;
+	Sint16 myY;
 
-    if (frame >= ani->seq.stats.size())
-    {
-        er.report(LOG_WARNING, "%s: getSurfaceY(%d), frame = %d\n", AT, frame, ani->seq.stats.size() - 1);
-        frame = ani->seq.stats.size() - 1;
-    }
+	if (frame >= ani->seq.stats.size())
+	{
+		er.report(LOG_WARNING, "%s: getSurfaceY(%d), frame = %d\n", AT, frame, ani->seq.stats.size() - 1);
+		frame = ani->seq.stats.size() - 1;
+	}
 
-    imageno = ani->seq.stats[frame].frams[0].frames[0].imgno;
-    myY = 35 - (*(ani->frm))[ imageno ].img.y;
+	imageno = ani->seq.stats[frame].frams[0].frames[0].imgno;
+	myY = 35 - (*(ani->frm))[ imageno ].img.y;
 
-    if (ani->seq.stats[frame].frams[0].frames[0].useRelPos)
-        myY += ani->seq.stats[frame].frams[0].frames[0].rely;
+	if (ani->seq.stats[frame].frams[0].frames[0].useRelPos)
+		myY += ani->seq.stats[frame].frams[0].frames[0].rely;
 
-    /*
-        if ( myY < 0 )
-            myY -= 18;*/
+	/*
+		if ( myY < 0 )
+			myY -= 18;*/
 
-    if (myY > 14)
-        myY -= 18;
+	if (myY > 14)
+		myY -= 18;
 
-    return myY;
+	return myY;
 }
 
 void CGameObject::setColor (imagecolors color)
 {
-    this->color = color;
+	this->color = color;
 }
 
 imagecolors CGameObject::getColor ()
 {
-    return this->color;
+	return this->color;
 }

@@ -22,42 +22,42 @@
 int CErrorReporter::report(logLevel level, const char* fmt, ... )
 {
 #ifndef NDEBUG
-    va_list args;
-    va_start ( args, fmt );
-    if ( level <= this->level )
-    {
-        if ( LOG_ERROR )
-        {
-            return vfprintf ( stderr, fmt, args );
-        }
-        else if ( LOG_WARNING )
-        {
-            return vfprintf ( stderr, fmt, args );
-        }
-        else if ( LOG_INFO )
-        {
-            return vfprintf ( stdout, fmt, args );
-        }
-        else
-        {
-            return -666;
-        }
-    }
-    else
-    {
-        return 0;
-    }
+	va_list args;
+	va_start ( args, fmt );
+	if ( level <= this->level )
+	{
+		if ( LOG_ERROR )
+		{
+			return vfprintf ( stderr, fmt, args );
+		}
+		else if ( LOG_WARNING )
+		{
+			return vfprintf ( stderr, fmt, args );
+		}
+		else if ( LOG_INFO )
+		{
+			return vfprintf ( stdout, fmt, args );
+		}
+		else
+		{
+			return -666;
+		}
+	}
+	else
+	{
+		return 0;
+	}
 #else
-    return 0;
+	return 0;
 #endif
 }
 
 void CErrorReporter::setLevel(logLevel level)
 {
-    this->level = level;
+	this->level = level;
 }
 
 CErrorReporter::CErrorReporter()
 {
-    this->level = LOG_NOTHING;
+	this->level = LOG_NOTHING;
 }

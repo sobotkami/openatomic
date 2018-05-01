@@ -29,46 +29,46 @@
 class CLocalServer : public IServer
 {
 public:
-    /**
-     * @brief Kontruktor.
-     */
-    CLocalServer();
+	/**
+	 * @brief Kontruktor.
+	 */
+	CLocalServer();
 
-    /**
-     * @brief Implementace vsech metod rozhrani IMessages.
-     */
-    virtual void player(Uint8 player, Sint16 x1, Sint16 y1, Sint16 x2, Sint16 y2, playerstate_t state, playerlife_t life);
-    virtual void bomb(Uint8 player, Uint8 x, Uint8 y, Uint16 index, bombstate_t state);
-    virtual void inventory(Uint8 player, powerup_t powerup, Sint8 value);
-    virtual void updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup);
-    virtual void setDefPlPos(Uint8 player, Uint8 x, Uint8 y);
-    virtual void changeMenu(enum guiScreen menu);
-    virtual void startGame();
-    virtual void showResults();
-    virtual void exitGame();
-    virtual void registerPlayer(Uint8 player, const char *node, plmantype_t control);
-    virtual void unregisterPlayer(Uint8 player);
+	/**
+	 * @brief Implementace vsech metod rozhrani IMessages.
+	 */
+	virtual void player(Uint8 player, Sint16 x1, Sint16 y1, Sint16 x2, Sint16 y2, playerstate_t state, playerlife_t life);
+	virtual void bomb(Uint8 player, Uint8 x, Uint8 y, Uint16 index, bombstate_t state);
+	virtual void inventory(Uint8 player, powerup_t powerup, Sint8 value);
+	virtual void updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup);
+	virtual void setDefPlPos(Uint8 player, Uint8 x, Uint8 y);
+	virtual void changeMenu(enum guiScreen menu);
+	virtual void startGame();
+	virtual void showResults();
+	virtual void exitGame();
+	virtual void registerPlayer(Uint8 player, const char *node, plmantype_t control);
+	virtual void unregisterPlayer(Uint8 player);
 
-    /**
-     * @brief Implementace vsech metod rozhrani IClient.
-     */
-    virtual void think();
+	/**
+	 * @brief Implementace vsech metod rozhrani IClient.
+	 */
+	virtual void think();
 
-    /* @briefMetody na testovani, zapinani a vypinani podpory prijimani zprav pres sit */
-    virtual void startNetwork(const char * hostname = "localhost");
-    virtual void stopNetwork();
-    virtual bool isNetworkRunning();
+	/* @briefMetody na testovani, zapinani a vypinani podpory prijimani zprav pres sit */
+	virtual void startNetwork(const char * hostname = "localhost");
+	virtual void stopNetwork();
+	virtual bool isNetworkRunning();
 
 private:
-    /**
-     * @brief Privatni promenna, ktera se inicializuje spustenim site.
-     */
-    CNetwork<msg_t> *network;
+	/**
+	 * @brief Privatni promenna, ktera se inicializuje spustenim site.
+	 */
+	CNetwork<msg_t> *network;
 
-    /**
-     * @brief Trida slouzici k vypisu zprav na ladeni.
-     */
-    CErrorReporter er;
+	/**
+	 * @brief Trida slouzici k vypisu zprav na ladeni.
+	 */
+	CErrorReporter er;
 };
 
 #endif // CLOCALSERVER_H

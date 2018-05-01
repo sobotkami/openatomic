@@ -20,15 +20,15 @@
 
 CAIController::CAIController(CGamingArea * ga, CGO_Player * players[])
 {
-    //model.setGa(ga);
+	//model.setGa(ga);
 
-    for(Uint8 i = 0; i < CPLAYERS; i++)
-    {
-        if(players[i]->getActive())
-        {
-            //model.addPlayer((imagecolors)i, players[i]->getArrayX(), players[i]->getArrayY() );
-        }
-    }
+	for(Uint8 i = 0; i < CPLAYERS; i++)
+	{
+		if(players[i]->getActive())
+		{
+			//model.addPlayer((imagecolors)i, players[i]->getArrayX(), players[i]->getArrayY() );
+		}
+	}
 }
 
 void CAIController::input()
@@ -38,5 +38,5 @@ void CAIController::input()
 
 void CAIController::update()
 {
-    //model.doMove();
+	//model.doMove();
 }

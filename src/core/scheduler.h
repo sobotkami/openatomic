@@ -32,8 +32,8 @@ Uint32 timerCallback ( Uint32 interval, void* param );
 
 typedef struct
 {
-    CSchedulerItem *schItem;
-    Uint32 time;
+	CSchedulerItem *schItem;
+	Uint32 time;
 } schRecord;
 
 // deklarace
@@ -41,27 +41,27 @@ class CSchedulerItem
 {
 private:
 public:
-    CSchedulerItem();
-    void wakeup( Uint32 interval );
+	CSchedulerItem();
+	void wakeup( Uint32 interval );
 };
 
 class CScheduler
 {
 private:
-    vector<schRecord> cal;
-    vector<schRecord>::size_type calSize;
-    vector<schRecord>::iterator it;
+	vector<schRecord> cal;
+	vector<schRecord>::size_type calSize;
+	vector<schRecord>::iterator it;
 
-    SDL_TimerID animtimer;
-    long binarySearch ( Uint32 time );
+	SDL_TimerID animtimer;
+	long binarySearch ( Uint32 time );
 
-    CErrorReporter er;
+	CErrorReporter er;
 public:
-    void nextEvent();
-    Uint32 timerOperation ( Uint32 interval, void* param );
-    void printItems();
-    int addItem ( schRecord * item );
-    CScheduler();
+	void nextEvent();
+	Uint32 timerOperation ( Uint32 interval, void* param );
+	void printItems();
+	int addItem ( schRecord * item );
+	CScheduler();
 };
 
 #endif // SCHEDULER_H

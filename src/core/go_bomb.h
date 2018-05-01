@@ -30,25 +30,25 @@
 class CGO_Bomb: public CGameObject
 {
 private:
-    bool active;
-    Uint8 stateAni;
-    Uint8 stateExplode;
-    Uint32 ticksActivated;
-    Uint8 flameLength;
-    Uint32 ticksTimeoutDefault;
-    Uint32 ticksTimeout;
+	bool active;
+	Uint8 stateAni;
+	Uint8 stateExplode;
+	Uint32 ticksActivated;
+	Uint8 flameLength;
+	Uint32 ticksTimeoutDefault;
+	Uint32 ticksTimeout;
 public:
-    
-    void setActive( bool active );
-    bool getActive();
-    
-    void setFlameLength( Uint8 len );
-    Uint8 getFlameLength();
-    
-    Uint32 ticksToExplode();
-    void setTimeout( Uint32 timeout );
-    
-    CGO_Bomb();
+	
+	void setActive( bool active );
+	bool getActive();
+	
+	void setFlameLength( Uint8 len );
+	Uint8 getFlameLength();
+	
+	Uint32 ticksToExplode();
+	void setTimeout( Uint32 timeout );
+	
+	CGO_Bomb();
 };
 
 #endif	/* GO_BOMB_H */

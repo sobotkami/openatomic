@@ -25,13 +25,13 @@
  */
 class CDebugNetwork
 {
-public:    
-    /**
-     * @brief Trida tiskne obsah zpravy predany parametrem s prefixem.
-     * @param pre Prefix, ktery je tisknut pred vlastni obsah zpravy
-     * @param m Zprava, ktera se bude parsovat a jeji obsah bude vytisknut na standardni vystup.
-     */
-    static void printMessagePayload( const char * pre, msg_t &m );
+public:	
+	/**
+	 * @brief Trida tiskne obsah zpravy predany parametrem s prefixem.
+	 * @param pre Prefix, ktery je tisknut pred vlastni obsah zpravy
+	 * @param m Zprava, ktera se bude parsovat a jeji obsah bude vytisknut na standardni vystup.
+	 */
+	static void printMessagePayload( const char * pre, msg_t &m );
 };
 
 #endif // DEBUGNETWORK_H

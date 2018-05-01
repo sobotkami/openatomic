@@ -25,18 +25,18 @@
 
 //Headers
 #if defined(CONF_PF_LINUX) || defined(CONF_PT_MACOSX)
-    #include <pthread.h>
+	#include <pthread.h>
 #elif defined(CONF_PF_WINDOWS)
-//     #define _WIN32_WINNT 0x0400
-    #include <windows.h>
-    #include <process.h>
+//	 #define _WIN32_WINNT 0x0400
+	#include <windows.h>
+	#include <process.h>
 #endif
 
 //Data types
 #if defined(CONF_PF_LINUX) || defined(CONF_PT_MACOSX)
-    #define MUTEX pthread_mutex_t
+	#define MUTEX pthread_mutex_t
 #elif defined(CONF_PF_WINDOWS)
-    #define MUTEX HANDLE
+	#define MUTEX HANDLE
 #endif
 
 /* -------------- //platform defines -------------- */
@@ -51,36 +51,36 @@
 #define BOX_W2 20
 #define BOX_H2 18
 
-#define GOT_PLAYER      0
-#define GOT_BOMB        1
-#define GOT_BRICK       2
-#define GOT_ARROW       3
-#define GOT_WARP        4
+#define GOT_PLAYER	  0
+#define GOT_BOMB		1
+#define GOT_BRICK	   2
+#define GOT_ARROW	   3
+#define GOT_WARP		4
 #define GOT_TRAMPOLINE  5
 #define GOT_CONVEYORS   6
-#define GOT_POWERUPS    7
-#define GOT_FIRES       8
-#define GOT_FIRESB      9
+#define GOT_POWERUPS	7
+#define GOT_FIRES	   8
+#define GOT_FIRESB	  9
 
 // states of life
 #define LALIVE   0
-#define LDIES    1
-#define LDEAD    2
+#define LDIES	1
+#define LDEAD	2
 
 // states of player
 #define XSTAND   0
-#define XWALK    1
+#define XWALK	1
 #define XBLOCKED 2
 
 // states of anis
-#define SSTAND      0
-#define SWALK       1
+#define SSTAND	  0
+#define SWALK	   1
 #define SCORNERHEAD 2
-#define SDIE        3
-#define SPUNCH      4
-#define SKICK       5
-#define SPICKUP     6
-#define SSPIN       7
+#define SDIE		3
+#define SPUNCH	  4
+#define SKICK	   5
+#define SPICKUP	 6
+#define SSPIN	   7
 
 #define AWEST  0
 #define AEAST  1
@@ -90,18 +90,18 @@
 
 
 // count of..
-#define CCOLORS      10
-#define CDIES        24
+#define CCOLORS	  10
+#define CDIES		24
 #define CCORNERHEAD  13
-#define CFIELDS      11
+#define CFIELDS	  11
 #define CBACKGROUNDS 7
 #define CDIRECTIONS  4
-#define CPOWERUPS    12
+#define CPOWERUPS	12
 #define CPOWERUPSR   13
-#define CTILES       3
-#define CFIRES       9
+#define CTILES	   3
+#define CFIRES	   9
 
-#define CBOMBS       100
+#define CBOMBS	   100
 
 #define CGUISTATES   6
 
@@ -119,49 +119,49 @@
 #define FTIPNORTH 6
 #define FMIDSOUTH 7
 #define FTIPSOUTH 8
-#define FBRICK    9
+#define FBRICK	9
 
-#define CPBOMB      8
-#define CPFLAME     8
+#define CPBOMB	  8
+#define CPFLAME	 8
 #define CPDISEASE   0
-#define CPKICKER    1
-#define CPSKATE     4
-#define CPPUNCH     1
-#define CPGRAB      1
-#define CPSPOOGE    1
+#define CPKICKER	1
+#define CPSKATE	 4
+#define CPPUNCH	 1
+#define CPGRAB	  1
+#define CPSPOOGE	1
 #define CPGOLDFLAME 1
 #define CPTRIGGER   1
-#define CPJELLY     1
+#define CPJELLY	 1
 #define CPDISEASE3  0
-#define CPRANDOM    0
+#define CPRANDOM	0
 
-#define BWBOMB      1
-#define BWFLAME     2
+#define BWBOMB	  1
+#define BWFLAME	 2
 #define BWDISEASE   0
-#define BWKICKER    0
-#define BWSKATE     0
-#define BWPUNCH     0
-#define BWGRAB      0
-#define BWSPOOGE    0
+#define BWKICKER	0
+#define BWSKATE	 0
+#define BWPUNCH	 0
+#define BWGRAB	  0
+#define BWSPOOGE	0
 #define BWGOLDFLAME 0
 #define BWTRIGGER   0
-#define BWJELLY     0
+#define BWJELLY	 0
 #define BWDISEASE3  0
-#define BWRANDOM    0
+#define BWRANDOM	0
 
-#define PBOMB      0
-#define PFLAME     1
+#define PBOMB	  0
+#define PFLAME	 1
 #define PDISEASE   2
-#define PKICKER    3
-#define PSKATE     4
-#define PPUNCH     5
-#define PGRAB      6
-#define PSPOOGE    7
+#define PKICKER	3
+#define PSKATE	 4
+#define PPUNCH	 5
+#define PGRAB	  6
+#define PSPOOGE	7
 #define PGOLDFLAME 8
 #define PTRIGGER   9
-#define PJELLY     10
+#define PJELLY	 10
 #define PDISEASE3  11
-#define PRANDOM    12
+#define PRANDOM	12
 
 #define BDUD 0
 #define BREG 1

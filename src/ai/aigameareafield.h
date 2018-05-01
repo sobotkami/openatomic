@@ -24,17 +24,17 @@
 class CAIGameAreaField
 {
 private:
-    Sint32 rating;
-    bool mark;
+	Sint32 rating;
+	bool mark;
 public:
-    CAIGameAreaField();
-    void reset();
+	CAIGameAreaField();
+	void reset();
 
-    void setRating(Sint32 value);
-    Sint32 getRating();
+	void setRating(Sint32 value);
+	Sint32 getRating();
 
-    void setMark(bool value);
-    bool getMark();
+	void setMark(bool value);
+	bool getMark();
 };
 
 #endif // AIGAMEAREAFIELD_H

@@ -26,18 +26,18 @@ using namespace std;
 
 class CAliReader
 {
-    string whiteSpaces;
-    vector<string> anilist;
-    void trimRight ( string& str, string& trimChars );
-    void trimLeft ( string& str, string& trimChars );
-    void trim ( string& str, string& trimChars );
+	string whiteSpaces;
+	vector<string> anilist;
+	void trimRight ( string& str, string& trimChars );
+	void trimLeft ( string& str, string& trimChars );
+	void trim ( string& str, string& trimChars );
 
-    CErrorReporter er;
+	CErrorReporter er;
 public:
-    CAliReader();
-    Uint8 read ( string filename );
-    string getItem ( Uint16 index );
-    Uint16 getCount ();
+	CAliReader();
+	Uint8 read ( string filename );
+	string getItem ( Uint16 index );
+	Uint16 getCount ();
 };
 
 #endif // ALIREADER_H

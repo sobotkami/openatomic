@@ -30,59 +30,59 @@ CStringDraw *CStringDraw::s_instance;
 
 void CStringDraw::drawString (Sint16 x, Sint16 y, string str)
 {
-    drawString(x, y, str, cwhite);
+	drawString(x, y, str, cwhite);
 }
 
 void CStringDraw::drawString (Sint16 x, Sint16 y, const char * str)
 {
-    drawString(x, y, str, cwhite);
+	drawString(x, y, str, cwhite);
 }
 
 void CStringDraw::drawString (Sint16 x, Sint16 y, string str, imagecolors color)
 {
-    drawString(x, y, str.c_str(), color);
+	drawString(x, y, str.c_str(), color);
 }
 
 void CStringDraw::drawString (Sint16 x, Sint16 y, const char* str, imagecolors color)
 {
-    Uint16 offset = 0;
-    Sint16 spacing = 0;
-    SDL_Surface * symbol = NULL;
-    Uint8 s = 0;
-    Sint16 size = 0;
+	Uint16 offset = 0;
+	Sint16 spacing = 0;
+	SDL_Surface * symbol = NULL;
+	Uint8 s = 0;
+	Sint16 size = 0;
 
-    spacing = CFontSingleton::instance()->font.getSpacing() - 2; // 2 pix se umele pridavaji
-    size = strlen(str);
+	spacing = CFontSingleton::instance()->font.getSpacing() - 2; // 2 pix se umele pridavaji
+	size = strlen(str);
 
-    for (Sint16 i = 0; i < size; ++i)
-    {
-        s = str[i];
-        symbol = CFontSingleton::instance()->font.getSymbol(s, color);
-        if (symbol != NULL)
-        {
-            drawObject(symbol, x + offset, y, false); // on error resume next
-            offset += CFontSingleton::instance()->font.getSymbolWidth(s);
-            offset += spacing;
-        }
-    }
+	for (Sint16 i = 0; i < size; ++i)
+	{
+		s = str[i];
+		symbol = CFontSingleton::instance()->font.getSymbol(s, color);
+		if (symbol != NULL)
+		{
+			drawObject(symbol, x + offset, y, false); // on error resume next
+			offset += CFontSingleton::instance()->font.getSymbolWidth(s);
+			offset += spacing;
+		}
+	}
 }
 
 Uint16 CStringDraw::getWidth (string str)
 {
-    return getWidth(str.c_str());
+	return getWidth(str.c_str());
 }
 
 Uint16 CStringDraw::getWidth (const char * str)
 {
-    Uint16 strWidth = 0;
-    Sint16 spacing = CFontSingleton::instance()->font.getSpacing() - 2; // 2 pix se umele pridavaji;
-    ssize_t size = strlen(str);
+	Uint16 strWidth = 0;
+	Sint16 spacing = CFontSingleton::instance()->font.getSpacing() - 2; // 2 pix se umele pridavaji;
+	ssize_t size = strlen(str);
 
-    for (ssize_t i = 0; i < size; ++i)
-    {
-        strWidth += CFontSingleton::instance()->font.getSymbolWidth(str[i]);
-        strWidth += spacing;
-    }
+	for (ssize_t i = 0; i < size; ++i)
+	{
+		strWidth += CFontSingleton::instance()->font.getSymbolWidth(str[i]);
+		strWidth += spacing;
+	}
 
-    return strWidth;
+	return strWidth;
 }

@@ -22,7 +22,7 @@
  */
 CAIGameAreaField::CAIGameAreaField()
 {
-    reset();
+	reset();
 }
 
 /**
@@ -30,8 +30,8 @@ CAIGameAreaField::CAIGameAreaField()
  */
 void CAIGameAreaField::reset()
 {
-    rating = -1;
-    mark = false;
+	rating = -1;
+	mark = false;
 }
 
 /**
@@ -40,7 +40,7 @@ void CAIGameAreaField::reset()
  */
 void CAIGameAreaField::setRating(Sint32 value)
 {
-    rating = value;
+	rating = value;
 }
 
 /**
@@ -49,7 +49,7 @@ void CAIGameAreaField::setRating(Sint32 value)
  */
 Sint32 CAIGameAreaField::getRating()
 {
-    return rating;
+	return rating;
 }
 
 /**
@@ -58,7 +58,7 @@ Sint32 CAIGameAreaField::getRating()
  */
 void CAIGameAreaField::setMark(bool value)
 {
-    mark = value;
+	mark = value;
 }
 
 /**
@@ -67,5 +67,5 @@ void CAIGameAreaField::setMark(bool value)
  */
 bool CAIGameAreaField::getMark()
 {
-    return mark;
+	return mark;
 }

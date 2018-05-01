@@ -23,18 +23,18 @@
 template <typename T>
 struct Point
 {
-    T x;
-    T y;
+	T x;
+	T y;
 
-    Point() {}
+	Point() {}
 
-    Point( T x, T y )
-    {
-        this->x = x;
-        this->y = y;
-    }
+	Point( T x, T y )
+	{
+		this->x = x;
+		this->y = y;
+	}
 
-    Point & operator=(const Point<T>& rhs) { return *this; }
+	Point & operator=(const Point<T>& rhs) { return *this; }
 };
 
 #endif // POINT_H

@@ -26,30 +26,30 @@
 class IServer : public IMessages
 {
 public:
-    /**
-     * @brief Funkce by mela byt volana pravidelne v herni smycce. Vyzvedava zpravy z fronty zprav, zpracovavava je a pripadne plni frontu zprav.
-     */
-    virtual void think() = 0;
+	/**
+	 * @brief Funkce by mela byt volana pravidelne v herni smycce. Vyzvedava zpravy z fronty zprav, zpracovavava je a pripadne plni frontu zprav.
+	 */
+	virtual void think() = 0;
 
-    /**
-     * @brief Startuje podporu pro sit. Po spusteni je dostupna na vychozim portu (definovan v CNetwork) na zvolene IP/hostname. Ve vychozim stavu je hostname zvolen jako localhost.
-     * @param hostname IP nebo hostname, kde bude naslouchat program pozadavky od klientu
-     */
-    virtual void startNetwork(const char * hostname = "localhost") = 0;
-    /**
-     * @brief Vypne podporu site. Klient tak bude prijimat zpravy pouze lokalne.
-     */
-    virtual void stopNetwork() = 0;
-    /**
-     * @brief Funkce vraci stav site, zda bezi.
-     * @return Vraci TRUE, pokud je zapnuta podpora site. Jinak vraci FALSE.
-     */
-    virtual bool isNetworkRunning() = 0;
+	/**
+	 * @brief Startuje podporu pro sit. Po spusteni je dostupna na vychozim portu (definovan v CNetwork) na zvolene IP/hostname. Ve vychozim stavu je hostname zvolen jako localhost.
+	 * @param hostname IP nebo hostname, kde bude naslouchat program pozadavky od klientu
+	 */
+	virtual void startNetwork(const char * hostname = "localhost") = 0;
+	/**
+	 * @brief Vypne podporu site. Klient tak bude prijimat zpravy pouze lokalne.
+	 */
+	virtual void stopNetwork() = 0;
+	/**
+	 * @brief Funkce vraci stav site, zda bezi.
+	 * @return Vraci TRUE, pokud je zapnuta podpora site. Jinak vraci FALSE.
+	 */
+	virtual bool isNetworkRunning() = 0;
 
-    /**
-     * @brief Destruktor.
-     */
-    virtual ~IServer() {}
+	/**
+	 * @brief Destruktor.
+	 */
+	virtual ~IServer() {}
 };
 
 #endif // SERVER_H

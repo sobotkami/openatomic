@@ -27,15 +27,15 @@
 class CAIGameArea
 {
 private:
-    CAIGameAreaField aiga [GA_H][GA_W];
+	CAIGameAreaField aiga [GA_H][GA_W];
 
 
 public:
-    CAIGameArea();
+	CAIGameArea();
 
-    CAIGameAreaField get(Uint8 x, Uint8 y);
+	CAIGameAreaField get(Uint8 x, Uint8 y);
 
-    void sync( CGamingArea * ga );
+	void sync( CGamingArea * ga );
 };
 
 #endif // AIGAMEAREA_H

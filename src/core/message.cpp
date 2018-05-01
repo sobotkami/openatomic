@@ -20,10 +20,10 @@
 //Overload the < operator.
 bool operator< (const CMessage& lhs, const CMessage &rhs)
 {
-    return lhs.timestamp > rhs.timestamp;
+	return lhs.timestamp > rhs.timestamp;
 }
 //Overload the > operator.
 bool operator> (const CMessage& lhs, const CMessage &rhs)
 {
-    return lhs.timestamp < rhs.timestamp;
+	return lhs.timestamp < rhs.timestamp;
 }

@@ -30,13 +30,13 @@
 // #define CONF_PT_MACOSX
 
 #if defined(CONF_PF_WINDOWS)
-    const char platformString [] = "Windows";
+	const char platformString [] = "Windows";
 #elif defined(CONF_PF_LINUX)
-    const char platformString [] = "Linux";
+	const char platformString [] = "Linux";
 #elif defined(CONF_PT_MACOSX)
-    const char platformString [] = "Mac OS X";
+	const char platformString [] = "Mac OS X";
 #else
-    const char platformString [] = "Unknown OS";
+	const char platformString [] = "Unknown OS";
 #endif
 
 #endif	/* PLATFORM_H */

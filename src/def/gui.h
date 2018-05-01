@@ -19,11 +19,11 @@
 #define GUI_H
 
 typedef enum {
-    off,
-    key0,
-    key1,
-    ai,
-    net
+	off,
+	key0,
+	key1,
+	ai,
+	net
 } playerStateGui;
 
 enum guiScreen {

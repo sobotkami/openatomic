@@ -19,21 +19,21 @@
 
 CAIPlayer::CAIPlayer()
 {
-    removeOponent();
+	removeOponent();
 }
 
 void CAIPlayer::setOponent(imagecolors color)
 {
-    er.report(LOG_INFO, "%s: %d: Oponent is now %d\n", AT, getColor(), color);
-    oponent = color;
+	er.report(LOG_INFO, "%s: %d: Oponent is now %d\n", AT, getColor(), color);
+	oponent = color;
 }
 
 imagecolors CAIPlayer::getOponent()
 {
-    return oponent;
+	return oponent;
 }
 
 void CAIPlayer::removeOponent()
 {
-    oponent = getColor();
+	oponent = getColor();
 }

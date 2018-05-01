@@ -31,44 +31,44 @@
 #include <def/colors.h>
 
 typedef struct {
-    Uint16 score; // 0, 1, ...
-    Sint16 kills; // ..., -1, 0, 1, ...
-    Uint8 team; // false (0) = red, true (1) = white team
+	Uint16 score; // 0, 1, ...
+	Sint16 kills; // ..., -1, 0, 1, ...
+	Uint8 team; // false (0) = red, true (1) = white team
 } playerResult;
 
 class CGameResults {
 public:
-    /* mainly */
-    void ResetResults();
-    void UpdateKills(imagecolors id, Sint8 kills);
-    /* sets */
-    void setWinner(Sint8 id);
-    void setValueToWinMatch(Uint32 value);
-    void setKillsToWin(bool value);
-    void setTeamPlay(bool value);
-    /* gets */
-    Sint16 getMatchWinner();
-    Sint16 getGameWinner();
-    Uint16 getScore(Uint8 id);
-    Sint16 getKills(Uint8 id);
-    Uint32 getValueToWinMatch();
-    bool getKillsToWin();
-    bool getTeamPlay();
+	/* mainly */
+	void ResetResults();
+	void UpdateKills(imagecolors id, Sint8 kills);
+	/* sets */
+	void setWinner(Sint8 id);
+	void setValueToWinMatch(Uint32 value);
+	void setKillsToWin(bool value);
+	void setTeamPlay(bool value);
+	/* gets */
+	Sint16 getMatchWinner();
+	Sint16 getGameWinner();
+	Uint16 getScore(Uint8 id);
+	Sint16 getKills(Uint8 id);
+	Uint32 getValueToWinMatch();
+	bool getKillsToWin();
+	bool getTeamPlay();
 
-    static CGameResults *instance() {
-        return &m_GameResults;
-    }
+	static CGameResults *instance() {
+		return &m_GameResults;
+	}
 private:
-    CGameResults();
-    static CGameResults m_GameResults;
-    CErrorReporter er;
+	CGameResults();
+	static CGameResults m_GameResults;
+	CErrorReporter er;
 
-    playerResult results [CPLAYERS];
-    Sint16 gameWinner;
-    Sint16 matchWinner;
-    Uint32 valueToWinMatch;
-    bool killsToWin; // true = kills, false = score
-    bool teamPlay;
+	playerResult results [CPLAYERS];
+	Sint16 gameWinner;
+	Sint16 matchWinner;
+	Uint32 valueToWinMatch;
+	bool killsToWin; // true = kills, false = score
+	bool teamPlay;
 
 };
 

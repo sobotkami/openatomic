@@ -36,9 +36,9 @@
 
 
 // major version number
-#define VER_MAJOR    0
+#define VER_MAJOR	0
 // minor version number
-#define VER_MINOR    6
+#define VER_MINOR	6
 // join in one string
 #define VER_STRING   TOSTRING(VER_MAJOR) "." TOSTRING(VER_MINOR) "." SVNVERSION
 

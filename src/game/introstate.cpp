@@ -29,41 +29,41 @@ extern SDL_Thread* resThread;
 
 void CIntroState::Init ()
 {
-    er.setLevel(LOG_INFO);
+	er.setLevel(LOG_INFO);
 
-    SDL_Surface *temp = IMG_Load(DATA_DIR "gui/loading.png");
-    if (!temp)
-    {
-        /* image failed to load */
-        er.report(LOG_ERROR, _("%s: IMG_Load: %s\n"), AT, IMG_GetError());
-        SDL_Quit();
-        return;
-    }
+	SDL_Surface *temp = IMG_Load(DATA_DIR "gui/loading.png");
+	if (!temp)
+	{
+		/* image failed to load */
+		er.report(LOG_ERROR, _("%s: IMG_Load: %s\n"), AT, IMG_GetError());
+		SDL_Quit();
+		return;
+	}
 
-    bg = SDL_DisplayFormat(temp);
+	bg = SDL_DisplayFormat(temp);
 
-    SDL_FreeSurface(temp);
+	SDL_FreeSurface(temp);
 
-    firstFlip = true;
+	firstFlip = true;
 
-    er.report(LOG_INFO, _("%s: CIntroState Init\n"), AT);
+	er.report(LOG_INFO, _("%s: CIntroState Init\n"), AT);
 }
 
 void CIntroState::Cleanup ()
 {
-    SDL_FreeSurface(bg);
+	SDL_FreeSurface(bg);
 
-    er.report(LOG_INFO, _("%s: CIntroState Cleanup\n"), AT);
+	er.report(LOG_INFO, _("%s: CIntroState Cleanup\n"), AT);
 }
 
 void CIntroState::Pause ()
 {
-    er.report(LOG_INFO, _("%s: CIntroState Pause\n"), AT);
+	er.report(LOG_INFO, _("%s: CIntroState Pause\n"), AT);
 }
 
 void CIntroState::Resume ()
 {
-    er.report(LOG_INFO, _("%s: CIntroState Resume\n"), AT);
+	er.report(LOG_INFO, _("%s: CIntroState Resume\n"), AT);
 }
 
 void CIntroState::HandleEvents ()
@@ -72,63 +72,63 @@ void CIntroState::HandleEvents ()
 
 void CIntroState::Update ()
 {
-    // load the game resources
-    if (CResources::instance()->Loaded())
-    {
-        //int res = 0;
-        //SDL_WaitThread(resThread, &res);
-        //if( res )
-        //{
-        //    er.report(LOG_ERROR, _("%s: Thread Resources: loading resources failed.\n"), AT);
-        //}
-        //else
-        //{
-            er.report(LOG_INFO, _("%s: Thread Resources: loading resources successfully done.\n"), AT);
-        //}
+	// load the game resources
+	if (CResources::instance()->Loaded())
+	{
+		//int res = 0;
+		//SDL_WaitThread(resThread, &res);
+		//if( res )
+		//{
+		//	er.report(LOG_ERROR, _("%s: Thread Resources: loading resources failed.\n"), AT);
+		//}
+		//else
+		//{
+			er.report(LOG_INFO, _("%s: Thread Resources: loading resources successfully done.\n"), AT);
+		//}
 
-        CGameEngine::instance()->ChangeState(CMenuState::Instance());
-    }
+		CGameEngine::instance()->ChangeState(CMenuState::Instance());
+	}
 }
 
 void CIntroState::Draw ()
 {
-    if (firstFlip)
-    {
-        SDL_BlitSurface(bg, NULL, SDL_GetVideoSurface(), NULL);
-        CGameEngine::instance()->InvalidateArea(0, 0, 0, 0);
-        firstFlip = false;
-    }
-    else
-    {
-        Uint16 w = CStringDraw::instance()->getWidth(CResources::instance()->StatusString()) + 50; // + 50 -- fix the underflow 
-        Uint16 h = CFontSingleton::instance()->font.getSymbolHeight();
-        Sint16 x = 10;
-        Sint16 y = WIN_HEIGHT - h - 10;
+	if (firstFlip)
+	{
+		SDL_BlitSurface(bg, NULL, SDL_GetVideoSurface(), NULL);
+		CGameEngine::instance()->InvalidateArea(0, 0, 0, 0);
+		firstFlip = false;
+	}
+	else
+	{
+		Uint16 w = CStringDraw::instance()->getWidth(CResources::instance()->StatusString()) + 50; // + 50 -- fix the underflow 
+		Uint16 h = CFontSingleton::instance()->font.getSymbolHeight();
+		Sint16 x = 10;
+		Sint16 y = WIN_HEIGHT - h - 10;
 
-        SDL_Rect r = {x, y, w, h};
-        SDL_BlitSurface(bg, &r, SDL_GetVideoSurface(), &r);
-        CStringDraw::instance()->drawString(x, y, CResources::instance()->StatusString());
-        CGameEngine::instance()->InvalidateArea(x, y, w, h);
-    }
+		SDL_Rect r = {x, y, w, h};
+		SDL_BlitSurface(bg, &r, SDL_GetVideoSurface(), &r);
+		CStringDraw::instance()->drawString(x, y, CResources::instance()->StatusString());
+		CGameEngine::instance()->InvalidateArea(x, y, w, h);
+	}
 
-    // Update the screen
-    if ((SDL_GetVideoSurface()->flags & SDL_DOUBLEBUF) == SDL_DOUBLEBUF)
-    {
-        SDL_Flip(SDL_GetVideoSurface());
-        CGameEngine::instance()->getUglyRects().clear();
-    }
-    else
-    {
-        vector<SDL_Rect>::size_type sz = CGameEngine::instance()->getUglyRects().size();
-        SDL_Rect r;
+	// Update the screen
+	if ((SDL_GetVideoSurface()->flags & SDL_DOUBLEBUF) == SDL_DOUBLEBUF)
+	{
+		SDL_Flip(SDL_GetVideoSurface());
+		CGameEngine::instance()->getUglyRects().clear();
+	}
+	else
+	{
+		vector<SDL_Rect>::size_type sz = CGameEngine::instance()->getUglyRects().size();
+		SDL_Rect r;
 
-        for (Uint32 i = 0; i < sz; i++)
-        {
-            r = CGameEngine::instance()->getUglyRects().back();
-            SDL_UpdateRect(SDL_GetVideoSurface(), r.x, r.y, r.w, r.h);
-            CGameEngine::instance()->getUglyRects().pop_back();
-        }
-    }
-    
-    SDL_Delay(1);
+		for (Uint32 i = 0; i < sz; i++)
+		{
+			r = CGameEngine::instance()->getUglyRects().back();
+			SDL_UpdateRect(SDL_GetVideoSurface(), r.x, r.y, r.w, r.h);
+			CGameEngine::instance()->getUglyRects().pop_back();
+		}
+	}
+	
+	SDL_Delay(1);
 }

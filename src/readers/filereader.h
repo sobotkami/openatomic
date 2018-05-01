@@ -24,33 +24,33 @@
 using namespace std;
 
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
-#define SWAP16(X)    (X)
-#define SWAP32(X)    (X)
+#define SWAP16(X)	(X)
+#define SWAP32(X)	(X)
 #else
-#define SWAP16(X)    SDL_Swap16(X)
-#define SWAP32(X)    SDL_Swap32(X)
+#define SWAP16(X)	SDL_Swap16(X)
+#define SWAP32(X)	SDL_Swap32(X)
 #endif
 
 class CFileReader
 {
 private:
-    SDL_RWops *fp;
+	SDL_RWops *fp;
 
-    CErrorReporter er;
+	CErrorReporter er;
 public:
-    CFileReader();
-    CFileReader ( SDL_RWops * fp );
+	CFileReader();
+	CFileReader ( SDL_RWops * fp );
 
-    Uint32 getMaxline();
-    void   setMaxline ( Uint32 maxline );
-    Uint32 getPos();
-    Uint32 setRelPos ( Sint32 offset );
+	Uint32 getMaxline();
+	void   setMaxline ( Uint32 maxline );
+	Uint32 getPos();
+	Uint32 setRelPos ( Sint32 offset );
 
-    Sint32 read32();
-    Sint16 read16();
-    Sint8  read8();
-    char  *readBytes ( Uint32 count );
-    bool   testByte ( Uint8 byte );
+	Sint32 read32();
+	Sint16 read16();
+	Sint8  read8();
+	char  *readBytes ( Uint32 count );
+	bool   testByte ( Uint8 byte );
 
 };
 

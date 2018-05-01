@@ -21,63 +21,63 @@
 
 void CResReader::trimRight ( string& str, string& trimChars )
 {
-    std::string::size_type pos = str.find_last_not_of ( trimChars );
-    str.erase ( pos + 1 );
+	std::string::size_type pos = str.find_last_not_of ( trimChars );
+	str.erase ( pos + 1 );
 }
 
 CResReader::CResReader()
 {
-    whiteSpaces.assign ( " \f\n\r\t" );
-    this->index = 0;
-    er.setLevel( LOG_ERROR );
+	whiteSpaces.assign ( " \f\n\r\t" );
+	this->index = 0;
+	er.setLevel( LOG_ERROR );
 }
 
 
 string CResReader::getItem ( Uint16 index )
 {
-    return data[index];
+	return data[index];
 }
 
 
 
 Uint8 CResReader::read ( string filename )
 {
-    ifstream is;
-    string line;
+	ifstream is;
+	string line;
 
-    is.open ( filename.c_str(), ios::binary );
+	is.open ( filename.c_str(), ios::binary );
 
-    if ( is.is_open() )
-    {
-        while ( is.good() )
-        {
-            while ( getline ( is, line ) )
-            {
-                if ( line.size() > 1 && line[0] != ';' )
-                {
-                    istringstream is ( line );
-                    string croppedline = "";
-                    getline ( is, croppedline, ';' );
-                    trimRight ( croppedline, whiteSpaces );
+	if ( is.is_open() )
+	{
+		while ( is.good() )
+		{
+			while ( getline ( is, line ) )
+			{
+				if ( line.size() > 1 && line[0] != ';' )
+				{
+					istringstream is ( line );
+					string croppedline = "";
+					getline ( is, croppedline, ';' );
+					trimRight ( croppedline, whiteSpaces );
 
-                    istringstream is2 ( croppedline );
-                    string key = "";
-                    string value = "";
-                    getline ( is2, key, ',' );
-                    getline ( is2, value, ',' );
-                    data[ atoi( key.c_str() ) ] = value;
+					istringstream is2 ( croppedline );
+					string key = "";
+					string value = "";
+					getline ( is2, key, ',' );
+					getline ( is2, value, ',' );
+					data[ atoi( key.c_str() ) ] = value;
 
-                    er.report( LOG_INFO, _("%s: key '%s', value '%s'\n"), AT, key.c_str(), value.c_str() );
-                }
-            }
-        }
-        is.close();
-        return 0;
-    }
-    else
-    {
-        er.report( LOG_ERROR, _("%s: Unable to open file '%s'!\n"), AT, filename.c_str() );
-        return 1;
-    }
+					er.report( LOG_INFO, _("%s: key '%s', value '%s'\n"), AT, key.c_str(), value.c_str() );
+				}
+			}
+		}
+		is.close();
+		return 0;
+	}
+	else
+	{
+		er.report( LOG_ERROR, _("%s: Unable to open file '%s'!\n"), AT, filename.c_str() );
+		return 1;
+	}
 
 }

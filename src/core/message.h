@@ -23,72 +23,72 @@
 // dropbomb
 typedef struct
 {
-    Uint8 player;
-    Uint8 x;
-    Uint8 y;
-    bool bomb;
+	Uint8 player;
+	Uint8 x;
+	Uint8 y;
+	bool bomb;
 } message_dropbomb_t;
 
 // player
 typedef struct
 {
-    Uint8 player;
-    Uint8 stateRun;
-    Uint8 stateLife;
-    bool north; // true - down, false - up
-    bool south;
-    bool west;
-    bool east;
+	Uint8 player;
+	Uint8 stateRun;
+	Uint8 stateLife;
+	bool north; // true - down, false - up
+	bool south;
+	bool west;
+	bool east;
 } message_player_t;
 
 typedef enum
 {
-    gameStart2, // start the game (aka button START!)
-    gameExit2   // exit the game (aka in game key F11)
+	gameStart2, // start the game (aka button START!)
+	gameExit2   // exit the game (aka in game key F11)
 } gamestate2_t;
 
 // game state
 typedef struct
 {
-    gamestate2_t gamestate;
+	gamestate2_t gamestate;
 } message_gamestate_t;
 
 typedef enum
 {
-    dropbomb,
-    player,
-    gamestate
+	dropbomb,
+	player,
+	gamestate
 } message_type_t;
 
 typedef union
 {
-    message_dropbomb_t  mDropbomb;
-    message_player_t    mPlayer;
-    message_gamestate_t mGamestate;
+	message_dropbomb_t  mDropbomb;
+	message_player_t	mPlayer;
+	message_gamestate_t mGamestate;
 } message_payload_t;
 
 typedef struct
 {
-    message_type_t    type;
-    message_payload_t payload;
+	message_type_t	type;
+	message_payload_t payload;
 } message_t;
 
 class CMessage {
 public:
-    message_type_t    type;
-    message_payload_t payload;
-    Uint32 timestamp;
+	message_type_t	type;
+	message_payload_t payload;
+	Uint32 timestamp;
 
-    friend bool operator< (const CMessage& lhs, const CMessage &rhs);
-    friend bool operator> (const CMessage& lhs, const CMessage &rhs);
+	friend bool operator< (const CMessage& lhs, const CMessage &rhs);
+	friend bool operator> (const CMessage& lhs, const CMessage &rhs);
 
-    CMessage() {}
-    CMessage( message_t message, Uint32 timestamp )
-    {
-        this->type = message.type;
-        this->payload = message.payload;
-        this->timestamp = timestamp;
-    }
+	CMessage() {}
+	CMessage( message_t message, Uint32 timestamp )
+	{
+		this->type = message.type;
+		this->payload = message.payload;
+		this->timestamp = timestamp;
+	}
 };
 
 #endif // MESSAGE_H

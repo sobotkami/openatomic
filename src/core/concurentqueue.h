@@ -36,55 +36,55 @@ private:
 	{
 		bool operator () (const T& left , const T& right)
 		{
-            return (left < right);
-        }
-    };
+			return (left < right);
+		}
+	};
 
-    priority_queue<T, vector<T>, Compare_T > mQueue;
-    mutable boost::mutex mMutex;
-    boost::condition_variable mCondVar;
-    
+	priority_queue<T, vector<T>, Compare_T > mQueue;
+	mutable boost::mutex mMutex;
+	boost::condition_variable mCondVar;
+	
 public:
-    void push(T const& data)
-    {
-        boost::mutex::scoped_lock lock(mMutex);
-        mQueue.push(data);
-        lock.unlock();
-        mCondVar.notify_one();
+	void push(T const& data)
+	{
+		boost::mutex::scoped_lock lock(mMutex);
+		mQueue.push(data);
+		lock.unlock();
+		mCondVar.notify_one();
 	}
 
 	bool empty() const
 	{
-        boost::mutex::scoped_lock lock(mMutex);
-        return mQueue.empty();
+		boost::mutex::scoped_lock lock(mMutex);
+		return mQueue.empty();
 	}
 
-    bool try_pop(T& poppedValue)
+	bool try_pop(T& poppedValue)
 	{
-        boost::mutex::scoped_lock lock(mMutex);
+		boost::mutex::scoped_lock lock(mMutex);
 
-        if(mQueue.empty())
+		if(mQueue.empty())
 		{
-            return false;
+			return false;
 		}
 		
-        poppedValue = mQueue.top();
-        mQueue.pop();
+		poppedValue = mQueue.top();
+		mQueue.pop();
 		return true;
 	}
 
-    void wait_and_pop(T& poppedValue)
+	void wait_and_pop(T& poppedValue)
 	{
 
-        boost::mutex::scoped_lock lock(mMutex);
+		boost::mutex::scoped_lock lock(mMutex);
 
-        while(mQueue.empty())
+		while(mQueue.empty())
 		{ 
-            mCondVar.wait(lock);
+			mCondVar.wait(lock);
 		}
 		
-        poppedValue = mQueue.top();
-        mQueue.pop();
+		poppedValue = mQueue.top();
+		mQueue.pop();
 	}
 };
 

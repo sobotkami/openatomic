@@ -38,56 +38,56 @@
 using namespace std;
 
 // die0.wav -- die2.wav = 3 files! FIX!
-#define C_DIE_SOUNDS      3
+#define C_DIE_SOUNDS	  3
 // explode0.wav -- explode7.wav = 8 files! FIX!
 #define C_EXPLODE_SOUNDS  8
 
 class CResources {
 public:
 
-    bool Load();
+	bool Load();
 
-    string StatusString() {
-        return m_statusString;
-    }
+	string StatusString() {
+		return m_statusString;
+	}
 
-    bool Loaded() {
-        return m_loaded;
-    }
+	bool Loaded() {
+		return m_loaded;
+	}
 
-    static CResources *instance() {
-        if (!s_instance)
-            s_instance = new CResources;
-        return s_instance;
-    }
+	static CResources *instance() {
+		if (!s_instance)
+			s_instance = new CResources;
+		return s_instance;
+	}
 
-    // public resources:
+	// public resources:
 
-    Mix_Chunk* getChooseSound();
-    Mix_Chunk* getDieSound(Uint16 i);
-    Mix_Chunk* getExplodeSound(Uint16 i);
+	Mix_Chunk* getChooseSound();
+	Mix_Chunk* getDieSound(Uint16 i);
+	Mix_Chunk* getExplodeSound(Uint16 i);
 
 private:
-    CErrorReporter er;
-    static CResources *s_instance;
+	CErrorReporter er;
+	static CResources *s_instance;
 
-    string m_statusString;
-    bool m_loaded;
+	string m_statusString;
+	bool m_loaded;
 
-    bool LoadAni(CAliReader &ali);
-    void SetupAni();
-    bool LoadPcx();
-    bool LoadAli(CAliReader &ali);
-    bool LoadCfg();
-    bool loadSounds();
+	bool LoadAni(CAliReader &ali);
+	void SetupAni();
+	bool LoadPcx();
+	bool LoadAli(CAliReader &ali);
+	bool LoadCfg();
+	bool loadSounds();
 
-    CResources();
-    ~CResources();
+	CResources();
+	~CResources();
 
-    // resource thread
-    static int staticResThreadWorker(void *p) {
-        return ((CResources*) p)->Load();
-    }
+	// resource thread
+	static int staticResThreadWorker(void *p) {
+		return ((CResources*) p)->Load();
+	}
 
 };
 

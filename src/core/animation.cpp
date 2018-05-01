@@ -19,25 +19,25 @@
 
 CAnimation::CAnimation()
 {
-    seq.head.name.assign ( _("(not assigned)") );
-    frm = NULL;
-    er.setLevel( LOG_WARNING );
+	seq.head.name.assign ( _("(not assigned)") );
+	frm = NULL;
+	er.setLevel( LOG_WARNING );
 }
 
 void CAnimation::setSequence ( sequence seq, vector<frame> *frm )
 {
-    this->seq = seq;
-    this->frm = frm;
+	this->seq = seq;
+	this->frm = frm;
 
-    er.report( LOG_INFO, _("%s: Animation '%s' asociated with %d states. Number of pictures: %d.\n"), AT,
-               seq.head.name.c_str(), getStatCount(), frm->size() );
+	er.report( LOG_INFO, _("%s: Animation '%s' asociated with %d states. Number of pictures: %d.\n"), AT,
+			   seq.head.name.c_str(), getStatCount(), frm->size() );
 }
 
 Uint16 CAnimation::getStatCount ()
 {
-//     for ( Uint16 i = 0; i < seq.head.states; i++ )
-//     {
-//         cout << seq.stats[i].frams[0].frames[0].imgno << endl;
-//     }
-    return seq.head.states;
+//	 for ( Uint16 i = 0; i < seq.head.states; i++ )
+//	 {
+//		 cout << seq.stats[i].frams[0].frames[0].imgno << endl;
+//	 }
+	return seq.head.states;
 }

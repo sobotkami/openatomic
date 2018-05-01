@@ -27,10 +27,10 @@ using namespace std;
 
 struct ServerPlayer
 {
-    // Node name
-    string node;
-    // Player control
-    plmantype_t control;
+	// Node name
+	string node;
+	// Player control
+	plmantype_t control;
 };
 
 #endif // SERVERPLAYER_H

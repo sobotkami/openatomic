@@ -59,66 +59,66 @@ Uint32 timerCallbackRedraw ( Uint32 interval, void* param );
 class CRender
 {
 private:
-    Uint32 win_flags;
-    SDL_Surface *screen;   // Okno
-    SDL_Surface *background;  // Pozadi
-    bool useOpenGl;
-    CCfgReader *cfg;
+	Uint32 win_flags;
+	SDL_Surface *screen;   // Okno
+	SDL_Surface *background;  // Pozadi
+	bool useOpenGl;
+	CCfgReader *cfg;
 
-    SDL_Surface * b_drawgame;
-    SDL_Surface * b_bonusgame;
-    SDL_Surface * b_results;
-    SDL_Surface * b_mainmenu;
-    SDL_Surface * b_victory[CCOLORS];
-    SDL_Surface * b_glue[CBACKGROUNDS];
-    //SDL_Surface * b_field[CFIELDS];
-    SDL_Surface * b_team[2];
+	SDL_Surface * b_drawgame;
+	SDL_Surface * b_bonusgame;
+	SDL_Surface * b_results;
+	SDL_Surface * b_mainmenu;
+	SDL_Surface * b_victory[CCOLORS];
+	SDL_Surface * b_glue[CBACKGROUNDS];
+	//SDL_Surface * b_field[CFIELDS];
+	SDL_Surface * b_team[2];
 
-    SDL_TimerID tRedraw;
+	SDL_TimerID tRedraw;
 
-    MUTEX mutRedraw;
-    pthread_mutexattr_t mutRedrawAttr;
-//     SDL_mutex *mutRedraw;
-//     pthread_mutex_t mutRedraw;
+	MUTEX mutRedraw;
+	pthread_mutexattr_t mutRedrawAttr;
+//	 SDL_mutex *mutRedraw;
+//	 pthread_mutex_t mutRedraw;
 
-//     vector<void *> objects;
-//     vector<GameObject>::size_type objSize;
-//     vector<GameObject>::iterator objIt;
+//	 vector<void *> objects;
+//	 vector<GameObject>::size_type objSize;
+//	 vector<GameObject>::iterator objIt;
 
-    CErrorReporter er;
+	CErrorReporter er;
 
 public:
-    CRender();
-    ~CRender();
-    Uint8 init ( bool useOpenGL, CCfgReader * cfg );
-    void drawObject ( SDL_Surface * img, Sint16 x, Sint16 y, bool flip );
-    void drawProgress ( Sint16 x, Sint16 y, Uint16 w, Uint16 h, float state );
-    void drawString ( Sint16 x, Sint16 y, string str, bool flip );
-    void drawString ( Sint16 x, Sint16 y, const char * str, bool flip );
-    void drawString ( Sint16 x, Sint16 y, string str, imagecolors color, bool flip );
-    void drawString ( Sint16 x, Sint16 y, const char * str, imagecolors color, bool flip );
-    void drawLoadString ( string str );
-    void drawLoadString ( const char * str );
-    void drawLoadString ( string str, Uint16 status, Uint16 max );
-    void drawLoadString ( const char * str, Uint16 status, Uint16 max );
-    void clearScreen();
-    void clearRect( SDL_Rect* rect );
-    SDL_Rect getDimensionsOfScreen();
-    //SDL_PixelFormat * getPixelFormat();
-    void setBG( SDL_Surface * background );
-    Uint8 EnableEventState( Uint8 type, int state );
-    Uint8 ChangeEventState( Uint8 type );
-    void PushQuitEvent();
-    void PushRedrawEvent();
-    void redrawScene();
+	CRender();
+	~CRender();
+	Uint8 init ( bool useOpenGL, CCfgReader * cfg );
+	void drawObject ( SDL_Surface * img, Sint16 x, Sint16 y, bool flip );
+	void drawProgress ( Sint16 x, Sint16 y, Uint16 w, Uint16 h, float state );
+	void drawString ( Sint16 x, Sint16 y, string str, bool flip );
+	void drawString ( Sint16 x, Sint16 y, const char * str, bool flip );
+	void drawString ( Sint16 x, Sint16 y, string str, imagecolors color, bool flip );
+	void drawString ( Sint16 x, Sint16 y, const char * str, imagecolors color, bool flip );
+	void drawLoadString ( string str );
+	void drawLoadString ( const char * str );
+	void drawLoadString ( string str, Uint16 status, Uint16 max );
+	void drawLoadString ( const char * str, Uint16 status, Uint16 max );
+	void clearScreen();
+	void clearRect( SDL_Rect* rect );
+	SDL_Rect getDimensionsOfScreen();
+	//SDL_PixelFormat * getPixelFormat();
+	void setBG( SDL_Surface * background );
+	Uint8 EnableEventState( Uint8 type, int state );
+	Uint8 ChangeEventState( Uint8 type );
+	void PushQuitEvent();
+	void PushRedrawEvent();
+	void redrawScene();
 
-    void changeAnimStateRandomPowerups( bool anim );
+	void changeAnimStateRandomPowerups( bool anim );
 
-    CGamingArea ga;
-    CFonReader font;
+	CGamingArea ga;
+	CFonReader font;
 
-    Uint32 timerOperationRedrawCounter;
-    Uint32 timerOperationRedraw ( Uint32 interval, void * param );
+	Uint32 timerOperationRedrawCounter;
+	Uint32 timerOperationRedraw ( Uint32 interval, void * param );
 };
 
 #endif // RENDER_H

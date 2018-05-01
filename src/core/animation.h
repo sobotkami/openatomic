@@ -27,15 +27,15 @@ using namespace std;
 class CAnimation
 {
 private:
-    Uint16 aframe; // aktualni snimek
+	Uint16 aframe; // aktualni snimek
 
-    CErrorReporter er;
+	CErrorReporter er;
 public:
-    sequence seq;
-    vector<frame> *frm;
-    CAnimation();
-    void setSequence ( sequence seq, vector<frame> *frm );
-    Uint16 getStatCount ();
+	sequence seq;
+	vector<frame> *frm;
+	CAnimation();
+	void setSequence ( sequence seq, vector<frame> *frm );
+	Uint16 getStatCount ();
 };
 
 #endif // ANIMATION_H

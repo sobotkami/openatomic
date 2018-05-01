@@ -26,85 +26,85 @@
 
 CLocalClient::CLocalClient()
 {
-    //counter = 0;
+	//counter = 0;
 
-    cout << "CLocalClient()" << endl;
+	cout << "CLocalClient()" << endl;
 }
 
 CLocalClient::~CLocalClient()
 {
-    cout << "~CLocalClient()" << endl;
+	cout << "~CLocalClient()" << endl;
 }
 
 void CLocalClient::player(Uint8 player, Sint16 x1, Sint16 y1, Sint16 x2, Sint16 y2, playerstate_t state, playerlife_t life)
 {
-    CGameEngine::instance()->getServer()->player(player, x1, y1, x2, y2, state, life);
+	CGameEngine::instance()->getServer()->player(player, x1, y1, x2, y2, state, life);
 }
 
 void CLocalClient::bomb(Uint8 player, Uint8 x, Uint8 y, Uint16 index, bombstate_t state)
 {
-    CGameEngine::instance()->getServer()->bomb(player, x, y, index, state);
+	CGameEngine::instance()->getServer()->bomb(player, x, y, index, state);
 }
 
 void CLocalClient::inventory(Uint8 player, powerup_t powerup, Sint8 value)
 {
-    CGameEngine::instance()->getServer()->inventory(player, powerup, value);
+	CGameEngine::instance()->getServer()->inventory(player, powerup, value);
 }
 
 void CLocalClient::updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup)
 {
-    CGameEngine::instance()->getServer()->updateField(x, y, occupancy, powerup);
+	CGameEngine::instance()->getServer()->updateField(x, y, occupancy, powerup);
 }
 
 void CLocalClient::setDefPlPos(Uint8 player, Uint8 x, Uint8 y)
 {
-    CGameEngine::instance()->getServer()->setDefPlPos(player, x, y);
+	CGameEngine::instance()->getServer()->setDefPlPos(player, x, y);
 }
 
 void CLocalClient::changeMenu(enum guiScreen menu)
 {
-    CGameEngine::instance()->getServer()->changeMenu(menu);
+	CGameEngine::instance()->getServer()->changeMenu(menu);
 }
 
 void CLocalClient::startGame()
 {
-    CGameEngine::instance()->getServer()->startGame();
+	CGameEngine::instance()->getServer()->startGame();
 }
 
 void CLocalClient::showResults()
 {
-    CGameEngine::instance()->getServer()->showResults();
+	CGameEngine::instance()->getServer()->showResults();
 }
 
 void CLocalClient::exitGame()
 {
-    CGameEngine::instance()->getServer()->exitGame();
+	CGameEngine::instance()->getServer()->exitGame();
 }
 
 
 void CLocalClient::registerPlayer(Uint8 player, const char *node, plmantype_t control)
 {
-    CGameEngine::instance()->getServer()->registerPlayer(player, node, control);
+	CGameEngine::instance()->getServer()->registerPlayer(player, node, control);
 }
 
 void CLocalClient::unregisterPlayer(Uint8 player)
 {
-    CGameEngine::instance()->getServer()->unregisterPlayer(player);
+	CGameEngine::instance()->getServer()->unregisterPlayer(player);
 }
 
 void CLocalClient::think()
 {
-    /*
-    if ((counter % 1000 ) == 0 )
-    {
-        cout << "Local client thinking (" << counter << ") ..." << endl;
-    }
+	/*
+	if ((counter % 1000 ) == 0 )
+	{
+		cout << "Local client thinking (" << counter << ") ..." << endl;
+	}
 
-    counter++;
-    */
+	counter++;
+	*/
 }
 
 bool CLocalClient::isConnected()
 {
-    return true;
+	return true;
 }

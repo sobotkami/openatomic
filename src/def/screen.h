@@ -28,7 +28,7 @@
 #define WIN_TITLE   "OpenAtomic"
 #define WIN_WIDTH   640
 #define WIN_HEIGHT  480
-#define WIN_BPP     16
+#define WIN_BPP	 16
 
 #endif	/* SCREEN_H */
 
