@@ -687,7 +687,7 @@ void CPlayState::Update ()
 				{ // explode!
 					//explodeBomb(i);
 					CGameEngine::instance()->getClient()->bomb(
-								0, // not used
+								bombs[i].getColor(),
 								0, // not used
 								0, // not used
 								i,
@@ -960,7 +960,7 @@ void CPlayState::playerDie (imagecolors victim, imagecolors killer)
 	CPlaySound::instance()->PlayDie();
 }
 
-void CPlayState::explodeBomb (Uint8 x, Uint8 y)
+void CPlayState::explodeBomb (Uint8 x, Uint8 y, imagecolors killer)
 {
 	for (Uint16 i = 0; i < CBOMBS; i++)
 	{
@@ -968,7 +968,7 @@ void CPlayState::explodeBomb (Uint8 x, Uint8 y)
 		{
 			//explodeBomb(i);
 			CGameEngine::instance()->getClient()->bomb(
-						0, // not used
+						killer, // inherit "flame originator"
 						0, // not used
 						0, // not used
 						i,
@@ -978,7 +978,7 @@ void CPlayState::explodeBomb (Uint8 x, Uint8 y)
 	}
 }
 
-void CPlayState::explodeBomb (Uint16 i)
+void CPlayState::explodeBomb (Uint16 i, imagecolors killer)
 {
 	Uint8 flameLen = bombs[i].getFlameLength();
 	Sint16 bombX, bombY;
@@ -991,7 +991,7 @@ void CPlayState::explodeBomb (Uint16 i)
 	CPlaySound::instance()->PlayExplode();
 
 	// middle
-	playersDie(bombX, bombY, bombs[i].getColor());
+	playersDie(bombX, bombY, killer);
 	ga->setFieldValFire(bombX, bombY, FCENTER, bombs[i].getColor());
 
 	// around
@@ -1003,9 +1003,9 @@ void CPlayState::explodeBomb (Uint16 i)
 		if (r[AWEST] && bombX - e >= 0)
 		{
 			newX = bombX - e;
-			if ((r[AWEST] = explodeField(newX, bombY)) == true)
+			if ((r[AWEST] = explodeField(newX, bombY, killer)) == true)
 			{
-				playersDie(newX, bombY, bombs[i].getColor());
+				playersDie(newX, bombY, killer);
 
 				if (ga->getBoardField(newX, bombY).fire.state == -1)
 				{ // dont overwrite flames
@@ -1024,9 +1024,9 @@ void CPlayState::explodeBomb (Uint16 i)
 		if (r[AEAST] && bombX + e < GA_W)
 		{
 			newX = bombX + e;
-			if ((r[AEAST] = explodeField(newX, bombY)) == true)
+			if ((r[AEAST] = explodeField(newX, bombY, killer)) == true)
 			{
-				playersDie(newX, bombY, bombs[i].getColor());
+				playersDie(newX, bombY, killer);
 
 				if (ga->getBoardField(newX, bombY).fire.state == -1)
 				{// dont overwrite flames
@@ -1045,9 +1045,9 @@ void CPlayState::explodeBomb (Uint16 i)
 		if (r[ANORTH] && bombY - e >= 0)
 		{
 			newY = bombY - e;
-			if ((r[ANORTH] = explodeField(bombX, newY)) == true)
+			if ((r[ANORTH] = explodeField(bombX, newY, killer)) == true)
 			{
-				playersDie(bombX, newY, bombs[i].getColor());
+				playersDie(bombX, newY, killer);
 
 				//if (ga->getBoardField(bombX, newY).fire.state == -1)
 				{// dont overwrite flames
@@ -1066,9 +1066,9 @@ void CPlayState::explodeBomb (Uint16 i)
 		if (r[ASOUTH] && bombY + e < GA_H)
 		{
 			newY = bombY + e;
-			if ((r[ASOUTH] = explodeField(bombX, newY)) == true)
+			if ((r[ASOUTH] = explodeField(bombX, newY, killer)) == true)
 			{
-				playersDie(bombX, newY, bombs[i].getColor());
+				playersDie(bombX, newY, killer);
 
 				if (ga->getBoardField(bombX, newY).fire.state == -1)
 				{// dont overwrite flames
@@ -1102,15 +1102,15 @@ void CPlayState::explodeBomb (Uint16 i)
  * @param y
  * @return Return false, when fire up PowerUp, Brick, Bomb or Stone. True (= continue) otherwise.
  */
-bool CPlayState::explodeField (Uint8 x, Uint8 y)
+bool CPlayState::explodeField (Uint8 x, Uint8 y, imagecolors killer)
 {
 	//er.report(LOG_INFO, "%s: explodeField(%d,%d)\n", AT, x, y);
 	t_field f = ga->getBoardField(x, y);
 
 	if (f.bomb)
 	{
-		er.report(LOG_INFO, "%s: explodeBomb(%d,%d)\n", AT, x, y);
-		explodeBomb(x, y);
+		er.report(LOG_INFO, "%s: explodeBomb(%d,%d,%d)\n", AT, x, y, killer);
+		explodeBomb(x, y, killer);
 		return false;
 	}
 

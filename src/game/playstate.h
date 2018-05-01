@@ -86,9 +86,9 @@ private:
 	void playersDie(Sint16 x, Sint16 y, imagecolors killer);
 	void playerDie (imagecolors victim, imagecolors killer);
 	//void explodeBomb(Uint16 i);
-	void explodeBomb(Uint8 x, Uint8 y);
+	void explodeBomb(Uint8 x, Uint8 y, imagecolors killer);
 	//void dropBomb(Sint16 x, Sint16 y, imagecolors color);
-	bool explodeField(Uint8 x, Uint8 y);
+	bool explodeField(Uint8 x, Uint8 y, imagecolors killer);
 
 	void activatePlayer(Uint8 x, Uint8 y, imagecolors id);
 	void movePlayer (imagecolors id, bool west, bool east, bool north, bool south);
@@ -110,7 +110,7 @@ private:
 
 public:
 	void dropBomb(Sint16 x, Sint16 y, imagecolors color);
-	void explodeBomb(Uint16 i);
+	void explodeBomb(Uint16 i, imagecolors killer);
 
 	void updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup);
 	void setPlDefPos(Uint8 player, Uint8 x, Uint8 y);

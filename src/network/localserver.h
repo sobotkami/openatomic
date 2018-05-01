@@ -18,6 +18,8 @@
 #ifndef CLOCALSERVER_H
 #define CLOCALSERVER_H
 
+#include <def/colors.h>
+
 #include <network/server.h>
 #include <network/network.h>
 

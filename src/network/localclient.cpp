@@ -17,6 +17,8 @@
 
 #include "localclient.h"
 
+#include <def/colors.h>
+
 #include <entities/network/networkMessage.h>
 
 #include <core/gameengine.h>
@@ -43,7 +45,7 @@ void CLocalClient::player(Uint8 player, Sint16 x1, Sint16 y1, Sint16 x2, Sint16 
 
 void CLocalClient::bomb(Uint8 player, Uint8 x, Uint8 y, Uint16 index, bombstate_t state)
 {
-	CGameEngine::instance()->getServer()->bomb(player, x, y, index, state);
+	CGameEngine::instance()->getServer()->bomb((imagecolors)player, x, y, index, state);
 }
 
 void CLocalClient::inventory(Uint8 player, powerup_t powerup, Sint8 value)

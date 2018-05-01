@@ -53,7 +53,7 @@ void CLocalServer::bomb(Uint8 player, Uint8 x, Uint8 y, Uint16 index, bombstate_
 		CPlayState::Instance()->dropBomb(x, y, (imagecolors)player);
 		break;
 	case bombExplode:
-		CPlayState::Instance()->explodeBomb(index);
+		CPlayState::Instance()->explodeBomb(index, (imagecolors)player);
 		break;
 	case bombDud:
 		er.report(LOG_WARNING, _("%s: Unimplemented: %s\n"), AT, "bomb dud");
