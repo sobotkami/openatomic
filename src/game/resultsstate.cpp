@@ -86,14 +86,14 @@ void CResultsState::HandleEvents ()
                 /* stop game? */
 
                 /* go to menu */
-                CGameEngine::instance()->ChangeTopGUI(0);//"0-main-menu");
+                CGameEngine::instance()->ChangeTopGUI(guiScreen::mainMenu);
                 CGameEngine::instance()->ChangeState(CMenuState::Instance());
                 break;
             case SDLK_RETURN:
                 if (CGameResults::instance()->getMatchWinner() != -1)
                 {
                     // game ended, back to the menu
-                    CGameEngine::instance()->ChangeTopGUI(0);//"0-main-menu");
+                    CGameEngine::instance()->ChangeTopGUI(guiScreen::mainMenu);
                     CGameEngine::instance()->ChangeState(CMenuState::Instance());
                 }
                 else

@@ -18,6 +18,7 @@
 #ifndef IMESSAGES_H
 #define IMESSAGES_H
 
+#include <def/gui.h>
 #include <entities/network/networkMessage.h>
 
 /**
@@ -49,7 +50,7 @@ public:
     /**
      * @brief Zmen menu ve hre (GUI)
      */
-    virtual void changeMenu(Uint8 menu) = 0;
+    virtual void changeMenu(enum guiScreen menu) = 0;
     /**
      * @brief Odstartuj hru.
      */

@@ -26,4 +26,13 @@ typedef enum {
     net
 } playerStateGui;
 
+enum guiScreen {
+	mainMenu = 0,
+	playersMenu = 1,
+	gameOptionsMenu = 2,
+	settingsMenu = 3,
+	// 4 was start-network-game
+	networkClientMenu = 5,
+};
+
 #endif // GUI_H

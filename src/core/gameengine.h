@@ -30,6 +30,7 @@
 //#include <network/networkserver.h>
 //#include <network/networkclient.h>
 
+#include <def/gui.h>
 #include <network/client.h>
 #include <network/server.h>
 
@@ -71,8 +72,8 @@ public:
         mRunning = false;
     }
 
-    void ChangeTopGUI(Uint8 top);
-    Uint8 getTopGUINo();
+    void ChangeTopGUI(enum guiScreen top);
+    enum guiScreen getTopGUINo();
 
 
     gcn::Widget * getGuiWidget(const char * id);
@@ -149,7 +150,7 @@ private:
      * Guichan
      */
 
-    Uint8 guiNo;
+    enum guiScreen guiNo;
     gcn::Gui * guis[CGUISTATES];
     gcn::Gui * gui; // A Gui object - binds it all together
 

@@ -42,7 +42,7 @@ public:
     virtual void inventory(Uint8 player, powerup_t powerup, Sint8 value);
     virtual void updateField(Uint8 x, Uint8 y, Sint8 occupancy, Sint8 powerup);
     virtual void setDefPlPos(Uint8 player, Uint8 x, Uint8 y);
-    virtual void changeMenu(Uint8 menu);
+    virtual void changeMenu(enum guiScreen menu);
     virtual void startGame();
     virtual void showResults();
     virtual void exitGame();

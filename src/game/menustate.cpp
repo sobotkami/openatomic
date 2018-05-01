@@ -37,11 +37,9 @@ CMenuState CMenuState::m_MenuState;
 
 void CMenuState::Init ()
 {
-    //m_game = game;
     er.setLevel(LOG_INFO);
 
-    CGameEngine::instance()->ChangeTopGUI(0);
-    //m_game->ChangeTopGUI(0);
+    CGameEngine::instance()->ChangeTopGUI(guiScreen::mainMenu);
 
     redraw = true;
 
@@ -88,12 +86,10 @@ void CMenuState::HandleEvents ()
                 if(CGameEngine::instance()->getTopGUINo() == 0)
                 {
                     CGameEngine::instance()->Quit();
-                    //m_game->Quit(); // exit
                 }
                 else
                 {
-                    CGameEngine::instance()->ChangeTopGUI(0);
-                    //m_game->ChangeTopGUI(0);
+                    CGameEngine::instance()->ChangeTopGUI(guiScreen::mainMenu);
                 }
                 break;
             default:

@@ -61,7 +61,7 @@ void CLocalClient::setDefPlPos(Uint8 player, Uint8 x, Uint8 y)
     CGameEngine::instance()->getServer()->setDefPlPos(player, x, y);
 }
 
-void CLocalClient::changeMenu(Uint8 menu)
+void CLocalClient::changeMenu(enum guiScreen menu)
 {
     CGameEngine::instance()->getServer()->changeMenu(menu);
 }

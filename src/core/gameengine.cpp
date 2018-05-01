@@ -217,7 +217,7 @@ void CGameEngine::Init (const char* title, int width, int height, int bpp, Uint3
     mButtonActionListener = new CButtonListener(this);
     InitButtons();
 
-    ChangeTopGUI(0); // set main menu
+    ChangeTopGUI(guiScreen::mainMenu);
 
     er.report(LOG_INFO, _("%s: CGameEngine Init\n"), AT);
 }
@@ -376,7 +376,7 @@ void CGameEngine::HandleNetwork()
         { // network error
             er.report(LOG_WARNING, _("%s: Network failure. Go to main menu.\n"), AT);
             StartLocalClient();
-            CGameEngine::instance()->ChangeTopGUI(0);
+            CGameEngine::instance()->ChangeTopGUI(guiScreen::mainMenu);
         }
     }
 
@@ -391,7 +391,7 @@ void CGameEngine::HandleNetwork()
         { // network error
             er.report(LOG_WARNING, _("%s: Network failure. Go to main menu.\n"), AT);
             getServer()->stopNetwork();
-            CGameEngine::instance()->ChangeTopGUI(0);
+            CGameEngine::instance()->ChangeTopGUI(guiScreen::mainMenu);
         }
     }
 
@@ -583,32 +583,28 @@ void CGameEngine::onChangeTopGui()
 {
     switch(getTopGUINo())
     {
-    case 0:
+    case guiScreen::mainMenu:
         er.report(LOG_INFO, "%s: Menu Main Menu\n", AT);
 
         // stop network
         StopNetworkServer();
         break;
 
-    case 1:
+    case guiScreen::playersMenu:
         er.report(LOG_INFO, "%s: Menu Players\n", AT);
 
         //StartSingleplayerClient();
         break;
 
-    case 2:
+    case guiScreen::gameOptionsMenu:
         er.report(LOG_INFO, "%s: Menu Game Options\n", AT);
         break;
 
-    case 3:
+    case guiScreen::settingsMenu:
         er.report(LOG_INFO, "%s: Menu Settings\n", AT);
         break;
 
-    case 4:
-        er.report(LOG_INFO, "%s: Menu Network Game Server", AT);
-        break;
-
-    case 5:
+    case guiScreen::networkClientMenu:
         er.report(LOG_INFO, "%s: Menu Network Client Options\n", AT);
 
         //StartSingleplayerClient();
@@ -617,7 +613,7 @@ void CGameEngine::onChangeTopGui()
     }
 }
 
-void CGameEngine::ChangeTopGUI (Uint8 top)
+void CGameEngine::ChangeTopGUI (enum guiScreen top)
 {
     er.report(LOG_INFO, _("%s: ChangeTopGUI(%d)\n"), AT, top);
     assert(guis[top] != NULL);
@@ -635,7 +631,7 @@ void CGameEngine::ChangeTopGUI (Uint8 top)
     }
 }
 
-Uint8 CGameEngine::getTopGUINo()
+enum guiScreen CGameEngine::getTopGUINo()
 {
     return guiNo;
 }

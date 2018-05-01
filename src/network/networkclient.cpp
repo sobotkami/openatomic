@@ -127,7 +127,7 @@ void CNetworkClient::setDefPlPos(Uint8 player, Uint8 x, Uint8 y)
     send(msg);
 }
 
-void CNetworkClient::changeMenu(Uint8 menu)
+void CNetworkClient::changeMenu(enum guiScreen menu)
 {
     cout << "[STUB] changeMenu(" << (int)menu << ")" << endl;
 }
@@ -277,7 +277,6 @@ void CNetworkClient::think()
         er.report(LOG_WARNING, _("%s: Network failure?\n"), AT);
         throw int(1); // network failure
         // go to main menu
-        //CGameEngine::instance()->ChangeTopGUI(0);
     }
 }
 

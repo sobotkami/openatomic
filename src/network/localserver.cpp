@@ -84,7 +84,7 @@ void CLocalServer::setDefPlPos(Uint8 player, Uint8 x, Uint8 y)
 }
 
 
-void CLocalServer::changeMenu(Uint8 menu)
+void CLocalServer::changeMenu(enum guiScreen menu)
 {
     cout << "changeMenu(" << (int)menu << ")" << endl;
     CGameEngine::instance()->ChangeTopGUI(menu);
@@ -106,7 +106,7 @@ void CLocalServer::exitGame()
 {
     cout << "Exit game!" << endl;
     CGameEngine::instance()->ChangeState(CMenuState::Instance());
-    CGameEngine::instance()->ChangeTopGUI(0); // main menu
+    CGameEngine::instance()->ChangeTopGUI(guiScreen::mainMenu);
 }
 
 void CLocalServer::registerPlayer(Uint8 player, const char *node, plmantype_t control)

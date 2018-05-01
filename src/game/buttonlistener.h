@@ -44,7 +44,7 @@ public:
             // start local client
             m_game->StartLocalClient();
 
-            m_game->ChangeTopGUI(1);
+            m_game->ChangeTopGUI(guiScreen::playersMenu);
         }
         if (actionEvent.getId() == "0-start-network-game") {
             // starting network game
@@ -53,13 +53,13 @@ public:
             // start network client
             m_game->StartNetworkClient("localhost");
 
-            m_game->ChangeTopGUI(1); // was 4
+            m_game->ChangeTopGUI(guiScreen::playersMenu); // was 4
         }
         if (actionEvent.getId() == "0-join-network-game") {
-            m_game->ChangeTopGUI(5);
+            m_game->ChangeTopGUI(guiScreen::networkClientMenu);
         }
         if (actionEvent.getId() == "0-settings") {
-            m_game->ChangeTopGUI(3);
+            m_game->ChangeTopGUI(guiScreen::settingsMenu);
         }
         if (actionEvent.getId() == "0-bomberman") {
             std::cout << "[stuff] About Open Atomic" << std::endl;
@@ -73,7 +73,7 @@ public:
 
         // "1-players"
         if (actionEvent.getId() == "1-back") {
-            m_game->ChangeTopGUI(0);
+            m_game->ChangeTopGUI(guiScreen::mainMenu);
         }
 
         if (actionEvent.getId() == "1-next") {
@@ -111,7 +111,7 @@ public:
                 }
                 else
                 {
-                    m_game->ChangeTopGUI(2);
+                    m_game->ChangeTopGUI(guiScreen::gameOptionsMenu);
                 }
             }
 
@@ -159,7 +159,7 @@ public:
 
         // "2-game-options"
         if (actionEvent.getId() == "2-back") {
-            m_game->ChangeTopGUI(1);
+            m_game->ChangeTopGUI(guiScreen::playersMenu);
         }
         if (actionEvent.getId() == "2-next") {
             CGameResults::instance()->ResetResults(); // TODO: thgrouth network!!
@@ -172,7 +172,7 @@ public:
 
         // "3-settings"
         if (actionEvent.getId() == "3-back") {
-            m_game->ChangeTopGUI(0);
+            m_game->ChangeTopGUI(guiScreen::mainMenu);
         }
         
         if (actionEvent.getId() == "3-scheme-dd") {
@@ -182,12 +182,12 @@ public:
 
         // "4-network-game-server"
         if (actionEvent.getId() == "4-back") {
-            m_game->ChangeTopGUI(0);
+            m_game->ChangeTopGUI(guiScreen::mainMenu);
         }
 
         // "5-network-game-client-options"
         if (actionEvent.getId() == "5-back") {
-            m_game->ChangeTopGUI(0);
+            m_game->ChangeTopGUI(guiScreen::mainMenu);
         }
 
         if (actionEvent.getId() == "5-game-server-b") {
@@ -212,7 +212,7 @@ public:
                 }
 
                 // set up players
-                m_game->ChangeTopGUI(1);
+                m_game->ChangeTopGUI(guiScreen::playersMenu);
             }
             catch( char * e )
             {
