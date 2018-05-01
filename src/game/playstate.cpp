@@ -928,24 +928,24 @@ void CPlayState::playersDie (Sint16 x, Sint16 y, imagecolors color)
     }
 }
 
-void CPlayState::playerDie (imagecolors player, imagecolors color)
+void CPlayState::playerDie (imagecolors victim, imagecolors killer)
 {
-    assert(player < CPLAYERS);
+    assert(victim < CPLAYERS);
     // active?
-    players[player].setLifeState(LDEAD);
-    players[player].setAniDirState(SDIE, ANONE);
+    players[victim].setLifeState(LDEAD);
+    players[victim].setAniDirState(SDIE, ANONE);
     // remove AI
     if (aim != NULL)
-        aim->removePlayer(player);
+        aim->removePlayer(victim);
 
-    if (player == color) // kill yourself
+    if (victim == killer) // kill yourself
     {
-        CGameResults::instance()->UpdateKills(player, -1);
+        CGameResults::instance()->UpdateKills(victim, -1);
     }
     else
     {
 
-        CGameResults::instance()->UpdateKills(color, 1);
+        CGameResults::instance()->UpdateKills(killer, 1);
     }
 
     // play sound :-) uuuuuuuaaaaaaaaa
