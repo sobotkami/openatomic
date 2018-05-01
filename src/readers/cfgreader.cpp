@@ -31,7 +31,7 @@ CCfgReader::CCfgReader()
 	char root[CONF_MAXPATH] = "";
 	char *appdata = NULL;
 	string path;
-	
+
 	bombversion.assign(VER_STRING);
 
 	if ( ( appdata = getenv ( CONF_ROOT ) ) == NULL )
@@ -215,7 +215,7 @@ bool CCfgReader::saveConfiguration()
 		os << "" << endl;
 		os << "; name of map scheme file" << endl;
 		os << "scheme=X.SCH" << endl;
-		
+
 		os.close();
 		return true;
 	}

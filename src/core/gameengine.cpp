@@ -88,7 +88,7 @@ Uint32 CGameEngine::FastestFlags (Uint32 flags, unsigned width, unsigned height,
 void CGameEngine::Init (const char* title, int width, int height, int bpp, Uint32 sdlFlags)
 {
 	er.report(LOG_INFO, _("%s: Starting %s engine...\n"), AT, title);
-	
+
 	er.report(LOG_INFO, _("%s: Data dir=%s\n"), AT, DATA_DIR);
 	er.report(LOG_INFO, _("%s: User dir=%s\n"), AT, USER_DIR);
 

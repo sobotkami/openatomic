@@ -38,7 +38,7 @@ using namespace std;
 	#define MKDIR(X) mkdir(X)
 	// for mkdir
 	#include <dir.h>
-	
+
 #elif defined(CONF_PF_LINUX)
 	#define CONF_ROOT "HOME"
 	#define CONF_PATH ".OpenAtomic"
@@ -47,7 +47,7 @@ using namespace std;
 	// for mkdir
 	#include <sys/stat.h>
 	#include <sys/types.h>
-	
+
 #elif defined(CONF_PF_MACOSX)
 	#define CONF_ROOT "HOME"
 	#define CONF_PATH "Library/Application Support/OpenAtomic"
@@ -62,7 +62,7 @@ using namespace std;
 	#define CONF_PATH ""
 	#define CONF_SEPARATOR "/"
 	#define MKDIR(X) mkdir(X)
-	
+
 #endif
 
 class CCfgReader

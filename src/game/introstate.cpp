@@ -129,6 +129,6 @@ void CIntroState::Draw ()
 			CGameEngine::instance()->getUglyRects().pop_back();
 		}
 	}
-	
+
 	SDL_Delay(1);
 }

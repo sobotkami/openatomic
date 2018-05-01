@@ -156,7 +156,7 @@ Uint8 CRender::init ( bool useOpenGL, CCfgReader * cfg )
 	cpcxs = 0;
 	drawLoadString("DATA/RES/DRAW.PCX", cpcxs++, 33 );
 	b_drawgame = pcxreader.read ( "DATA/RES/DRAW.PCX" );
-	
+
 	drawLoadString("DATA/RES/ROULETTE.PCX", cpcxs++, 33 );
 	b_bonusgame = pcxreader.read ( "DATA/RES/ROULETTE.PCX" );
 
@@ -168,10 +168,10 @@ Uint8 CRender::init ( bool useOpenGL, CCfgReader * cfg )
 
 	drawLoadString("DATA/RES/TEAM0.PCX", cpcxs++, 33 );
 	b_team[0] = pcxreader.read ( "DATA/RES/TEAM0.PCX" );
-	
+
 	drawLoadString("DATA/RES/TEAM1.PCX", cpcxs++, 33 );
 	b_team[1] = pcxreader.read ( "DATA/RES/TEAM1.PCX" );
-	
+
 	for ( i = 0; i < CCOLORS; ++i )
 	{
 		stm << "DATA/RES/VICTORY" << i << ".PCX";
@@ -524,7 +524,7 @@ void CRender::redrawScene()
 			}
 		}
 	}
-	
+
 	for ( Uint8 i = 0; i < CBOMBS; i++ )
 	{
 		if ( bombs[i].getActive() )
@@ -697,7 +697,7 @@ void CRender::drawObject ( SDL_Surface* img, Sint16 x, Sint16 y, bool flip )
 {
 	assert ( img != NULL );
 	assert ( screen != NULL );
-	
+
 //	 static Uint16 counter = 0;
 
 	SDL_Rect rect;
@@ -718,11 +718,11 @@ void CRender::drawObject ( SDL_Surface* img, Sint16 x, Sint16 y, bool flip )
 	{
 //		 SDL_Flip ( screen );
 	}
-	
+
 	if ( flip )
 		SDL_Flip ( screen );
-	
-	
+
+
 //	 cout << "drawObject(" << ++counter << ")" << endl << flush;
 }
 
@@ -808,7 +808,7 @@ void CRender::changeAnimStateRandomPowerups(bool anim)
 CRender::CRender()
 {
 	er.setLevel( LOG_INFO );
-	
+
 	win_flags = 0;
 	screen = NULL;   // Okno
 	useOpenGl = false;
@@ -823,7 +823,7 @@ CRender::CRender()
 //	 }
 
 	pthread_mutexattr_settype(&mutRedrawAttr, PTHREAD_MUTEX_RECURSIVE);
-	
+
 	if ( pthread_mutex_init ( &mutRedraw, &mutRedrawAttr ) != 0 )
 //	 if ( MUTEX_INIT(&mutRedraw) != 0 )
 	{
@@ -844,7 +844,7 @@ CRender::~CRender()
 	/* TODO Destroy mutex */
 //	 SDL_DestroyMutex( mutRedraw );
 //	 pthread_mutex_destroy ( &mutRedraw );
-	
+
 	SDL_FreeSurface ( b_drawgame );
 	SDL_FreeSurface ( b_bonusgame );
 	SDL_FreeSurface ( b_results );

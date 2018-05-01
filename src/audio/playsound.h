@@ -32,7 +32,7 @@ public:
 	void PlayMenuClick();
 	void PlayDie();
 	void PlayExplode();
-	
+
 	static CPlaySound *instance() {
 		if (!s_instance)
 			s_instance = new CPlaySound;

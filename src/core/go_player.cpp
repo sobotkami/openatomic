@@ -399,7 +399,7 @@ Sint8 CGO_Player::setPlayerRelXY (Sint16 x, Sint16 y)
 		}
 		 */
 	}
-	
+
 	Sint16 modX, modY;
 	Sint16 rdx, rdy;
 

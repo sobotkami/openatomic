@@ -595,7 +595,7 @@ bool CGamingArea::loadScheme (string filename)
 	if (is.is_open())
 	{
 		er.report(LOG_INFO, "%s: Trying to parsing file %s.\n", AT, filename.c_str());
-		
+
 		while (is.good())
 		{
 			while (getline(is, line))

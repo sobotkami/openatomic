@@ -43,7 +43,7 @@ protected:
 	CProgramState() { }
 
 	CPriorityConcurrentQueue<CMessage> eventsQueue;
-	
+
 };
 
 #endif

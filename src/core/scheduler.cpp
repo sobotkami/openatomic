@@ -34,7 +34,7 @@ void CScheduler::nextEvent()
 void CScheduler::printItems()
 {
 	unsigned i = 0;
-	
+
 	calSize = cal.size();
 	for ( i = 0; i < calSize; ++i )
 	{
@@ -98,7 +98,7 @@ int CScheduler::addItem ( schRecord* item )
 		it += pos;
 		it = cal.insert ( it, *item );
 	}
-	
+
 	return 3;
 }
 

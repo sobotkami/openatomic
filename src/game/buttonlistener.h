@@ -174,7 +174,7 @@ public:
 		if (actionEvent.getId() == "3-back") {
 			m_game->ChangeTopGUI(guiScreen::mainMenu);
 		}
-		
+
 		if (actionEvent.getId() == "3-scheme-dd") {
 			gcn::DropDown* dd = static_cast<gcn::DropDown*> (actionEvent.getSource());
 			std::cout << "Schema je nyni: " << dd->getListModel()->getElementAt(dd->getSelected()) << std::endl;

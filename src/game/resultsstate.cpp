@@ -202,7 +202,7 @@ void CResultsState::drawMatchWinner ()
 {
 	const int MAX_LEN = 300;
 	char buffer [MAX_LEN] = "";
-	
+
 	if (CGameResults::instance()->getMatchWinner() != -1)
 	{
 		if (CGameResults::instance()->getTeamPlay())

@@ -527,7 +527,7 @@ enum options_keys
 ; points for killing a ghost (in campaign mode only)
 1320,25
 */
-	
+
 };
 
 class CResReader

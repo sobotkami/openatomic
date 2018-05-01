@@ -73,7 +73,7 @@ Uint8 CAliReader::read ( string filename )
 					trimRight ( line,  whiteSpaces );
 					transform ( line.begin(), line.end(), line.begin(), ::toupper ); // transform to upper case
 					anilist.push_back ( line ); // add to list
-					
+
 					er.report( LOG_INFO, _("%s: Adding file '%s' to animation list.\n"), AT, line.c_str() );
 				}
 			}

@@ -816,8 +816,8 @@ int main2 ( int argc, char **argv )
 	render.ga.setFieldValPowerup( 6, 8, PSKATE );
 	render.ga.setFieldValPowerup( 7, 8, PSKATE );
 	render.ga.setFieldValPowerup( 8, 8, PSKATE );
-	
-	
+
+
 	//cout << "m: " << getText() << endl;
 
 	gameRun = true;

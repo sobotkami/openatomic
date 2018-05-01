@@ -81,7 +81,7 @@ class CPcxReader
 private:
 	SDL_RWops * fp;
 	SDL_Surface * LoadPCX_RW ( SDL_RWops *src );
-	
+
 	CErrorReporter er;
 public:
 	SDL_Surface * read ( string filename );

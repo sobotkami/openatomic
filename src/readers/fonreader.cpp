@@ -56,14 +56,14 @@ Uint8 CFonReader::read(string filename)
 		f = CFileReader ( fp );
 	}
 
-	
+
 
 	if ( SDL_GetVideoSurface() == NULL )
 	{
 		er.report( LOG_ERROR, _("%s: SDL_GetVideoSurface() fail. Before SDL_Init()?\n"), AT );
 		return 2;
 	}
-	
+
 	pxlformat = SDL_GetVideoSurface()->format;
 
 	pixC[cgreen  ] = SDL_MapRGB( pxlformat, 0x00, 0xff, 0x00 );

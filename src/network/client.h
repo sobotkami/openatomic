@@ -30,7 +30,7 @@ public:
 	 * @brief Funkce by mela byt volana pravidelne v herni smycce. Vyzvedava zpravy z fronty zprav, zpracovavava je a pripadne plni frontu zprav.
 	 */
 	virtual void think() = 0;
-	
+
 	/**
 	 * @brief Funkce slouzi na zjisteni stavu, zda je klient na nejaky server pripojen.
 	 * @return Pokud je klient pouze lokalni, predpoklada se vraceni TRUE, pokud je pouzit jako sitovy klient, vraci se hodnota promenne isRunning.

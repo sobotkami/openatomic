@@ -681,13 +681,13 @@ eani_sections CAniReader::parseFram ()
 	int rBytes = 0;
 	s_rgba pix_p;
 	SDL_PixelFormat * pxlformat = NULL;
-	
+
 	if (SDL_GetVideoSurface() == NULL)
 	{
 		er.report(LOG_ERROR, _("%s: SDL_GetVideoSurface() fail. Before SDL_Init()?\n"), AT);
 		return EANI_ERR;
 	}
-	
+
 	pxlformat = SDL_GetVideoSurface()->format;
 
 	// we have 10 colors
@@ -1134,13 +1134,13 @@ void CAniReader::prepareColor (imagecolors color)
 	if (color == cgreen) /* green is default, skip */
 		return;
 
-	
+
 	if (SDL_GetVideoSurface() == NULL)
 	{
 		er.report(LOG_ERROR, _("%s: SDL_GetVideoSurface() fail. Before SDL_Init()?\n"), AT);
 		return;
 	}
-	
+
 	pxlformat = SDL_GetVideoSurface()->format;
 
 	if (ngframes > 0)

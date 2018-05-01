@@ -65,7 +65,7 @@ public:
 
 	void setLifeState(Uint8 state);
 	Uint8 getLifeState();
-	
+
 	void setRunState(Uint8 state);
 	void setRunStateSafe(Uint8 state);
 	Uint8 getRunState();

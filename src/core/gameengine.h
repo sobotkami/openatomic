@@ -79,7 +79,7 @@ public:
 	gcn::Widget * getGuiWidget(const char * id);
 	gcn::Gui * getGui();
 	gcn::SDLInput * getGuiSDLInput();
-	
+
 	void InvalidateArea(SDL_Rect r);
 	void InvalidateArea(Uint16 x, Uint16 y, Uint16 w, Uint16 h);
 	vector<SDL_Rect> & getUglyRects()
@@ -131,7 +131,7 @@ private:
 
 	// the stack of states
 	vector<CProgramState*> mStates;
-	
+
 	// the stack of invalidate areas
 	vector<SDL_Rect> mUglyRects;
 

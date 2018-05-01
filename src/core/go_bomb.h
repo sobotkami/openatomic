@@ -38,16 +38,16 @@ private:
 	Uint32 ticksTimeoutDefault;
 	Uint32 ticksTimeout;
 public:
-	
+
 	void setActive( bool active );
 	bool getActive();
-	
+
 	void setFlameLength( Uint8 len );
 	Uint8 getFlameLength();
-	
+
 	Uint32 ticksToExplode();
 	void setTimeout( Uint32 timeout );
-	
+
 	CGO_Bomb();
 };
 

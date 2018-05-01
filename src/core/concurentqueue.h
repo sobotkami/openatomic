@@ -31,7 +31,7 @@ template<typename T>
 class CPriorityConcurrentQueue
 {
 private:
-  
+
 	struct Compare_T
 	{
 		bool operator () (const T& left , const T& right)
@@ -43,7 +43,7 @@ private:
 	priority_queue<T, vector<T>, Compare_T > mQueue;
 	mutable boost::mutex mMutex;
 	boost::condition_variable mCondVar;
-	
+
 public:
 	void push(T const& data)
 	{
@@ -67,7 +67,7 @@ public:
 		{
 			return false;
 		}
-		
+
 		poppedValue = mQueue.top();
 		mQueue.pop();
 		return true;
@@ -82,7 +82,7 @@ public:
 		{ 
 			mCondVar.wait(lock);
 		}
-		
+
 		poppedValue = mQueue.top();
 		mQueue.pop();
 	}
