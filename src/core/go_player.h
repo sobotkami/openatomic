@@ -15,7 +15,7 @@
  * along with OpenAtomic. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * File:   go_player.h
  * Author: minji
  *

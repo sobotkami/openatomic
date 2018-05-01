@@ -300,10 +300,10 @@ Uint32 CRender::timerOperationRedraw ( Uint32 interval, void* param )
 	}
 
 // // //	 cout << "X" << flush;
-// // 
+// //
 // // //	 SDL_PushEvent(&event);
 // // //	 return interval;
-// // 
+// //
 // //	 MUTEX_LOCK(&mutRedraw);
 // // //	 pthread_mutex_lock ( &mutRedraw );
 // // //	 if ( SDL_LockMutex ( mutRedraw ) < 0 )
@@ -311,14 +311,14 @@ Uint32 CRender::timerOperationRedraw ( Uint32 interval, void* param )
 // // //		 cerr << SDL_GetError() << endl << flush;
 // // //		 exit(1);
 // // //	 }
-// // 
+// //
 // //	 if ( *(Uint32 *)param > 0 )
 // //	 {
 // //		 c = *(Uint32 *)param;
 // //		 *(Uint32 *)param = 0;
 // //		 redraw = true;
 // //	 }
-// // 
+// //
 // //	 MUTEX_UNLOCK(&mutRedraw);
 // // //	 pthread_mutex_unlock ( &mutRedraw );
 // // //	 if ( SDL_UnlockMutex ( mutRedraw ) < 0 )
@@ -326,7 +326,7 @@ Uint32 CRender::timerOperationRedraw ( Uint32 interval, void* param )
 // // //		 cerr << SDL_GetError() << endl << flush;
 // // //		 exit(1);
 // // //	 }
-// // 
+// //
 // //	 if ( redraw )
 // //	 {
 // //		 SDL_PushEvent(&event);  // Vlozeni do fronty
@@ -353,10 +353,10 @@ void CRender::PushRedrawEvent()
 	}
 
 // // //	 cout << "PushRedrawEvent " << flush;
-// // 
+// //
 // // //	 SDL_PushEvent(&event);
 // // //	 return ;
-// // 
+// //
 // //	 MUTEX_LOCK(&mutRedraw);
 // // //	 pthread_mutex_lock ( &mutRedraw );
 // // //	 if ( SDL_LockMutex ( mutRedraw ) < 0 )
@@ -364,9 +364,9 @@ void CRender::PushRedrawEvent()
 // // //		 cerr << SDL_GetError() << endl << flush;
 // // //		 exit(1);
 // // //	 }
-// // 
+// //
 // //	 timerOperationRedrawCounter++;
-// // 
+// //
 // //	 /* kolik objektu vykreslime max v jednom cyklu?? 150 pri 100 bombach, conveyors a dvou pohyb. hracich .. malo? */
 // //	 if ( timerOperationRedrawCounter > 200 )
 // //	 {
@@ -374,7 +374,7 @@ void CRender::PushRedrawEvent()
 // //		 timerOperationRedrawCounter = 0;
 // //		 redraw = true;
 // //	 }
-// // 
+// //
 // //	 MUTEX_UNLOCK(&mutRedraw);
 // // //	 pthread_mutex_unlock ( &mutRedraw );
 // // //	 if ( SDL_UnlockMutex ( mutRedraw ) < 0 )
@@ -382,7 +382,7 @@ void CRender::PushRedrawEvent()
 // // //		 cerr << SDL_GetError() << endl << flush;
 // // //		 exit(1);
 // // //	 }
-// // 
+// //
 // //	 if ( redraw )
 // //	 {
 // //		 SDL_PushEvent(&event);  // Vlozeni do fronty
@@ -483,7 +483,7 @@ void CRender::redrawScene()
 			{
 				if ( ( ga.getFieldNum() == 2 || ga.getFieldNum() == 3 ) && fi.arrow != NULL )
 				{ // v originalnim bombicovi jsou sipky divne umistene --> bud je chyba
-					 v propoctu, nebo to taky nejak fixluji :) 
+					 v propoctu, nebo to taky nejak fixluji :)
 					drawObject (
 						arrows[ga.getBoardField(x,y).arrow->direction].getFrameSurface(cgreen),
 						arrows[ga.getBoardField(x,y).arrow->direction].getScreenX() + x * BOX_W + BOX_H2/2,
@@ -538,7 +538,7 @@ void CRender::redrawScene()
 		}
 	}
 
-	/// mame 10 barev 
+	/// mame 10 barev
 	for ( Uint8 i = 0; i < CCOLORS; i++ )
 	{
 		if( players[i].getActive() )

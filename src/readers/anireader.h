@@ -151,7 +151,7 @@ const char * const ANI_SECTIONS[] =
 	"DONE"  //! EOF
 };
 
-typedef enum 
+typedef enum
 {
 	EANI_CHFILEANI,
 	EANI_PAL,

@@ -176,7 +176,7 @@ void CGameEngine::Init (const char* title, int width, int height, int bpp, Uint3
 	 */
 	mImageLoader = new gcn::SDLImageLoader();
 	// The ImageLoader in use is static and must be set to be
-	// able to load images	
+	// able to load images
 	gcn::Image::setImageLoader(mImageLoader);
 	mGraphics = new gcn::SDLGraphics();
 	// Set the target for the graphics object to be the screen.
@@ -279,7 +279,7 @@ void CGameEngine::Cleanup ()
 		mStates.pop_back();
 	}
 
-	// switch back to windowed mode so other 
+	// switch back to windowed mode so other
 	// programs won't get accidentally resized
 	if (mFullscreen)
 	{

@@ -15,7 +15,7 @@
  * along with OpenAtomic. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * File:   resources.h
  * Author: minji
  *

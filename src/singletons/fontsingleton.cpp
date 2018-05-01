@@ -15,10 +15,10 @@
  * along with OpenAtomic. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * File:   fontsingleton.cpp
  * Author: minji
- * 
+ *
  * Created on 6. Januar 2013, 19:22
  */
 

@@ -15,10 +15,10 @@
  * along with OpenAtomic. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * File:   playsound.cpp
  * Author: minji
- * 
+ *
  * Created on 17. Januar 2013, 10:36
  */
 

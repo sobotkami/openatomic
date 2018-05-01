@@ -100,7 +100,7 @@ void CIntroState::Draw ()
 	}
 	else
 	{
-		Uint16 w = CStringDraw::instance()->getWidth(CResources::instance()->StatusString()) + 50; // + 50 -- fix the underflow 
+		Uint16 w = CStringDraw::instance()->getWidth(CResources::instance()->StatusString()) + 50; // + 50 -- fix the underflow
 		Uint16 h = CFontSingleton::instance()->font.getSymbolHeight();
 		Sint16 x = 10;
 		Sint16 y = WIN_HEIGHT - h - 10;

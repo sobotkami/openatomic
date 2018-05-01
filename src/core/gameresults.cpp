@@ -15,10 +15,10 @@
  * along with OpenAtomic. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * File:   gameresults.cpp
  * Author: minji
- * 
+ *
  * Created on 16. Januar 2013, 21:29
  */
 
@@ -30,7 +30,7 @@ CGameResults::CGameResults ()
 {
 	er.setLevel(LOG_INFO);
 
-	setKillsToWin(false); // DEFAULT: kills to win 
+	setKillsToWin(false); // DEFAULT: kills to win
 	setValueToWinMatch(3); // DEFAULT: 10 KILLS = WIN MATCH
 	setTeamPlay(false);
 

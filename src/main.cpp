@@ -27,7 +27,7 @@
 #include <iostream>
 using namespace std;
 
-#ifdef CONF_PF_LINUX 
+#ifdef CONF_PF_LINUX
 
 #include <execinfo.h>
 #include <signal.h>
@@ -64,7 +64,7 @@ int main (int argc, char *argv[])
 	CErrorReporter er;
 	er.setLevel(LOG_INFO);
 
-#ifdef CONF_PF_LINUX 
+#ifdef CONF_PF_LINUX
 	signal(SIGSEGV, handler); // install our handler
 	signal(SIGABRT, handler); // install our handler
 #endif

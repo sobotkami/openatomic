@@ -79,7 +79,7 @@ public:
 		boost::mutex::scoped_lock lock(mMutex);
 
 		while(mQueue.empty())
-		{ 
+		{
 			mCondVar.wait(lock);
 		}
 

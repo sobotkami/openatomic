@@ -15,10 +15,10 @@
  * along with OpenAtomic. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * File:   go_player.cpp
  * Author: minji
- * 
+ *
  * Created on 4. Januar 2013, 13:39
  */
 

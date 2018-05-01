@@ -25,7 +25,7 @@
  */
 class CDebugNetwork
 {
-public:	
+public:
 	/**
 	 * @brief Trida tiskne obsah zpravy predany parametrem s prefixem.
 	 * @param pre Prefix, ktery je tisknut pred vlastni obsah zpravy

@@ -20,31 +20,31 @@
 const string CTokenizer::DELIMITERS(" \t\n\r");
 
 CTokenizer::CTokenizer(const string& s) :
-	m_string(s), 
-	m_offset(0), 
+	m_string(s),
+	m_offset(0),
 	m_delimiters(DELIMITERS) {}
 
 CTokenizer::CTokenizer(const string& s, const string& delimiters) :
-	m_string(s), 
-	m_offset(0), 
+	m_string(s),
+	m_offset(0),
 	m_delimiters(delimiters) {}
 
-bool CTokenizer::NextToken() 
+bool CTokenizer::NextToken()
 {
 	return NextToken(m_delimiters);
 }
 
-bool CTokenizer::NextToken(const string& delimiters) 
+bool CTokenizer::NextToken(const string& delimiters)
 {
 	size_t i = m_string.find_first_not_of(delimiters, m_offset);
-	if (string::npos == i) 
+	if (string::npos == i)
 	{
 		m_offset = m_string.length();
 		return false;
 	}
 
 	size_t j = m_string.find_first_of(delimiters, i);
-	if (string::npos == j) 
+	if (string::npos == j)
 	{
 		m_token = m_string.substr(i);
 		m_offset = m_string.length();

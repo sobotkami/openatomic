@@ -15,10 +15,10 @@
  * along with OpenAtomic. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * File:   gamestate.cpp
  * Author: minji
- * 
+ *
  * Created on 16. Januar 2013, 21:37
  */
 

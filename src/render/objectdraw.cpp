@@ -15,10 +15,10 @@
  * along with OpenAtomic. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * File:   objectdraw.cpp
  * Author: minji
- * 
+ *
  * Created on 6. Januar 2013, 18:53
  */
 

@@ -200,7 +200,7 @@ class CSendThread : public CNetworkThread<T>
 {
 public:
 	/**
-	 * @brief Kontruktor. 
+	 * @brief Kontruktor.
 	 * @param net Monitor zmen.
 	 * @param conn Spojeni s klientem.
 	 */

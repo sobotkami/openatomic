@@ -22,7 +22,7 @@
 
 using namespace std;
 
-class CTokenizer 
+class CTokenizer
 {
 	public:
 		static const string DELIMITERS;
