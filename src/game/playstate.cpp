@@ -559,6 +559,7 @@ void CPlayState::Update ()
 		if ((SDL_GetTicks() - ticksRoundHasWinner) > 3000) // after 3 s show results table
 		{ // show results
 			CGameEngine::instance()->ChangeState(CResultsState::Instance());
+			return;
 		}
 
 		// bombs not exploding
