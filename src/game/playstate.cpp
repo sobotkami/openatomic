@@ -559,6 +559,11 @@ void CPlayState::Update ()
 
 		if ((SDL_GetTicks() - ticksRoundHasWinner) > 3000) // after 3 s show results table
 		{ // show results
+			if (alivePlayers == 0)
+				CGameResults::instance()->setWinner(-1); // no winner, no score update
+			else
+				CGameResults::instance()->setWinner(id); // add score to last survivor
+
 			CGameEngine::instance()->ChangeState(CResultsState::Instance());
 			return;
 		}
@@ -570,13 +575,11 @@ void CPlayState::Update ()
 	{
 		if (alivePlayers == 0)
 		{ // no game winner
-			CGameResults::instance()->setWinner(-1);
 			roundHasWinner = true;
 			ticksRoundHasWinner = SDL_GetTicks();
 		}
 		else if (alivePlayers == 1)
 		{ // we have winner!
-			CGameResults::instance()->setWinner(id);
 			roundHasWinner = true;
 			ticksRoundHasWinner = SDL_GetTicks();
 		}
