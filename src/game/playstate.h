@@ -83,7 +83,7 @@ private:
 	// PlayerX droped bomb
 	//bool dropBomb[CPLAYERS];
 
-	void playersDie(Sint16 x, Sint16 y, imagecolors color);
+	void playersDie(Sint16 x, Sint16 y, imagecolors killer);
 	void playerDie (imagecolors victim, imagecolors killer);
 	//void explodeBomb(Uint16 i);
 	void explodeBomb(Uint8 x, Uint8 y);

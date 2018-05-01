@@ -916,18 +916,21 @@ void CPlayState::dropBomb(Sint16 x, Sint16 y, imagecolors color)
 	}
 }
 
-void CPlayState::playersDie (Sint16 x, Sint16 y, imagecolors color)
+/**
+ * Kill all players at coordinates (x, y).
+ */
+void CPlayState::playersDie (Sint16 x, Sint16 y, imagecolors killer)
 {
 	//er.report(LOG_INFO, "%s: playersDie(%d, %d)\n", AT, x, y);
-	for (Uint8 p = 0; p < CPLAYERS; p++)
+	for (Uint8 victim = 0; victim < CPLAYERS; victim++)
 	{
-		if (players[p].getActive() && players[p].getLifeState() == LALIVE)
+		if (players[victim].getActive() && players[victim].getLifeState() == LALIVE)
 		{
-			if (x == players[p].getArrayX(players[p].getArrayMiddleX())
-				&& y == players[p].getArrayY(players[p].getArrayMiddleY()))
+			if (x == players[victim].getArrayX(players[victim].getArrayMiddleX())
+				&& y == players[victim].getArrayY(players[victim].getArrayMiddleY()))
 			{
 
-				playerDie((imagecolors) p, color);
+				playerDie((imagecolors) victim, killer);
 			}
 		}
 	}
